@@ -1,12 +1,13 @@
 import React from "react";
-import SearchBar from "./SearchBar";
 import "./App.css";
 
 function App() {
   return (
-    <div>
-      <SearchBar />
-      <div>{/* Hier komt de rest van de inhoud */}</div>
+    <div className="container">
+      <div className="searchbalk">
+        <input className="search-input" type="text" placeholder="Search..." />
+        <button className="search-button">Search</button>
+      </div>
     </div>
   );
 }

@@ -4,10 +4,7 @@ import "./App.css";
 function App() {
   return (
     <div className="container">
-      <div className="searchbalk">
-        <input className="search-input" type="text" placeholder="Search..." />
-        <button className="search-button">Search</button>
-      </div>
+      <h1 className="text-4xl font-bold">Welkom bij mijn React-project</h1>
     </div>
   );
 }

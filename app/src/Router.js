@@ -13,6 +13,7 @@ import Contact from "./pages/Contact";
 import ProductTracking from "./pages/ProductTracking";
 import Searchbalk from "./pages/Searchbalk";
 import Settings from "./pages/Settings";
+import ProductOvervieuw from "./pages/ProductOvervieuw";
 
 function AppRouter() {
   return (
@@ -31,6 +32,7 @@ function AppRouter() {
         <Route path="/ProductTracking" element={<ProductTracking />} />
         <Route path="/Searchbalk" element={<Searchbalk />} />
         <Route path="/Settings" element={<Settings />} />
+        <Route path="/ProductOvervieuw" element={<ProductOvervieuw />} />
       </Routes>
     </Router>
   );

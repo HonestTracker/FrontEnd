@@ -1,9 +1,9 @@
 import React from "react";
 import { images } from "../constants/images/images";
 
-function Navbar() {
+function Test() {
   return (
-    <nav className="bg-teal-500 p-4 flex items-center w-full shadow-2xl">
+    <nav className="bg-teal-500 p-4 flex items-center w-full shadow-lg">
       {/* Container for logo and links */}
       <div className="relative flex items-center w-full">
         {/* Logo on the left */}
@@ -32,9 +32,16 @@ function Navbar() {
             </a>
           </div>
         </div>
+
+        {/* Sign In button on the right */}
+        <div className="absolute right-0">
+          <button className="bg-teal-400 text-white px-4 py-2 rounded hover:bg-teal-300">
+            Sign In
+          </button>
+        </div>
       </div>
     </nav>
   );
 }
 
-export default Navbar;
+export default Test;

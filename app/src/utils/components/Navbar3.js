@@ -22,15 +22,22 @@ function Navbar() {
               Home
             </a>
             <a href="#" className="hover:text-gray-300">
-              Products
-            </a>
-            <a href="#" className="hover:text-gray-300">
               About
             </a>
             <a href="#" className="hover:text-gray-300">
               Contact
             </a>
           </div>
+        </div>
+
+        {/* Profile section on the right */}
+        <div className="absolute right-0 flex items-center space-x-2">
+          <img
+            src={images.thomas} // Replace with the correct image URL
+            alt="thomas"
+            className="h-10 w-10 rounded-full"
+          />
+          <span className="text-white">Jur</span>
         </div>
       </div>
     </nav>

@@ -27,9 +27,6 @@ function Navbar() {
 					</a>
 					{/* Logo on the right */}
 				</div>
-				<div className="flex items-center mr-auto">
-					<img src={images.logo} alt="Logo" className="h-6 w-6 rounded-full" />
-				</div>
 			</div>
 		</nav>
 	)

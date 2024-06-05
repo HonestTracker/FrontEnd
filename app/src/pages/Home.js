@@ -1,16 +1,10 @@
 import React from "react";
-<<<<<<< Updated upstream
-=======
 import NavbarHome from "../utils/components/NavbarHome";
 import { images } from "../utils/constants/images/images";
->>>>>>> Stashed changes
 
 function Home() {
   return (
     <div>
-<<<<<<< Updated upstream
-      <h1>Welkom bij mijn pagina</h1>
-=======
       <NavbarHome />
       <main className="p-6">
         {/* Logo Section */}
@@ -102,7 +96,6 @@ function Home() {
           </div>
         </section>
       </main>
->>>>>>> Stashed changes
     </div>
   );
 }

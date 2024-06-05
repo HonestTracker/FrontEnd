@@ -9,26 +9,35 @@ function Home() {
       <main className="p-6">
         {/* Logo Section */}
         <section className="flex justify-center mb-8">
-          <img src={images.logo} alt="logo" className="w-80 h-80" />
+          <img src={images.logo} alt="logo" className="w-24 h-24" />
         </section>
-
+        <h2 className="text-2xl font-semibold mb-4">Featured Product</h2>
         {/* Featured Product Section */}
-        <section className="bg-white shadow-md rounded-lg p-6 mb-8">
-          <h2 className="text-2xl font-semibold mb-4">Featured Product</h2>
+        <section
+          className="bg-white rounded-lg p-6 mb-8"
+          style={{
+            boxShadow:
+              "0 -2px 5px rgba(0, 0, 0, 0.1), 0 2px 3px rgba(0, 0, 0, 0.1)",
+          }}
+        >
           <div className="flex">
-            <img
-              src={images.thomas}
-              alt="thomas"
-              className="w-1/3 rounded-lg"
-            />
-            <div className="ml-4 w-2/3">
-              <h3 className="text-xl font-semibold">Pokemon Pikachu Shoes</h3>
-              <p className="text-gray-500">Shoes, Gaming</p>
-              <p className="text-red-500 text-2xl font-bold">€423.93</p>
-              <span className="text-sm text-gray-500">(+2.73%, €2.34)</span>
-              <p className="text-gray-500">
-                Current cheapest website: amazon.com
-              </p>
+            <div className="w-1/4">
+              <img
+                src={images.thomas}
+                alt="Pokemon Pikachu Shoes"
+                className="w-72 h-72 rounded-lg"
+              />
+            </div>
+            <div className="ml-2 w-2/3 flex flex-col justify-between">
+              <div>
+                <h3 className="text-xl font-semibold">Pokemon Pikachu Shoes</h3>
+                <p className="text-gray-500">Shoes, Gaming</p>
+                <p className="text-red-500 text-2xl font-bold">€423.93</p>
+                <span className="text-sm text-gray-500">(+2.73%, €2.34)</span>
+                <p className="text-gray-500">
+                  Current cheapest website: amazon.com
+                </p>
+              </div>
               <div className="mt-4 flex space-x-4">
                 <button className="bg-customTeal text-white px-4 py-2 rounded">
                   Favourite

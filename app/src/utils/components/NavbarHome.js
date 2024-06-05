@@ -1,9 +1,9 @@
 import React from "react";
 import { images } from "../constants/images/images";
 
-function Test() {
+function NavbarHome() {
   return (
-    <nav className="bg-teal-500 p-4 flex items-center w-full shadow-lg">
+    <nav className="bg-customTeal p-4 flex items-center w-full shadow-lg">
       {/* Container for logo and links */}
       <div className="relative flex items-center w-full">
         {/* Logo on the left */}
@@ -44,4 +44,4 @@ function Test() {
   );
 }
 
-export default Test;
+export default NavbarHome;

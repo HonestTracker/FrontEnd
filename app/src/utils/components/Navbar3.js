@@ -3,7 +3,7 @@ import { images } from "../constants/images/images";
 
 function Navbar() {
   return (
-    <nav className="bg-teal-500 p-4 flex items-center w-full shadow-2xl">
+    <nav className="bg-customTeal p-4 flex items-center w-full shadow-2xl">
       {/* Container for logo and links */}
       <div className="relative flex items-center w-full">
         {/* Logo on the left */}
@@ -32,12 +32,12 @@ function Navbar() {
 
         {/* Profile section on the right */}
         <div className="absolute right-0 flex items-center space-x-2">
+          <span className="text-white">Jur</span>
           <img
             src={images.thomas} // Replace with the correct image URL
             alt="thomas"
             className="h-10 w-10 rounded-full"
           />
-          <span className="text-white">Jur</span>
         </div>
       </div>
     </nav>

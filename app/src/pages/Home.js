@@ -5,12 +5,13 @@ import { ReactComponent as YourSvg } from "../utils/constants/images/img/test.sv
 import { ReactComponent as Hartje } from "../utils/constants/images/img/hartje.svg";
 import { ReactComponent as Ketting } from "../utils/constants/images/img/ketting.svg";
 import { ReactComponent as Vliegtuigje } from "../utils/constants/images/img/vliegtuigje.svg";
+import "@fontsource/poppins";
 
 function Home() {
   return (
     <div>
       <NavbarHome />
-      <main className="p-6">
+      <main className="p-6" style={{ fontFamily: "'Poppins', sans-serif" }}>
         {/* Logo Section */}
         <section className="flex justify-center mb-8">
           <img src={images.logo} alt="logo" className="w-24 h-24" />
@@ -62,10 +63,7 @@ function Home() {
                 </div>
               </div>
 
-              <div
-                className="mt-4 flex items-center space-x-2"
-                style={{ fontFamily: "'Comic Neue', cursive" }}
-              >
+              <div className="mt-4 flex items-center space-x-2">
                 <Hartje style={{ width: "20px", height: "20px" }} />
                 <a href="#" className="text-black">
                   Favourite

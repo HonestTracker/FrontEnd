@@ -1,5 +1,4 @@
 import React from "react";
-import NavbarHome from "../utils/components/navigation/NavbarSignIn";
 import { images } from "../utils/constants/Images";
 import { icons } from "../utils/constants/Icons";
 import "@fontsource/poppins";
@@ -7,7 +6,6 @@ import "@fontsource/poppins";
 function Home() {
   return (
     <div>
-      <NavbarHome />
       <main className="p-6" style={{ fontFamily: "'Poppins', sans-serif" }}>
         {/* Logo Section */}
         <section className="flex justify-center mb-8">

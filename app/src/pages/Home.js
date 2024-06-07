@@ -5,6 +5,8 @@ import { ReactComponent as YourSvg } from "../utils/constants/images/img/test.sv
 import { ReactComponent as Hartje } from "../utils/constants/images/img/hartje.svg";
 import { ReactComponent as Ketting } from "../utils/constants/images/img/ketting.svg";
 import { ReactComponent as Vliegtuigje } from "../utils/constants/images/img/vliegtuigje.svg";
+import { ReactComponent as Bol } from "../utils/constants/images/img/bol.com.svg";
+import { ReactComponent as Coolblue } from "../utils/constants/images/img/Coolblue.svg";
 import "@fontsource/poppins";
 
 function Home() {
@@ -92,7 +94,7 @@ function Home() {
                 className="w-full h-full rounded-lg absolute inset-0 object-cover"
               />
               <div className="bg-blue-500 bg-opacity-75 text-white p-4 rounded relative z-10 h-48 flex items-center justify-center text-4xl font-bold">
-                Laptops
+                LAPTOPS
               </div>
             </div>
             <div className="relative">
@@ -102,7 +104,7 @@ function Home() {
                 className="w-full h-full rounded-lg absolute inset-0 object-cover h-full"
               />
               <div className="bg-orange-500 bg-opacity-75 text-white p-4 rounded relative z-10 h-48 flex items-center justify-center text-4xl font-bold">
-                Furniture
+                FURNITURE
               </div>
             </div>
             <div className="relative">
@@ -112,49 +114,230 @@ function Home() {
                 className="w-full h-full rounded-lg absolute inset-0 object-cover"
               />
               <div className="bg-green-500 bg-opacity-75 text-white p-4 rounded relative z-10 h-48 flex items-center justify-center text-4xl font-bold">
-                Tablets
+                TABLETS
               </div>
             </div>
           </div>
         </section>
 
         {/* Latest Updates Section */}
-        <section className="grid grid-cols-3 gap-4">
-          <div className="bg-white shadow-md rounded-lg p-6">
+        <section className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div>
             <h3 className="text-xl font-semibold mb-4">Latest Rises</h3>
-            {/* Placeholder content */}
-            <ul className="list-disc list-inside">
-              <li>amazon.com (+2.73%, €2.34)</li>
-              <li>mediamarkt.nl (+2.73%, €2.34)</li>
-              <li>bol.com (+2.73%, €2.34)</li>
-            </ul>
-            <button className="bg-customTeal text-white px-4 py-2 rounded mt-4">
-              View more
-            </button>
+            <div
+              className="bg-white rounded-lg p-6"
+              style={{
+                boxShadow:
+                  "0 -2px 5px rgba(0, 0, 0, 0.1), 0 2px 3px rgba(0, 0, 0, 0.1)",
+              }}
+            >
+              <ul className="list-none">
+                <li className="flex justify-between items-center border-b border-gray-200 py-2">
+                  <div className="flex items-center">
+                    <YourSvg style={{ width: "20px", height: "20px" }} />
+                    <div>
+                      <p className="text-gray-800">amazon.com</p>
+                      <p className="text-gray-500 text-sm">09-05-2024 15:46</p>
+                    </div>
+                  </div>
+                  <div className="text-red-500 text-right">
+                    <p className="text-lg">+2,73%</p>
+                    <p className="text-sm">(€3,94)</p>
+                  </div>
+                </li>
+                <li className="flex justify-between items-center border-b border-gray-200 py-2">
+                  <div className="flex items-center">
+                    <YourSvg style={{ width: "20px", height: "20px" }} />
+                    <div>
+                      <p className="text-gray-800">amazon.com</p>
+                      <p className="text-gray-500 text-sm">09-05-2024 15:46</p>
+                    </div>
+                  </div>
+                  <div className="text-red-500 text-right">
+                    <p className="text-lg">+2,73%</p>
+                    <p className="text-sm">(€3,94)</p>
+                  </div>
+                </li>
+                <li className="flex justify-between items-center border-b border-gray-200 py-2">
+                  <div className="flex items-center">
+                    <Coolblue style={{ width: "20px", height: "20px" }} />
+                    <div>
+                      <p className="text-gray-800">Coolblue</p>
+                      <p className="text-gray-500 text-sm">09-05-2024 15:46</p>
+                    </div>
+                  </div>
+                  <div className="text-red-500 text-right">
+                    <p className="text-lg">+2,73%</p>
+                    <p className="text-sm">(€3,94)</p>
+                  </div>
+                </li>
+                <li className="flex justify-between items-center border-b border-gray-200 py-2">
+                  <div className="flex items-center">
+                    <Bol style={{ width: "20px", height: "20px" }} />
+                    <div>
+                      <p className="text-gray-800">bol.com</p>
+                      <p className="text-gray-500 text-sm">09-05-2024 15:46</p>
+                    </div>
+                  </div>
+                  <div className="text-red-500 text-right">
+                    <p className="text-lg">+2,73%</p>
+                    <p className="text-sm">(€3,94)</p>
+                  </div>
+                </li>
+                <li className="flex justify-between items-center py-2">
+                  <div className="flex items-center">
+                    <Bol style={{ width: "20px", height: "20px" }} />
+                    <div>
+                      <p className="text-gray-800">bol.com</p>
+                      <p className="text-gray-500 text-sm">09-05-2024 15:46</p>
+                    </div>
+                  </div>
+                  <div className="text-red-500 text-right">
+                    <p className="text-lg">+2,73%</p>
+                    <p className="text-sm">(€3,94)</p>
+                  </div>
+                </li>
+              </ul>
+              <button className="bg-teal-500 text-white px-4 py-2 rounded mt-4">
+                View more
+              </button>
+            </div>
           </div>
-          <div className="bg-white shadow-md rounded-lg p-6">
+          <div>
             <h3 className="text-xl font-semibold mb-4">Latest Drops</h3>
-            {/* Placeholder content */}
-            <ul className="list-disc list-inside">
-              <li>amazon.com (-1.73%, €1.34)</li>
-              <li>mediamarkt.nl (-1.73%, €1.34)</li>
-              <li>bol.com (-1.73%, €1.34)</li>
-            </ul>
-            <button className="bg-customTeal text-white px-4 py-2 rounded mt-4">
-              View more
-            </button>
+            <div
+              className="bg-white rounded-lg p-6"
+              style={{
+                boxShadow:
+                  "0 -2px 5px rgba(0, 0, 0, 0.1), 0 2px 3px rgba(0, 0, 0, 0.1)",
+              }}
+            >
+              <ul className="list-none">
+                <li className="flex justify-between items-center border-b border-gray-200 py-2">
+                  <div className="flex items-center">
+                    <YourSvg style={{ width: "20px", height: "20px" }} />
+                    <div>
+                      <p className="text-gray-800">amazon.com</p>
+                      <p className="text-gray-500 text-sm">09-05-2024 15:46</p>
+                    </div>
+                  </div>
+                  <div className="text-red-500 text-right">
+                    <p className="text-lg">+2,73%</p>
+                    <p className="text-sm">(€3,94)</p>
+                  </div>
+                </li>
+                <li className="flex justify-between items-center border-b border-gray-200 py-2">
+                  <div className="flex items-center">
+                    <Coolblue style={{ width: "20px", height: "20px" }} />
+                    <div>
+                      <p className="text-gray-800">Coolblue</p>
+                      <p className="text-gray-500 text-sm">09-05-2024 15:46</p>
+                    </div>
+                  </div>
+                  <div className="text-red-500 text-right">
+                    <p className="text-lg">+2,73%</p>
+                    <p className="text-sm">(€3,94)</p>
+                  </div>
+                </li>
+                <li className="flex justify-between items-center border-b border-gray-200 py-2">
+                  <div className="flex items-center">
+                    <Bol style={{ width: "20px", height: "20px" }} />
+                    <div>
+                      <p className="text-gray-800">bol.com</p>
+                      <p className="text-gray-500 text-sm">09-05-2024 15:46</p>
+                    </div>
+                  </div>
+                  <div className="text-red-500 text-right">
+                    <p className="text-lg">+2,73%</p>
+                    <p className="text-sm">(€3,94)</p>
+                  </div>
+                </li>
+                <li className="flex justify-between items-center py-2">
+                  <div className="flex items-center">
+                    <Bol style={{ width: "20px", height: "20px" }} />
+                    <div>
+                      <p className="text-gray-800">bol.com</p>
+                      <p className="text-gray-500 text-sm">09-05-2024 15:46</p>
+                    </div>
+                  </div>
+                  <div className="text-red-500 text-right">
+                    <p className="text-lg">+2,73%</p>
+                    <p className="text-sm">(€3,94)</p>
+                  </div>
+                </li>
+              </ul>
+              <button className="bg-teal-500 text-white px-4 py-2 rounded mt-4">
+                View more
+              </button>
+            </div>
           </div>
-          <div className="bg-white shadow-md rounded-lg p-6">
+          <div>
             <h3 className="text-xl font-semibold mb-4">Latest Updates</h3>
-            {/* Placeholder content */}
-            <ul className="list-disc list-inside">
-              <li>amazon.com (+0.73%, €0.34)</li>
-              <li>mediamarkt.nl (+0.73%, €0.34)</li>
-              <li>bol.com (+0.73%, €0.34)</li>
-            </ul>
-            <button className="bg-customTeal text-white px-4 py-2 rounded mt-4">
-              View more
-            </button>
+            <div
+              className="bg-white rounded-lg p-6"
+              style={{
+                boxShadow:
+                  "0 -2px 5px rgba(0, 0, 0, 0.1), 0 2px 3px rgba(0, 0, 0, 0.1)",
+              }}
+            >
+              <ul className="list-none">
+                <li className="flex justify-between items-center border-b border-gray-200 py-2">
+                  <div className="flex items-center">
+                    <YourSvg style={{ width: "20px", height: "20px" }} />
+                    <div>
+                      <p className="text-gray-800">amazon.com</p>
+                      <p className="text-gray-500 text-sm">09-05-2024 15:46</p>
+                    </div>
+                  </div>
+                  <div className="text-red-500 text-right">
+                    <p className="text-lg">+2,73%</p>
+                    <p className="text-sm">(€3,94)</p>
+                  </div>
+                </li>
+                <li className="flex justify-between items-center border-b border-gray-200 py-2">
+                  <div className="flex items-center">
+                    <Coolblue style={{ width: "20px", height: "20px" }} />
+                    <div>
+                      <p className="text-gray-800">Coolblue</p>
+                      <p className="text-gray-500 text-sm">09-05-2024 15:46</p>
+                    </div>
+                  </div>
+                  <div className="text-red-500 text-right">
+                    <p className="text-lg">+2,73%</p>
+                    <p className="text-sm">(€3,94)</p>
+                  </div>
+                </li>
+                <li className="flex justify-between items-center border-b border-gray-200 py-2">
+                  <div className="flex items-center">
+                    <Bol style={{ width: "20px", height: "20px" }} />
+                    <div>
+                      <p className="text-gray-800">bol.com</p>
+                      <p className="text-gray-500 text-sm">09-05-2024 15:46</p>
+                    </div>
+                  </div>
+                  <div className="text-red-500 text-right">
+                    <p className="text-lg">+2,73%</p>
+                    <p className="text-sm">(€3,94)</p>
+                  </div>
+                </li>
+                <li className="flex justify-between items-center py-2">
+                  <div className="flex items-center">
+                    <Bol style={{ width: "20px", height: "20px" }} />
+                    <div>
+                      <p className="text-gray-800">bol.com</p>
+                      <p className="text-gray-500 text-sm">09-05-2024 15:46</p>
+                    </div>
+                  </div>
+                  <div className="text-red-500 text-right">
+                    <p className="text-lg">+2,73%</p>
+                    <p className="text-sm">(€3,94)</p>
+                  </div>
+                </li>
+              </ul>
+              <button className="bg-teal-500 text-white px-4 py-2 rounded mt-4">
+                View more
+              </button>
+            </div>
           </div>
         </section>
       </main>

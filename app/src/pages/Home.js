@@ -1,12 +1,7 @@
 import React from "react";
-import NavbarHome from "../utils/components/NavbarHome";
-import { images } from "../utils/constants/images/images";
-import { ReactComponent as YourSvg } from "../utils/constants/images/img/test.svg";
-import { ReactComponent as Hartje } from "../utils/constants/images/img/hartje.svg";
-import { ReactComponent as Ketting } from "../utils/constants/images/img/ketting.svg";
-import { ReactComponent as Vliegtuigje } from "../utils/constants/images/img/vliegtuigje.svg";
-import { ReactComponent as Bol } from "../utils/constants/images/img/bol.com.svg";
-import { ReactComponent as Coolblue } from "../utils/constants/images/img/Coolblue.svg";
+import NavbarHome from "../utils/components/navigation/NavbarSignIn";
+import { images } from "../utils/constants/Images";
+import { icons } from "../utils/constants/Icons";
 import "@fontsource/poppins";
 
 function Home() {
@@ -16,7 +11,7 @@ function Home() {
       <main className="p-6" style={{ fontFamily: "'Poppins', sans-serif" }}>
         {/* Logo Section */}
         <section className="flex justify-center mb-8">
-          <img src={images.logo} alt="logo" className="w-24 h-24" />
+          <img src={images.logoFNBG} alt="logo" className="w-24 h-24" />
         </section>
 
         <h2 className="text-2xl font-semibold mb-4">Featured Product</h2>
@@ -31,7 +26,7 @@ function Home() {
           <div className="flex">
             <div className="w-1/4">
               <img
-                src={images.thomas}
+                src={images.placeholder}
                 alt="Pokemon Pikachu Shoes"
                 className="w-72 h-72 rounded-lg"
               />
@@ -40,11 +35,7 @@ function Home() {
               <div>
                 <h3 className="text-xl font-black">Pokemon Pikachu Shoes</h3>
                 <div className="flex items-center">
-                  <img
-                    src={images.pricetag}
-                    alt="Precitag"
-                    className="w-5 h-5 rounded-lg mr-2"
-                  />
+                  <icons.Tag style={{ width: "20px", height: "20px" }} />
                   <p className="text-gray-500">Shoes, Gaming</p>
                 </div>
                 <div className="flex items-start mt-6">
@@ -57,7 +48,9 @@ function Home() {
                     <p className="text-gray-500">Current cheapest website:</p>
                     <div className="flex items-center">
                       <div className="mr-2">
-                        <YourSvg style={{ width: "20px", height: "20px" }} />
+                        <icons.Amazon
+                          style={{ width: "20px", height: "20px" }}
+                        />
                       </div>
                       <p className="text-gray-500">amazon.com</p>
                     </div>
@@ -66,15 +59,15 @@ function Home() {
               </div>
 
               <div className="mt-4 flex items-center space-x-2">
-                <Hartje style={{ width: "20px", height: "20px" }} />
+                <icons.Heart style={{ width: "20px", height: "20px" }} />
                 <a href="#" className="text-black">
                   Favourite
                 </a>
-                <Ketting style={{ width: "20px", height: "20px" }} />
+                <icons.Link style={{ width: "20px", height: "20px" }} />
                 <a href="#" className="text-black">
                   Share
                 </a>
-                <Vliegtuigje style={{ width: "20px", height: "20px" }} />
+                <icons.Plane style={{ width: "20px", height: "20px" }} />
                 <a href="#" className="text-black">
                   Visit webpage
                 </a>
@@ -89,7 +82,7 @@ function Home() {
           <div className="grid grid-cols-3 gap-4">
             <div className="relative">
               <img
-                src={images.laptop}
+                src={images.laptopsBg}
                 alt="Laptops"
                 className="w-full h-full rounded-lg absolute inset-0 object-cover"
               />
@@ -99,7 +92,7 @@ function Home() {
             </div>
             <div className="relative">
               <img
-                src={images.design}
+                src={images.furnitureBg}
                 alt="Furniture"
                 className="w-full h-full rounded-lg absolute inset-0 object-cover h-full"
               />
@@ -109,7 +102,7 @@ function Home() {
             </div>
             <div className="relative">
               <img
-                src={images.tablet}
+                src={images.tabletBg}
                 alt="Tablets"
                 className="w-full h-full rounded-lg absolute inset-0 object-cover"
               />
@@ -134,7 +127,7 @@ function Home() {
               <ul className="list-none">
                 <li className="flex justify-between items-center border-b border-gray-200 py-2">
                   <div className="flex items-center">
-                    <YourSvg style={{ width: "20px", height: "20px" }} />
+                    <icons.Amazon style={{ width: "20px", height: "20px" }} />
                     <div>
                       <p className="text-gray-800">amazon.com</p>
                       <p className="text-gray-500 text-sm">09-05-2024 15:46</p>
@@ -147,7 +140,7 @@ function Home() {
                 </li>
                 <li className="flex justify-between items-center border-b border-gray-200 py-2">
                   <div className="flex items-center">
-                    <YourSvg style={{ width: "20px", height: "20px" }} />
+                    <icons.Amazon style={{ width: "20px", height: "20px" }} />
                     <div>
                       <p className="text-gray-800">amazon.com</p>
                       <p className="text-gray-500 text-sm">09-05-2024 15:46</p>
@@ -160,7 +153,7 @@ function Home() {
                 </li>
                 <li className="flex justify-between items-center border-b border-gray-200 py-2">
                   <div className="flex items-center">
-                    <Coolblue style={{ width: "20px", height: "20px" }} />
+                    <icons.Coolblue style={{ width: "20px", height: "20px" }} />
                     <div>
                       <p className="text-gray-800">Coolblue</p>
                       <p className="text-gray-500 text-sm">09-05-2024 15:46</p>
@@ -173,7 +166,7 @@ function Home() {
                 </li>
                 <li className="flex justify-between items-center border-b border-gray-200 py-2">
                   <div className="flex items-center">
-                    <Bol style={{ width: "20px", height: "20px" }} />
+                    <icons.Bolcom style={{ width: "20px", height: "20px" }} />
                     <div>
                       <p className="text-gray-800">bol.com</p>
                       <p className="text-gray-500 text-sm">09-05-2024 15:46</p>
@@ -186,7 +179,7 @@ function Home() {
                 </li>
                 <li className="flex justify-between items-center py-2">
                   <div className="flex items-center">
-                    <Bol style={{ width: "20px", height: "20px" }} />
+                    <icons.Bolcom style={{ width: "20px", height: "20px" }} />
                     <div>
                       <p className="text-gray-800">bol.com</p>
                       <p className="text-gray-500 text-sm">09-05-2024 15:46</p>
@@ -215,7 +208,7 @@ function Home() {
               <ul className="list-none">
                 <li className="flex justify-between items-center border-b border-gray-200 py-2">
                   <div className="flex items-center">
-                    <YourSvg style={{ width: "20px", height: "20px" }} />
+                    <icons.Amazon style={{ width: "20px", height: "20px" }} />
                     <div>
                       <p className="text-gray-800">amazon.com</p>
                       <p className="text-gray-500 text-sm">09-05-2024 15:46</p>
@@ -228,7 +221,7 @@ function Home() {
                 </li>
                 <li className="flex justify-between items-center border-b border-gray-200 py-2">
                   <div className="flex items-center">
-                    <Coolblue style={{ width: "20px", height: "20px" }} />
+                    <icons.Coolblue style={{ width: "20px", height: "20px" }} />
                     <div>
                       <p className="text-gray-800">Coolblue</p>
                       <p className="text-gray-500 text-sm">09-05-2024 15:46</p>
@@ -241,7 +234,7 @@ function Home() {
                 </li>
                 <li className="flex justify-between items-center border-b border-gray-200 py-2">
                   <div className="flex items-center">
-                    <Bol style={{ width: "20px", height: "20px" }} />
+                    <icons.Bolcom style={{ width: "20px", height: "20px" }} />
                     <div>
                       <p className="text-gray-800">bol.com</p>
                       <p className="text-gray-500 text-sm">09-05-2024 15:46</p>
@@ -254,7 +247,7 @@ function Home() {
                 </li>
                 <li className="flex justify-between items-center py-2">
                   <div className="flex items-center">
-                    <Bol style={{ width: "20px", height: "20px" }} />
+                    <icons.Bolcom style={{ width: "20px", height: "20px" }} />
                     <div>
                       <p className="text-gray-800">bol.com</p>
                       <p className="text-gray-500 text-sm">09-05-2024 15:46</p>
@@ -283,7 +276,7 @@ function Home() {
               <ul className="list-none">
                 <li className="flex justify-between items-center border-b border-gray-200 py-2">
                   <div className="flex items-center">
-                    <YourSvg style={{ width: "20px", height: "20px" }} />
+                    <icons.Amazon style={{ width: "20px", height: "20px" }} />
                     <div>
                       <p className="text-gray-800">amazon.com</p>
                       <p className="text-gray-500 text-sm">09-05-2024 15:46</p>
@@ -296,7 +289,7 @@ function Home() {
                 </li>
                 <li className="flex justify-between items-center border-b border-gray-200 py-2">
                   <div className="flex items-center">
-                    <Coolblue style={{ width: "20px", height: "20px" }} />
+                    <icons.Coolblue style={{ width: "20px", height: "20px" }} />
                     <div>
                       <p className="text-gray-800">Coolblue</p>
                       <p className="text-gray-500 text-sm">09-05-2024 15:46</p>
@@ -309,7 +302,7 @@ function Home() {
                 </li>
                 <li className="flex justify-between items-center border-b border-gray-200 py-2">
                   <div className="flex items-center">
-                    <Bol style={{ width: "20px", height: "20px" }} />
+                    <icons.Bolcom style={{ width: "20px", height: "20px" }} />
                     <div>
                       <p className="text-gray-800">bol.com</p>
                       <p className="text-gray-500 text-sm">09-05-2024 15:46</p>
@@ -322,7 +315,7 @@ function Home() {
                 </li>
                 <li className="flex justify-between items-center py-2">
                   <div className="flex items-center">
-                    <Bol style={{ width: "20px", height: "20px" }} />
+                    <icons.Bolcom style={{ width: "20px", height: "20px" }} />
                     <div>
                       <p className="text-gray-800">bol.com</p>
                       <p className="text-gray-500 text-sm">09-05-2024 15:46</p>

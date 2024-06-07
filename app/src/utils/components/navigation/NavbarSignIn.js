@@ -1,5 +1,5 @@
 import React from "react";
-import { images } from "../constants/images/images";
+import { images } from "../../constants/Images";
 
 function NavbarHome() {
   return (
@@ -9,7 +9,7 @@ function NavbarHome() {
         {/* Logo on the left */}
         <div className="absolute left-0">
           <img
-            src={images.logo}
+            src={images.logoFNBG}
             alt="Logo"
             className="h-10 w-10 rounded-full"
           />

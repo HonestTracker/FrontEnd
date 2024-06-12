@@ -3,7 +3,7 @@ import { images } from "../../constants/Images";
 import { Link } from "react-router-dom";
 
 // DUMMY VALUES
-const isLoggedIn = false;
+const isLoggedIn = true;
 const isLoginPage = false;
 
 function Navbar() {

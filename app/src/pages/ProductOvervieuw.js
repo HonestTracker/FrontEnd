@@ -1,50 +1,58 @@
 import React from "react";
+import { images } from "../utils/constants/Images";
 
-function ProductOvervieuw() {
+function ProductOverview() {
   const products = [
     {
-      image: "path/to/pokemon-pikachu-shoes.jpg", // vervang dit met je daadwerkelijke afbeeldingspad
+      image: images.pikachu, // Using the path of the uploaded image
       title: "Pokemon Pikachu Shoes",
       price: "423,93",
       link: "https://www.amazon.com",
       reviews: 379,
       discount: "-2,73% (€3,94)",
     },
-    // Voeg hier meer producten toe als dat nodig is
+    // Add more products if necessary
   ];
 
   return (
     <div className="container mx-auto p-4">
       <div className="flex items-center mb-8 mt-12">
-        <button className="bg-[#20C1AA] text-white font-bold py-2 px-4 rounded mr-4">
-          ← Go Back
+        <button
+          className="bg-[#20C1AA] text-white font-bold py-2 px-4 rounded mr-4 ml-20 hover:text-gray-200"
+          style={{ fontFamily: "Poppins, sans-serif" }}
+        >
+          <span className="text-xl">←</span> Go Back
         </button>
+
         <input
           type="text"
           placeholder="Search"
-          className="flex-grow p-2 border border-gray-300 rounded"
+          className="p-2 border border-gray-300 rounded w-3/4 ml-24"
         />
       </div>
 
-      <header className="mb-6 text-center">
-        <h1 className="text-2xl font-bold">Showing results for: "Shoes"</h1>
-        <p className="text-gray-500 mr-48">53 products found</p>
-      </header>
-
       <div className="flex">
         <Filter />
-        <div className="flex flex-wrap justify-around w-4/5">
-          {products.map((product, index) => (
-            <ProductCard key={index} product={product} />
-          ))}
+        <div className="w-4/5 ml-4">
+          <header className="mb-6">
+            <h1 className="text-2xl font-bold">Showing results for: "Shoes"</h1>
+            <p className="text-gray-500">53 products found</p>
+          </header>
+
+          <div className="flex flex-wrap justify-around">
+            {products.map((product, index) => (
+              <ProductCard key={index} product={product} />
+            ))}
+          </div>
+
+          <div className="text-center mt-6">
+            <button className="mx-2 px-4 py-2 border rounded">2</button>
+            <button className="mx-2 px-4 py-2 border rounded bg-blue-500 text-white">
+              3
+            </button>
+            <button className="mx-2 px-4 py-2 border rounded">4</button>
+          </div>
         </div>
-      </div>
-      <div className="text-center mt-6">
-        <button className="mx-2 px-4 py-2 border rounded">2</button>
-        <button className="mx-2 px-4 py-2 border rounded bg-blue-500 text-white">
-          3
-        </button>
-        <button className="mx-2 px-4 py-2 border rounded">4</button>
       </div>
     </div>
   );
@@ -89,10 +97,14 @@ function Filter() {
 
 function ProductCard({ product }) {
   return (
-    <div className="border border-gray-300 m-4 p-4 w-full max-w-md max-h-64 shadow-md">
-      <img src={product.image} alt={product.title} className="w-full" />
-      <div className="mt-4">
-        <div className="flex justify-between items-center">
+    <div className="border border-gray-300 w-full max-w-2xl shadow-md rounded-lg flex mb-4 p-4">
+      <img
+        src={product.image}
+        alt={product.title}
+        className="w-1/3 h-48 object-cover rounded-lg"
+      />
+      <div className="ml-4 w-2/3">
+        <div className="flex justify-between items-center mb-2">
           <a
             href={product.link}
             className="text-lg font-semibold text-blue-600"
@@ -103,7 +115,7 @@ function ProductCard({ product }) {
         </div>
         <p className="text-green-600 text-xl mt-2">€{product.price}</p>
         <p className="text-red-600 text-sm">{product.discount}</p>
-        <div className="flex items-center text-gray-600 text-xs">
+        <div className="flex items-center text-gray-600 text-xs mt-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-4 w-4 mr-1"
@@ -125,4 +137,4 @@ function ProductCard({ product }) {
   );
 }
 
-export default ProductOvervieuw;
+export default ProductOverview;

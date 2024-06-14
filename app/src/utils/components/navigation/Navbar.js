@@ -55,7 +55,7 @@ function Navbar() {
         <div className="mx-auto">
           <div className="flex space-x-10 text-white text-lg">
             <CustomLink to="/">Home</CustomLink>
-            <CustomLink to="/">Products</CustomLink>
+            <CustomLink to="/Products">Products</CustomLink>
             <CustomLink to="/About">About</CustomLink>
             <CustomLink to="/Contact">Contact</CustomLink>
             <CustomLink to="/Settings">Settings</CustomLink>

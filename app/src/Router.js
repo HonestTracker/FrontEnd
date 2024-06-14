@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {Link} from "react-router-dom"
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -14,11 +15,14 @@ import ProductTracking from "./pages/ProductTracking";
 import Searchbalk from "./pages/Searchbalk";
 import Settings from "./pages/Settings";
 import ProductOvervieuw from "./pages/ProductOvervieuw";
-
+import Navbar from "./utils/components/navigation/Navbar";
+import Footer from "./utils/components/navigation/Footer";
 function AppRouter() {
   return (
     <Router>
+      <Navbar />
       <Routes>
+        
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/Register" element={<Register />} />
@@ -33,7 +37,9 @@ function AppRouter() {
         <Route path="/Searchbalk" element={<Searchbalk />} />
         <Route path="/Settings" element={<Settings />} />
         <Route path="/ProductOvervieuw" element={<ProductOvervieuw />} />
+        
       </Routes>
+      <Footer />
     </Router>
   );
 }

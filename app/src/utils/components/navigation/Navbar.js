@@ -1,7 +1,7 @@
 import React from "react";
 import { images } from "../../constants/Images";
-import { Link } from "react-router-dom";
-
+import {Link} from "react-router-dom"
+import CustomLink from "../../CustomLink";
 // DUMMY VALUES
 const isLoggedIn = false;
 const isLoginPage = false;
@@ -11,8 +11,10 @@ function Navbar() {
     if (!isLoggedIn && !isLoginPage) {
       return (
         <div className="absolute right-0">
-          <button className="bg-teal-400 text-white px-4 py-2 rounded hover:bg-teal-300">
-            Sign In
+          
+          <button className="bg-teal-400 cursor-pointer text-white px-4 py-2 rounded hover:bg-teal-300"><CustomLink to="/login">Sign in</CustomLink>
+            
+           
           </button>
         </div>
       );
@@ -51,19 +53,12 @@ function Navbar() {
 
         {/* Centered links */}
         <div className="mx-auto">
-          <div className="flex space-x-4 text-white text-lg">
-            <a href="#" className="hover:text-gray-300">
-              Home
-            </a>
-            <a href="#" className="hover:text-gray-300">
-              Products
-            </a>
-            <a href="#" className="hover:text-gray-300">
-              About
-            </a>
-            <a href="#" className="hover:text-gray-300">
-              Contact
-            </a>
+          <div className="flex space-x-10 text-white text-lg">
+            <CustomLink to="/">Home</CustomLink>
+            <CustomLink to="/">Products</CustomLink>
+            <CustomLink to="/About">About</CustomLink>
+            <CustomLink to="/Contact">Contact</CustomLink>
+            <CustomLink to="/Settings">Settings</CustomLink>
           </div>
         </div>
 

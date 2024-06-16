@@ -15,7 +15,7 @@ function About() {
         </section>
         <h2 class="text-center text-3xl font-semibold mt-12 mb-4">Our Statistics</h2>
         <section>
-            <div class="grid grid-cols-3 space-x-6">
+            <div class="grid grid-cols-3 space-x-6" style={{ fontFamily: "Poppins, sans-serif" }}>
             <div className="bg-white border-2 border-gray-200 shadow-md rounded-lg py-5  flex flex-col items-center justify-center">
                   <h3 className="text-2xl font-semibold">349,439</h3>
                   <p className="text-gray-500">PRODUCTS TRACKED</p>

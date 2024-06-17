@@ -110,40 +110,32 @@ function ProductCard({ product }) {
       />
       <div className="ml-4 w-2/3">
         <div className="flex justify-between items-center mb-2">
-          <div className="flex items-center">
-            <icons.Amazon style={{ width: "20px", height: "20px" }} />
-            <span
-              className="ml-2 text-gray-600"
-              style={{ fontFamily: "'Poppins', sans-serif" }}
-            >
-              amazon.com
-            </span>
+          <div className="flex items-center mt-2">
+            <icons.Amazon className="w-10 h-10 mt-2" />
+            <span className="mt-3 ml-2 text-xl">amazon.com</span>
+            <div className="flex items-center" style={{ marginLeft: "600px" }}>
+              <icons.Heart className="w-8 h-8" />
+              <icons.Ketting className="w-8 h-8 ml-4" />
+            </div>
           </div>
         </div>
         <a
           href={product.link}
-          className="text-lg font-semibold text-blue-600 text-black"
+          className="text-2xl font-semibold text-black mt-2 ml-2"
         >
           {product.title}
         </a>
-        <p className="text-green-600 text-xl mt-2">€{product.price}</p>
-        <p className="text-red-600 text-sm">{product.discount}</p>
+        <div className="flex items-center mt-2 ml-1">
+          <p style={{ color: "#24BA4E" }} className="text-xl">
+            €{product.price}
+          </p>
+          <p style={{ color: "#24BA4E" }} className="text-xl ml-4 font-bold">
+            {product.discount}
+          </p>
+        </div>
         <div className="flex items-center text-gray-600 text-xs mt-2">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-4 w-4 mr-1"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M8 10h.01M12 10h.01M16 10h.01M9 16h6M21 12c0 4.418-3.582 8-8 8s-8-3.582-8-8 3.582-8 8-8 8 3.582 8 8z"
-            />
-          </svg>
-          {product.reviews} reviews
+          <icons.Textvak className="w-10 h-10 mt-16" />
+          <span className="ml-2 mt-16">379</span>
         </div>
       </div>
     </div>

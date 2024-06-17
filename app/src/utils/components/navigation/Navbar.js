@@ -10,7 +10,7 @@ function Navbar() {
   const renderSignInButton = () => {
     if (!isLoggedIn && !isLoginPage) {
       return (
-        <div className="absolute right-0">
+        <div className="absolute right-44">
           
           <button className="bg-teal-400 cursor-pointer text-white px-4 py-2 rounded hover:bg-teal-300"><CustomLink to="/login">Sign in</CustomLink>
             
@@ -39,15 +39,15 @@ function Navbar() {
   };
 
   return (
-    <nav className="bg-customTeal p-4 flex items-center w-full shadow-lg">
+    <nav className="bg-customTeal p-4 flex items-center w-full shadow-lg ">
       {/* Container for logo and links */}
       <div className="relative flex items-center w-full">
         {/* Logo on the left */}
-        <div className="absolute left-0">
+        <div className="absolute left-40">
           <img
             src={images.logoFNBG}
             alt="Logo"
-            className="h-10 w-10 rounded-full"
+            className="h-16 w-16 rounded-full"
           />
         </div>
 

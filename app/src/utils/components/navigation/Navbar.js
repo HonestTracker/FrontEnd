@@ -64,22 +64,23 @@ function Navbar() {
 
         {/* Conditionally render sign-in button */}
         {renderSignInButton()}
-        <div className="bg-white rounded-lg fixed shadow-lg p-4  w-48">
+      
+       <div className="bg-white hidden rounded-lg fixed shadow-lg p-4  w-48">
       <div className="flex items-center space-x-3 mb-6">
         <img src="path_to_pikachu_image.jpg" alt="Pikachu" className="h-12 w-12 rounded-full"/>
         <span className="font-semibold text-lg">Jur</span>
       </div>
       <ul>
         <li className="flex items-center mb-3">
-          <img src={images.footerLogo} class="h-16"/>
+          <img  class="h-16"/>
                     Profile Page
         </li>
         <li className="flex items-center mb-3">
-        <img src={images.footerLogo}  class="h-16"/>
+        <img   class="h-16"/>
           Settings
         </li>
         <li className="flex items-center">
-        <img src={images.footerLogo}  class="h-16"/>
+        <img   class="h-16"/>
           Logout
         </li>
       </ul>

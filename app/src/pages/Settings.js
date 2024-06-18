@@ -1,6 +1,6 @@
 import React from "react";
 import BackButton from "../utils/BackButton"
-
+import { images } from "../utils/constants/Images"
 function Settings() {
   
   return (

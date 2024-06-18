@@ -18,6 +18,7 @@ import ProductOvervieuw from "./pages/ProductOvervieuw";
 import Navbar from "./utils/components/navigation/Navbar";
 import Footer from "./utils/components/navigation/Footer";
 import PageNotFound from "./pages/404Page";
+import SettingsAuthenticated from "./pages/SettingsAuthenticated";
 function AppRouter() {
   return (
     <Router>
@@ -37,6 +38,7 @@ function AppRouter() {
         <Route path="/ProductTracking" element={<ProductTracking />} />
         <Route path="/Searchbalk" element={<Searchbalk />} />
         <Route path="/Settings" element={<Settings />} />
+        <Route path="/SettingsAuthenticated" element={<SettingsAuthenticated/>}/>
         <Route path="/ProductOvervieuw" element={<ProductOvervieuw />} />
         <Route path="/404" element={<PageNotFound/>} />
       </Routes>

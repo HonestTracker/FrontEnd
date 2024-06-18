@@ -5,6 +5,8 @@ import { ReactComponent as HeartIcon } from "../../assets/icons/heartIcon.svg";
 import { ReactComponent as LinkIcon } from "../../assets/icons/linkIcon.svg";
 import { ReactComponent as PlaneIcon } from "../../assets/icons/planeIcon.svg";
 import { ReactComponent as TagIcon } from "../../assets/icons/tag.svg";
+import {ReactComponent as ArrowLeft} from "../../assets/icons/arrow-left-solid.svg";
+import {ReactComponent as Pencil} from "../../assets/icons/pencil.svg"
 
 export const icons = {
   Amazon: AmazonIcon,
@@ -14,4 +16,6 @@ export const icons = {
   Link: LinkIcon,
   Plane: PlaneIcon,
   Tag: TagIcon,
+  ArrowLeft: ArrowLeft,
+  Pencil: Pencil
 };

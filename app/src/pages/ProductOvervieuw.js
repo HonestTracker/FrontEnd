@@ -6,14 +6,29 @@ import "@fontsource/poppins";
 function ProductOverview() {
   const products = [
     {
-      image: images.pikachu, // Using the path of the uploaded image
+      image: images.pikachu,
       title: "Pokemon Pikachu Shoes",
       price: "423,93",
       link: "https://www.amazon.com",
       reviews: 379,
       discount: "-2,73% (€3,94)",
     },
-    // Add more products if necessary
+    {
+      image: images.pikachu,
+      title: "Pokemon Pikachu Shoes",
+      price: "423,93",
+      link: "https://www.amazon.com",
+      reviews: 379,
+      discount: "-2,73% (€3,94)",
+    },
+    {
+      image: images.pikachu,
+      title: "Pokemon Pikachu Shoes",
+      price: "423,93",
+      link: "https://www.amazon.com",
+      reviews: 379,
+      discount: "-2,73% (€3,94)",
+    },
   ];
 
   return (
@@ -25,14 +40,12 @@ function ProductOverview() {
         >
           <span className="text-xl">←</span> Go Back
         </button>
-
         <input
           type="text"
           placeholder="Search"
           className="p-2 border border-gray-300 rounded w-3/4 ml-32"
         />
       </div>
-
       <div className="flex">
         <Filter />
         <div className="w-4/5 ml-4">
@@ -40,16 +53,21 @@ function ProductOverview() {
             <h1 className="text-2xl font-bold">Showing results for: "Shoes"</h1>
             <p className="text-gray-500">53 products found</p>
           </header>
-
           <div className="flex flex-wrap justify-around">
             {products.map((product, index) => (
-              <ProductCard key={index} product={product} />
+              <ProductCard
+                key={index}
+                product={product}
+                isSecond={index === 1 || index === 2}
+              />
             ))}
           </div>
-
-          <div className="text-center mt-6">
+          <div className="text-center mt-6 flex justify-end">
             <button className="mx-2 px-4 py-2 border rounded">2</button>
-            <button className="mx-2 px-4 py-2 border rounded bg-blue-500 text-white">
+            <button
+              style={{ backgroundColor: "#20C1AA" }}
+              className="mx-2 px-4 py-2 border rounded text-white"
+            >
               3
             </button>
             <button className="mx-2 px-4 py-2 border rounded">4</button>
@@ -97,11 +115,20 @@ function Filter() {
   );
 }
 
-function ProductCard({ product }) {
+function ProductCard({ product, isSecond }) {
   return (
     <div
-      style={{ fontFamily: "'Poppins', sans-serif" }}
-      className="border border-gray-300 w-full shadow-md rounded-lg flex mb-4"
+      style={{
+        fontFamily: "'Poppins', sans-serif",
+        boxShadow: "0px 10px 10px rgba(0, 0, 0, 0.1)",
+        borderRadius: "10px",
+        marginBottom: "1rem",
+        background: isSecond
+          ? "linear-gradient(135deg, #FFFFFF 80%, #F44040 100%)"
+          : "linear-gradient(135deg, #FFFFFF 80%, #24BA4E 100%)",
+        display: "flex",
+        width: "100%",
+      }}
     >
       <img
         src={product.image}
@@ -110,14 +137,7 @@ function ProductCard({ product }) {
       />
       <div className="ml-4 w-2/3">
         <div className="flex justify-between items-center mb-2">
-          <div className="flex items-center mt-2">
-            <icons.Amazon className="w-10 h-10 mt-2" />
-            <span className="mt-3 ml-2 text-xl">amazon.com</span>
-            <div className="flex items-center" style={{ marginLeft: "600px" }}>
-              <icons.Heart className="w-8 h-8" />
-              <icons.Ketting className="w-8 h-8 ml-4" />
-            </div>
-          </div>
+          {/* ... your component */}
         </div>
         <a
           href={product.link}
@@ -126,16 +146,21 @@ function ProductCard({ product }) {
           {product.title}
         </a>
         <div className="flex items-center mt-2 ml-1">
-          <p style={{ color: "#24BA4E" }} className="text-xl">
+          <p
+            style={{ color: isSecond ? "red" : "#24BA4E" }}
+            className="text-xl"
+          >
             €{product.price}
           </p>
-          <p style={{ color: "#24BA4E" }} className="text-xl ml-4 font-bold">
+          <p
+            style={{ color: isSecond ? "red" : "#24BA4E" }}
+            className="text-xl ml-4 font-bold"
+          >
             {product.discount}
           </p>
         </div>
         <div className="flex items-center text-gray-600 text-xs mt-2">
-          <icons.Textvak className="w-10 h-10 mt-16" />
-          <span className="ml-2 mt-16">379</span>
+          {/* ... your component */}
         </div>
       </div>
     </div>

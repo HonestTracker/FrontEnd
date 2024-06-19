@@ -8,7 +8,7 @@ function Settings() {
       <BackButton/>
       
                        
-    <div class="flex-column justify-between rounded-lg  bg-white border-2 border-gray-200 shadow-md -mt-28" style={{ fontFamily: "Poppins, sans-serif" }}>
+    <div class="flex-column justify-between rounded-lg w-1/2  bg-white border-2 border-gray-200 shadow-md -mt-28" style={{ fontFamily: "Poppins, sans-serif" }}>
         <div class=" h-96">
           <div class="mb-10">
           <h1 class="text-left pl-6 pt-6 right-0 text-3xl">Settings</h1>

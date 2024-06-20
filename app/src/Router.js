@@ -20,6 +20,7 @@ import Footer from "./utils/components/navigation/Footer";
 import PageNotFound from "./pages/404Page";
 import SettingsAuthenticated from "./pages/SettingsAuthenticated";
 import ProfilePage from "./pages/ProfilePage";
+import ProductDetails from "./pages/ProductDetails";
 function AppRouter() {
   return (
     <Router>
@@ -42,6 +43,7 @@ function AppRouter() {
         <Route path="/SettingsAuthenticated" element={<SettingsAuthenticated/>}/>
         <Route path="/ProductOvervieuw" element={<ProductOvervieuw />} />
         <Route path="/ProfilePage" element={<ProfilePage/>}/>
+        <Route path="/ProductDetails" element={<ProductDetails/>}/>
         <Route path="/404" element={<PageNotFound/>} />
       </Routes>
       <Footer />

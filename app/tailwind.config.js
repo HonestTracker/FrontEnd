@@ -9,7 +9,8 @@ module.exports = {
       },
       rotate: {
         '360': '360deg',
-      }
+      },
+     
     },
   },
   plugins: [],

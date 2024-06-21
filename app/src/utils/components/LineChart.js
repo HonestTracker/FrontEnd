@@ -1,12 +1,9 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
-import Chart from 'chart.js/auto';
-import Utils from "../constants/GraphData"
-
-  
+import Chart from 'chart.js/auto'; // Automatically registers controllers, elements, scales, and plugins.
 
 function LineChart() {
-  const labels = Utils.months({ count: 12 }); // Ensure you have a Utils method or import it if it's a custom utility.
+  const labels = Utils.months({ count: 7 }); // Ensure you have a Utils method or import it if it's a custom utility.
   
   const data = {
     labels,

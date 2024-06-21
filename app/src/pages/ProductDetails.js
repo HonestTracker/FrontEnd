@@ -2,8 +2,7 @@ import React from "react";
 import BackButton from "../utils/BackButton";
 import { images } from "../utils/constants/Images"
 import {icons} from "../utils/constants/Icons"
-import {Chart as ChartJS} from "chart.js/auto";
-import {Line} from "react-chartjs-2"
+
 import LineChart from "../utils/components/LineChart"
 
 

@@ -8,7 +8,7 @@ import NotFoundPage from "./pages/404Page"
 import About from "./pages/About"
 import CommentsPage from "./pages/CommentsPage"
 import Contact from "./pages/Contact"
-import ProductTracking from "./pages/ProductTracking"
+import ProductDetails from "./pages/ProductDetails"
 import Settings from "./pages/Settings"
 import ProductOverview from "./pages/ProductOverview"
 import Navbar from "./utils/components/navigation/Navbar"
@@ -27,12 +27,13 @@ function AppRouter() {
 				<Route path="/about" element={<About />} />
 				<Route path="/comments" element={<CommentsPage />} />
 				<Route path="/contact" element={<Contact />} />
-				<Route path="/productTracking" element={<ProductTracking />} />
+				<Route path="/ProductDetails" element={<ProductDetails />} />
 				<Route path="/Settings" element={<Settings />} />
 				<Route
 					path="/SettingsAuthenticated"
 					element={<SettingsAuthenticated />}
 				/>
+        
 				<Route path="/products" element={<ProductOverview />} />
 				<Route path="/profile" element={<ProfilePage />} />
 			</Routes>

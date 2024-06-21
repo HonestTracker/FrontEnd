@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import { images } from "../../constants/Images";
 import { useLocation } from "react-router-dom"
 import CustomLink from "../../CustomLink";
+
 const isLoggedIn = false;
 const isLoginPage = false;
 

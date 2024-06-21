@@ -13,7 +13,7 @@ function SettingsAuthenticated() {
             <div className="bg-white border-2  border-gray-200 shadow-md p-4 rounded-lg">
                 <div class="flex relative">
                   <img src={images.footerLogo} class="opacity-50"/>
-                  <icons.Pencil style={{ width: "20px", height: "20px", position: "absolute", right: 740, top: "50%", transform: "translateY(-50%)", cursor: "pointer" }} />
+                  <icons.Pencil style={{ width: "20px", height: "20px", position: "absolute", right: 860, top: "50%", transform: "translateY(-50%)", cursor: "pointer" }} />
                   <div class="flex-col ml-16 w-80">
                     <p class="text-xl mt-16">Username</p>
                     <div className="relative w-full">

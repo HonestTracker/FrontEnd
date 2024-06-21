@@ -7,6 +7,9 @@ module.exports = {
         customTeal: "#20C1AA",
         customGray: "#4A4A4A"
       },
+      rotate: {
+        '360': '360deg',
+      }
     },
   },
   plugins: [],

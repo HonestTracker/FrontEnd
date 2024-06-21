@@ -9,6 +9,9 @@ import { ReactComponent as Textvak } from "../../assets/icons/text.svg";
 import { ReactComponent as Ketting } from "../../assets/icons/ketting.svg";
 import {ReactComponent as ArrowLeft} from "../../assets/icons/arrow-left-solid.svg";
 import {ReactComponent as Pencil} from "../../assets/icons/pencil.svg"
+import {ReactComponent as SettingsGear} from "../../assets/icons/settingsgear.svg"
+import {ReactComponent as Star} from "../../assets/icons/star.svg"
+import {ReactComponent as Link} from "../../assets/icons/link.svg"
 
 export const icons = {
   Amazon: AmazonIcon,
@@ -21,5 +24,8 @@ export const icons = {
   Textvak: Textvak,
   Ketting: Ketting,
   ArrowLeft: ArrowLeft,
-  Pencil: Pencil
+  Pencil: Pencil,
+  SettingsGear: SettingsGear,
+  Star: Star,
+  Link: Link
 };

@@ -1,12 +1,28 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { images } from "../../constants/Images";
-import {Link} from "react-router-dom"
+import { useLocation } from "react-router-dom"
 import CustomLink from "../../CustomLink";
-// DUMMY VALUES
+
 const isLoggedIn = false;
 const isLoginPage = false;
 
 function Navbar() {
+  const location = useLocation();
+  let [isLoginPage, setIsLoginPage] = useState(false);
+  let [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsLoggedIn(true);
+    }
+    const path = location.pathname;
+    if (path === "/login" || path === "/register") {
+      setIsLoginPage(true);
+    } else {
+      setIsLoginPage(false);
+    }
+  }, [location]);
   const renderSignInButton = () => {
     if (!isLoggedIn && !isLoginPage) {
       return (
@@ -24,9 +40,11 @@ function Navbar() {
 
   const renderLoggedInUser = () => {
     if (isLoggedIn) {
+      const loggedUserString = localStorage.getItem('user');
+      const loggedUser = JSON.parse(loggedUserString);
       return (
         <div className="absolute right-0 flex items-center space-x-2">
-          <span className="text-white">Jur</span>
+          <span className="text-white">{loggedUser.name}</span>
           <img
             src={images.placeholder}
             alt="thomas"

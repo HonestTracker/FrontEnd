@@ -5,4 +5,5 @@ export const images = {
   laptopsBg: require("../../assets/images/placeholder/laptopsBg.png"),
   furnitureBg: require("../../assets/images/placeholder/furnitureBg.png"),
   tabletBg: require("../../assets/images/placeholder/tabletBg.png"),
+  pikachu: require("../../assets/images/placeholder/pikachu.png"),
 };

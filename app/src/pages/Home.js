@@ -64,7 +64,7 @@ function Home() {
   };
   return (
     <div>
-      <main className="p-6" style={{ fontFamily: "'Poppins', sans-serif" }}>
+      <main className="p-6">
         {/* Logo Section */}
         <section className="flex justify-center mb-8">
           <img src={images.logoFNBG} alt="logo" className="w-24 h-24" />

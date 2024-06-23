@@ -8,7 +8,7 @@ import LineChart from "../utils/components/LineChart"
 
 function ProductDetails() {
     return (
-      <main class="p-48" style={{ fontFamily: "Poppins, sans-serif" }}>
+      <main class="p-48">
         <div > 
           <BackButton />
           <h1 class="text-3xl font-bold absolute right-48 top-24">Product overview</h1>
@@ -69,24 +69,29 @@ function ProductDetails() {
             </div>
 
             <div class="col-span-2 mt-10">
-            <div class="bg-white border-2 h-60 border-gray-200 shadow-sm p-4 rounded-lg">
+            <div class="bg-white border-2 h-72 mb-16 border-gray-200 shadow-sm p-4 rounded-lg">
                 <div class="flex justify-between">
                     <div class="flex items-center gap-4">
                         <img src={images.footerLogo}  class="h-14"/>
                         <h1>Jur</h1>
                     </div>
                     <div class="flex">
-                        <icons.Star src={images.footerLogo}  alt="Pikachu" class="h-10 w-10 " />
-                        <icons.Star src={images.footerLogo}  alt="Pikachu" class="h-10 w-10  border-10 " />
-                        <icons.Star src={images.footerLogo}  alt="Pikachu" class="h-10 w-10  " />
-                        <icons.Star src={images.footerLogo}  alt="Pikachu" class="h-10 w-10  " />
-                        <icons.Star src={images.footerLogo}  alt="Pikachu" class="h-10 w-10  " />
+                        <icons.Star src={images.footerLogo}  alt="Pikachu" class="h-10 w-10 cursor-pointer " />
+                        <icons.Star src={images.footerLogo}  alt="Pikachu" class="h-10 w-10 cursor-pointer" />
+                        <icons.Star src={images.footerLogo}  alt="Pikachu" class="h-10 w-10 cursor-pointer  " />
+                        <icons.Star src={images.footerLogo}  alt="Pikachu" class="h-10 w-10 cursor-pointer  " />
+                        <icons.Star src={images.footerLogo}  alt="Pikachu" class="h-10 w-10 cursor-pointer " />
                     </div>  
                 </div>
-                <div class="bg-gray-300 mt-4 h-32 p-4 flex rounded-md">
-                    <icons.Pencil src={images.footerLogo}  alt="Pikachu" class="h-8 w-8 fill-gray-500 " />
-                    <p class="mt-1 ml-4 font-semibold text-gray-500">Write a comment...</p>
+                <form>
+                <div className="bg-gray-300 mt-4 h-32 p-4 flex items-center rounded-md">
+                    <icons.Pencil className="h-8 w-8 -mt-12 fill-gray-500" />
+                    <textarea className="ml-4 flex-1 bg-transparent border-none outline-none text-gray-500 placeholder-gray-500 resize-none" placeholder="Write a comment..." rows="3" />
                 </div>
+
+                <button type="submit" class="text-white text-xl ml-auto flex bg-customTeal p-2 px-4 rounded-md mt-2 "><icons.Send class="h-8 w-8 "/><p class="ml-1">Post</p></button>
+                </form>
+                
             </div>
 
             <div class="bg-white border-2 h-36 mt-4 border-gray-200 shadow-sm p-4 rounded-lg">
@@ -127,7 +132,7 @@ function ProductDetails() {
             <div class="bg-white border-2 h-36 mt-4 border-gray-200 shadow-sm p-4 rounded-lg">
                 <div class="flex justify-between">
                     <div class="flex items-center gap-4">
-                        <img src={images.footerLogo}  class="h-14"/>
+                        <img src={images.pikachu}  class="h-14"/>
                         <h1>Jur</h1>
                     </div>
                     <div class="flex">
@@ -144,7 +149,8 @@ function ProductDetails() {
             <div class="bg-white border-2 h-36 mt-4 border-gray-200 shadow-sm p-4 rounded-lg">
                 <div class="flex justify-between">
                     <div class="flex items-center gap-4">
-                        <img src={images.footerLogo}  class="h-14"/>
+                    <img src="/static/media/placeholder.74e8f2d9c9f5772bad69.jpg" alt="Pokemon Pikachu Shoes" class="w-14 h-14 "/>
+                        
                         <h1>Jur</h1>
                     </div>
                     <div class="flex">

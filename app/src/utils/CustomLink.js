@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 function CustomLink({ to, children, props }) {
   const path = window.location.pathname;
   return (
-    <p className={path === to ? "active" : ""} class="hover:text-gray-300">
+    <p class="hover:text-gray-300" className={path === to ? "active" : ""} >
       <Link to={to} {...props}>{children}</Link>
     </p>
   );

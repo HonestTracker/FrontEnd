@@ -5,7 +5,7 @@ import {icons} from "../utils/constants/Icons"
 function SettingsAuthenticated() {
   
   return (
-    <main class="p-48" style={{ fontFamily: "Poppins, sans-serif" }}>
+    <main class="p-48">
       <BackButton/>
       <div className="grid grid-cols-3 gap-4 -mt-24">
         <div class="col-span-2 mb-14">

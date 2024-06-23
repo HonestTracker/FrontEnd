@@ -5,7 +5,7 @@ import {icons} from "../utils/constants/Icons"
 import ProductCard from "../utils/components/navigation/ProductCard"
 function ProfilePage() {
     return (
-      <main class="p-48" style={{ fontFamily: "Poppins, sans-serif" }}>
+      <main class="p-48">
         <div > 
           <BackButton />
           <h1 class="text-3xl font-bold absolute right-48 top-24">Your profile</h1>

@@ -36,7 +36,7 @@ function ProductOverview() {
       <div className="flex items-center mb-8 mt-12">
         <button
           className="bg-[#20C1AA] text-white font-bold py-2 px-4 rounded mr-4 ml-20 hover:text-gray-200"
-          style={{ fontFamily: "Poppins, sans-serif" }}
+          
         >
           <span className="text-xl">←</span> Go Back
         </button>

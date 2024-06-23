@@ -6,7 +6,7 @@ import Footer from "./utils/components/navigation/Footer";
 import {Link} from "react-router-dom"
 function App() {
   return (
-    <div>
+    <div style={{ fontFamily: "Poppins, sans-serif" }}>
       
       <AppRouter />
       

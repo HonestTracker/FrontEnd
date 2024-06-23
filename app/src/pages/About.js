@@ -2,7 +2,7 @@ import React from "react";
 import { images } from "../utils/constants/Images"
 function About() {
   return (
-    <main class="p-48" style={{ fontFamily: "Poppins, sans-serif" }}>
+    <main class="p-48" >
         <section class="flex-column justify-between rounded-lg  bg-white border-2 border-gray-200 shadow-md -mt-28">
             <div>
                 <img src={images.logoFNBG} alt="Logo" class="h-40 mx-auto"></img>

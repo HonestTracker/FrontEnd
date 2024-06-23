@@ -12,7 +12,7 @@ import {ReactComponent as Pencil} from "../../assets/icons/pencil.svg"
 import {ReactComponent as SettingsGear} from "../../assets/icons/settingsgear.svg"
 import {ReactComponent as Star} from "../../assets/icons/star.svg"
 import {ReactComponent as Link} from "../../assets/icons/link.svg"
-
+import {ReactComponent as Send} from "../../assets/icons/send.svg"
 export const icons = {
   Amazon: AmazonIcon,
   Bolcom: BolIcon,
@@ -27,5 +27,6 @@ export const icons = {
   Pencil: Pencil,
   SettingsGear: SettingsGear,
   Star: Star,
-  Link: Link
+  Link: Link,
+  Send: Send
 };

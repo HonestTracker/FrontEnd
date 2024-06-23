@@ -36,7 +36,7 @@ const Contact = () => {
 						</div>
 						<button
 							type="submit"
-							className="bg-teal-500 text-white text-2xl px-4 py-2 rounded"
+							className="bg-teal-500 text-white text-2xl px-6 py-2 rounded"
 						>
 							Send
 						</button>

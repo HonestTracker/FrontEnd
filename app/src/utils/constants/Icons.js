@@ -13,6 +13,9 @@ import {ReactComponent as SettingsGear} from "../../assets/icons/settingsgear.sv
 import {ReactComponent as Star} from "../../assets/icons/star.svg"
 import {ReactComponent as Link} from "../../assets/icons/link.svg"
 import {ReactComponent as Send} from "../../assets/icons/send.svg"
+import {ReactComponent as AddressCard} from "../../assets/icons/address-card.svg"
+import {ReactComponent as DoorOpen} from "../../assets/icons/door-open.svg"
+
 export const icons = {
   Amazon: AmazonIcon,
   Bolcom: BolIcon,
@@ -28,5 +31,7 @@ export const icons = {
   SettingsGear: SettingsGear,
   Star: Star,
   Link: Link,
-  Send: Send
+  Send: Send,
+  AddressCard: AddressCard,
+  DoorOpen: DoorOpen
 };

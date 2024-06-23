@@ -7,14 +7,14 @@ const Contact = () => {
 			{/* Main Content Section */}
 			<main className="flex flex-1 justify-center items-center bg-gray-100">
 				{/* Contact Form Container */}
-				<div className="bg-white p-8 rounded-lg shadow-md text-center max-w-md w-full">
+				<div className="bg-white p-10 rounded-lg  shadow-lg w-2/4 ">
 					{/* Contact Logo Image */}
 					<img
 						src={images.logoFNBG}
 						alt="Contact Logo"
-						className="w-20 h-20 mx-auto mb-4"
+						className="w-40 h-40 mx-auto mb-4"
 					/>
-					<h1 className="text-2xl mb-4">Contact Us</h1>
+					<h1 className="text-5xl text-center mb-16">Contact Us</h1>
 					<form id="contactForm">
 						<div className="mb-4">
 							<input
@@ -22,7 +22,7 @@ const Contact = () => {
 								id="email"
 								name="email"
 								placeholder="Email..."
-								className="w-full p-2 border border-gray-300 rounded"
+								className="w-full text-lg p-3 mb-4 border border-gray-300 rounded"
 							/>
 						</div>
 						<div className="mb-4">
@@ -30,12 +30,13 @@ const Contact = () => {
 								id="message"
 								name="message"
 								placeholder="Start typing here..."
-								className="w-full p-2 border border-gray-300 rounded h-24 resize-vertical"
+								rows="8"
+								className="w-full text-xl p-2  border border-gray-300 rounded resize-vertical"
 							></textarea>
 						</div>
 						<button
 							type="submit"
-							className="bg-teal-500 text-white px-4 py-2 rounded"
+							className="bg-teal-500 text-white text-2xl px-4 py-2 rounded"
 						>
 							Send
 						</button>

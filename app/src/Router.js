@@ -6,7 +6,7 @@ import Login from "./pages/Login"
 import Register from "./pages/Register"
 import NotFoundPage from "./pages/404Page"
 import About from "./pages/About"
-import CommentsPage from "./pages/CommentsPage"
+
 import Contact from "./pages/Contact"
 import ProductDetails from "./pages/ProductDetails"
 import Settings from "./pages/Settings"
@@ -25,7 +25,7 @@ function AppRouter() {
 				<Route path="/register" element={<Register />} />
 				<Route path="/404" element={<NotFoundPage />} />
 				<Route path="/about" element={<About />} />
-				<Route path="/comments" element={<CommentsPage />} />
+				
 				<Route path="/contact" element={<Contact />} />
 				<Route path="/ProductDetails" element={<ProductDetails />} />
 				<Route path="/Settings" element={<Settings />} />

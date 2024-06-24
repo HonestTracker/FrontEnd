@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import { images } from "../../constants/Images";
+import {icons} from "../../constants/Icons"
 import { useLocation } from "react-router-dom"
 import CustomLink from "../../CustomLink";
 
@@ -10,6 +11,9 @@ function Navbar() {
   const location = useLocation();
   let [isLoginPage, setIsLoginPage] = useState(false);
   let [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+      const toggleDropdown = () => setIsOpen(!isOpen);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -42,14 +46,42 @@ function Navbar() {
     if (isLoggedIn) {
       const loggedUserString = localStorage.getItem('user');
       const loggedUser = JSON.parse(loggedUserString);
+      
       return (
-        <div className="absolute right-0 flex items-center space-x-2">
-          <span className="text-white">{loggedUser.name}</span>
-          <img
+        <div className="absolute right-40 flex items-center space-x-2">
+    
+          
+          <div className="inline-block text-left">
+         
+            <button onClick={toggleDropdown} className="flex justify-between text-white px-4 py-2 ">
+            <span className="text-white mt-3">{loggedUser.name}</span>
+            <img
             src={images.placeholder}
             alt="thomas"
-            className="h-10 w-10 rounded-full"
+            className="h-12 w-12 ml-4 rounded-full"
           />
+
+            </button>
+            {isOpen && (
+                <div className="absolute right-4  w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                   <div className="flex items-center cursor-pointer  px-4 py-2 text-lg text-gray-700 hover:bg-gray-100">
+                    <icons.AddressCard class="h-10"/>
+                    <p class="text-xl ml-2">Profile</p>
+                   </div>
+
+                   <div className="flex items-center cursor-pointer px-4 py-2 text-lg text-gray-700 hover:bg-gray-100">
+                   <icons.SettingsGear class="h-10 w-10  mr-8"/>
+                   <p class="text-xl -ml-5">Settings</p>
+                   </div>
+
+                   <div className="flex items-center cursor-pointer  px-4 py-2 text-lg text-gray-700 hover:bg-gray-100">
+                   <icons.DoorOpen class="h-10 -ml-32"/>
+                   <p class="text-xl absolute ml-12">Logout</p>
+                   </div>
+                </div>
+            )}
+        </div>
+   
         </div>
       );
     }

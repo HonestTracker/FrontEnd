@@ -62,17 +62,17 @@ const Login = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   return (
-    <div className="flex flex-col min-h-screen bg-gray-100">
-      <main className="flex flex-1 justify-center items-center py-10">
-        <div className="bg-white p-10 rounded-lg shadow-lg max-w-md w-full">
-          <h2 className="text-2xl mb-4">Log In</h2>
-          <p className="mb-4">
+    <div className=" bg-gray-100">
+      <main className="flex items-center  py-24 ">
+        <div className="bg-white mx-auto  p-10 rounded-lg  shadow-lg w-2/4 ">
+          <h2 className="text-5xl text-center mb-4">Log In</h2>
+          <p className="mb-4 text-center text-lg">
             Don't have an account yet?{" "}
             <a href="register" className="text-teal-500">
               Sign Up
             </a>
           </p>
-          <form onSubmit={handleLogin} method="post">
+          <form onSubmit={handleLogin} method="post" class="text-xl ">
             <label htmlFor="email" className="block mb-1">
               Email
             </label>
@@ -81,10 +81,10 @@ const Login = () => {
               id="email"
               name="email"
               placeholder="Email..."
-              className="w-full p-2 border rounded"
+              className="w-full p-3 mb-8 border rounded shadow-md shadow-gray-400"
               onChange={handleChange}
             />
-            {errors.email && <div className="text-red-400 mb-4">{errors.email[0]}</div>}
+            {errors.email && <div className="text-red-400 -mt-5 mb-4">{errors.email[0]}</div>}
             <label htmlFor="password" className="block mb-1">
               Password
             </label>
@@ -93,10 +93,10 @@ const Login = () => {
               id="password"
               name="password"
               placeholder="Password..."
-              className="w-full p-2 border rounded"
+              className="w-full p-3 border mb-8 rounded shadow-md shadow-gray-400"
               onChange={handleChange}
             />
-            {errors.password && <div className="text-red-400 mb-4">{errors.password[0]}</div>}
+            {errors.password && <div className="text-red-400 -mt-5 mb-4">{errors.password[0]}</div>}
 
             <div className="flex justify-between items-center mb-4">
               <label className="flex items-center">
@@ -108,12 +108,14 @@ const Login = () => {
               </a>
             </div>
 
+            <div class="flex justify-center">
             <button
               type="submit"
-              className="w-full p-2 bg-teal-500 text-white rounded"
+              className="w-80 p-2 bg-teal-500 rounded "
             >
-              Log In
+              <p class="text-2xl text-white font-bold ">Login</p>
             </button>
+            </div>
           </form>
         </div>
       </main>

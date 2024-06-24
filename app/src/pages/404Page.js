@@ -9,7 +9,7 @@ function NotFoundPage() {
 				<img src={images.logoFNBG} class="h-64 mx-auto" />
 				<h1 class="text-7xl mx-auto -mt-4">404</h1>
 				<p class="text-2xl mt-6 ">This page could not be found</p>
-				<div class="w-96 h-96 mx-auto p-8 mt-36 ">
+				<div class="absolute ml-96 pl-2 mt-2">
 					<BackButton />
 				</div>
 			</div>

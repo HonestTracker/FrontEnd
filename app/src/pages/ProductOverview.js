@@ -1,7 +1,10 @@
 import React from "react";
 import { images } from "../utils/constants/Images";
 import { icons } from "../utils/constants/Icons";
+import BackButton from "../utils/BackButton"
 import "@fontsource/poppins";
+
+
 
 function ProductOverview() {
   const products = [
@@ -32,20 +35,26 @@ function ProductOverview() {
   ];
 
   return (
+    
     <div className="container mx-auto p-4">
-      <div className="flex items-center mb-8 mt-12">
-        <button
-          className="bg-[#20C1AA] text-white font-bold py-2 px-4 rounded mr-4 ml-20 hover:text-gray-200"
-          style={{ fontFamily: "Poppins, sans-serif" }}
-        >
-          <span className="text-xl">←</span> Go Back
-        </button>
+      <div className="flex items-center mb-8 mt-12 ml-4">
+
+      <div class="flex normal h-10"  style={{ width: "14rem" }}>
+        
+        <BackButton/>
+        
+         
+        </div>
+        
         <input
           type="text"
           placeholder="Search"
-          className="p-2 border border-gray-300 rounded w-3/4 ml-32"
+          className="p-2 ml-12 border border-gray-300 rounded w-full"
         />
+
+
       </div>
+      
       <div className="flex">
         <Filter />
         <div className="w-4/5 ml-4">

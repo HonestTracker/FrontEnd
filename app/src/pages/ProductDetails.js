@@ -16,14 +16,27 @@ function ProductDetails() {
         </h1>
       </div>
       <div class="grid grid-cols-3 gap-x-16 gap-y-4 -mt-24">
-        <div class="bg-white border-2 mb-10 border-gray-200 flex items-center shadow-sm rounded-md col-span-3">
+        <div class="bg-white mb-10 border-gray-200 flex items-center shadow-sm rounded-md col-span-3 border-t-2 border-r-2 border-l-2 border-b">
           <img src={images.pikachu} alt="Pikachu" class="h-52 w-52" />
           <div class="flex items-center ml-8 flex-column flex-col items-stretch mb-20">
-            <p class="text-black font-extrabold font-poppins text-2xl">
+            <p class="text-black font-extrabold text-2xl mt-10">
               Pokemon Pikachu Shoes
             </p>
-            <icons.Tag alt="Tag" class="h-8 w-8" />
-            <p>Shoes, Gaming</p>
+            <div class="flex items-center">
+              <icons.Tag alt="Tag" class="h-8 w-8" />
+              <p class="text-[#575757] ml-2">Shoes, Gaming</p>
+            </div>
+            <div class="flex items-center">
+              <p class="text-[#575757] mt-4">Current price:</p>
+              <p class="text-[#575757] mt-4 ml-10">Current cheapest website:</p>
+            </div>
+            <div class="flex items-center">
+              <p class="text-red-500 text-xl ml-2">€423,93</p>
+              <icons.Amazon alt="Tag" class="h-8 w-8 ml-20" />
+              <p class="">amazon.com</p>
+            </div>
+            <p class="text-red-500 font-bold">+2,73% (€3,94)</p>
+            <icons.Heart alt="Tag" class="h-8 w-8 mt-8" />
           </div>
         </div>
 

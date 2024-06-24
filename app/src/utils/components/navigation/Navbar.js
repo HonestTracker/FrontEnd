@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { images } from "../../constants/Images";
-import {icons} from "../../constants/Icons"
-import { useLocation } from "react-router-dom"
+import { icons } from "../../constants/Icons";
+import { useLocation } from "react-router-dom";
 import CustomLink from "../../CustomLink";
 
 const isLoggedIn = false;
@@ -13,7 +13,7 @@ function Navbar() {
   let [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
-      const toggleDropdown = () => setIsOpen(!isOpen);
+  const toggleDropdown = () => setIsOpen(!isOpen);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -31,10 +31,8 @@ function Navbar() {
     if (!isLoggedIn && !isLoginPage) {
       return (
         <div className="absolute right-44">
-          
-          <button className="bg-teal-400 cursor-pointer text-white px-4 py-2 rounded hover:bg-teal-300"><CustomLink to="/login">Sign in</CustomLink>
-            
-           
+          <button className="bg-teal-400 cursor-pointer text-white px-4 py-2 rounded hover:bg-teal-300">
+            <CustomLink to="/login">Sign in</CustomLink>
           </button>
         </div>
       );
@@ -44,44 +42,42 @@ function Navbar() {
 
   const renderLoggedInUser = () => {
     if (isLoggedIn) {
-      const loggedUserString = localStorage.getItem('user');
+      const loggedUserString = localStorage.getItem("user");
       const loggedUser = JSON.parse(loggedUserString);
-      
+
       return (
         <div className="absolute right-40 flex items-center space-x-2">
-    
-          
           <div className="inline-block text-left">
-         
-            <button onClick={toggleDropdown} className="flex justify-between text-white px-4 py-2 ">
-            <span className="text-white mt-3">{loggedUser.name}</span>
-            <img
-            src={images.placeholder}
-            alt="thomas"
-            className="h-12 w-12 ml-4 rounded-full"
-          />
-
+            <button
+              onClick={toggleDropdown}
+              className="flex justify-between text-white px-4 py-2 "
+            >
+              <span className="text-white mt-3">{loggedUser.name}</span>
+              <img
+                src={images.placeholder}
+                alt="thomas"
+                className="h-12 w-12 ml-4 rounded-full"
+              />
             </button>
             {isOpen && (
-                <div className="absolute right-4  w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                   <div className="flex items-center cursor-pointer  px-4 py-2 text-lg text-gray-700 hover:bg-gray-100">
-                    <icons.AddressCard class="h-10"/>
-                    <p class="text-xl ml-2">Profile</p>
-                   </div>
-
-                   <div className="flex items-center cursor-pointer px-4 py-2 text-lg text-gray-700 hover:bg-gray-100">
-                   <icons.SettingsGear class="h-10 w-10  mr-8"/>
-                   <p class="text-xl -ml-5">Settings</p>
-                   </div>
-
-                   <div className="flex items-center cursor-pointer  px-4 py-2 text-lg text-gray-700 hover:bg-gray-100">
-                   <icons.DoorOpen class="h-10 -ml-32"/>
-                   <p class="text-xl absolute ml-12">Logout</p>
-                   </div>
+              <div className="absolute right-4 z-10  w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                <div className="flex items-center cursor-pointer  px-4 py-2 text-lg text-gray-700 hover:bg-gray-100">
+                  <icons.AddressCard class="h-10" />
+                  <p class="text-xl ml-2">Profile</p>
                 </div>
+
+                <div className="flex items-center cursor-pointer px-4 py-2 text-lg text-gray-700 hover:bg-gray-100">
+                  <icons.SettingsGear class="h-10 w-10  mr-8" />
+                  <p class="text-xl -ml-5">Settings</p>
+                </div>
+
+                <div className="flex items-center cursor-pointer  px-4 py-2 text-lg text-gray-700 hover:bg-gray-100">
+                  <icons.DoorOpen class="h-10 -ml-32" />
+                  <p class="text-xl absolute ml-12">Logout</p>
+                </div>
+              </div>
             )}
-        </div>
-   
+          </div>
         </div>
       );
     }
@@ -114,27 +110,31 @@ function Navbar() {
 
         {/* Conditionally render sign-in button */}
         {renderSignInButton()}
-      
-       <div className="bg-white hidden rounded-lg fixed shadow-lg p-4  w-48">
-      <div className="flex items-center space-x-3 mb-6">
-        <img src="path_to_pikachu_image.jpg" alt="Pikachu" className="h-12 w-12 rounded-full"/>
-        <span className="font-semibold text-lg">Jur</span>
-      </div>
-      <ul>
-        <li className="flex items-center mb-3">
-          <img  class="h-16"/>
-                    Profile Page
-        </li>
-        <li className="flex items-center mb-3">
-        <img   class="h-16"/>
-          Settings
-        </li>
-        <li className="flex items-center">
-        <img   class="h-16"/>
-          Logout
-        </li>
-      </ul>
-    </div>
+
+        <div className="bg-white hidden rounded-lg fixed shadow-lg p-4  w-48">
+          <div className="flex items-center space-x-3 mb-6">
+            <img
+              src="path_to_pikachu_image.jpg"
+              alt="Pikachu"
+              className="h-12 w-12 rounded-full"
+            />
+            <span className="font-semibold text-lg">Jur</span>
+          </div>
+          <ul>
+            <li className="flex items-center mb-3">
+              <img class="h-16" />
+              Profile Page
+            </li>
+            <li className="flex items-center mb-3">
+              <img class="h-16" />
+              Settings
+            </li>
+            <li className="flex items-center">
+              <img class="h-16" />
+              Logout
+            </li>
+          </ul>
+        </div>
 
         {/* Conditionally render logged-in user */}
         {renderLoggedInUser()}

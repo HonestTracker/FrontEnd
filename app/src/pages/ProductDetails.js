@@ -130,9 +130,43 @@ function ProductDetails() {
 
         <div class="col-span-1 -mt-8">
           <h1 className="text-2xl font-semibold">Latest Updates</h1>
-          <div class="bg-white border-2 h-full  flex-col py-8 border-gray-200 shadow-sm rounded-lg">
+          <div class="bg-white border-2 h-full  flex-col  border-gray-200 shadow-sm rounded-lg">
             <div class="self-start">
-              <div class="flex w-full border-b-2 border-black">
+              <div class="flex w-full border-b-2 border-black py-2">
+                <icons.Amazon alt="Tag" class="h-10 w-10 ml-4 mt-4" />
+                <div class="flex justify-between w-full">
+                  <div class="flex flex-col items-center ml-2 mt-2 py-2">
+                    <span className="text-lg mr-8">amazon.com</span>
+                    <span className="text-xs mr-12 -mt-2 text-[#575757]">
+                      09-05-2024 11:23
+                    </span>
+                  </div>
+                  <div class="flex flex-col items-end mr-4 mt-4 py-2">
+                    <span className="text-lg -mt-2 text-red-500">+2,47%</span>
+                    <span className="text-sm mr-2 mb-1 text-red-500">
+                      (3,94)
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="flex w-full border-b-2 border-black py-2">
+                <icons.Amazon alt="Tag" class="h-10 w-10 ml-4 mt-4" />
+                <div class="flex justify-between w-full">
+                  <div class="flex flex-col items-center ml-2 mt-2">
+                    <span className="text-lg mr-8">amazon.com</span>
+                    <span className="text-xs mr-12 -mt-2 text-[#575757]">
+                      09-05-2024 11:23
+                    </span>
+                  </div>
+                  <div class="flex flex-col items-end mr-4 mt-4 py-2">
+                    <span className="text-lg -mt-2 text-red-500">+2,47%</span>
+                    <span className="text-sm mr-2 mb-1 text-red-500">
+                      (3,94)
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="flex w-full border-b-2 border-black py-2">
                 <icons.Amazon alt="Tag" class="h-10 w-10 ml-4 mt-4" />
                 <div class="flex justify-between w-full">
                   <div class="flex flex-col items-center ml-2 mt-2">
@@ -218,10 +252,10 @@ function ProductDetails() {
                 </div>
               </div>
               <div class="flex w-full border-b-2 border-black">
-                <icons.Amazon alt="Tag" class="h-10 w-10 ml-4 mt-4" />
+                <icons.Bolcom alt="Tag" class="h-10 w-10 ml-4 mt-4" />
                 <div class="flex justify-between w-full">
                   <div class="flex flex-col items-center ml-2 mt-2">
-                    <span className="text-lg mr-8">amazon.com</span>
+                    <span className="text-lg mr-8">bol.com</span>
                     <span className="text-xs mr-12 -mt-2 text-[#575757]">
                       09-05-2024 11:23
                     </span>
@@ -235,12 +269,12 @@ function ProductDetails() {
                 </div>
               </div>
               <div class="flex w-full border-b-2 border-black">
-                <icons.Amazon alt="Tag" class="h-10 w-10 ml-4 mt-4" />
+                <icons.Coolblue alt="Tag" class="h-10 w-10 ml-4 mt-4" />
                 <div class="flex justify-between w-full">
                   <div class="flex flex-col items-center ml-2 mt-2">
-                    <span className="text-lg mr-8">amazon.com</span>
+                    <span className="text-lg mr-8">coolblue</span>
                     <span className="text-xs mr-12 -mt-2 text-[#575757]">
-                      09-05-2024 11:23
+                      06-05-2024 13:23
                     </span>
                   </div>
                   <div class="flex flex-col items-end mr-4 mt-4">
@@ -251,42 +285,8 @@ function ProductDetails() {
                   </div>
                 </div>
               </div>
-              <div class="flex w-full border-b-2 border-black">
-                <icons.Amazon alt="Tag" class="h-10 w-10 ml-4 mt-4" />
-                <div class="flex justify-between w-full">
-                  <div class="flex flex-col items-center ml-2 mt-2">
-                    <span className="text-lg mr-8">amazon.com</span>
-                    <span className="text-xs mr-12 -mt-2 text-[#575757]">
-                      09-05-2024 11:23
-                    </span>
-                  </div>
-                  <div class="flex flex-col items-end mr-4 mt-4">
-                    <span className="text-lg -mt-2 text-red-500">+2,47%</span>
-                    <span className="text-sm mr-2 mb-1 text-red-500">
-                      (3,94)
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div class="flex w-full border-b-2 border-black">
-                <icons.Amazon alt="Tag" class="h-10 w-10 ml-4 mt-4" />
-                <div class="flex justify-between w-full">
-                  <div class="flex flex-col items-center ml-2 mt-2">
-                    <span className="text-lg mr-8">amazon.com</span>
-                    <span className="text-xs mr-12 -mt-2 text-[#575757]">
-                      09-05-2024 11:23
-                    </span>
-                  </div>
-                  <div class="flex flex-col items-end mr-4 mt-4">
-                    <span className="text-lg -mt-2 text-red-500">+2,47%</span>
-                    <span className="text-sm mr-2 mb-1 text-red-500">
-                      (3,94)
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <button class="bg-[#20C1AA] text-white py-2 px-4 rounded justify-center">
-                View More
+              <button class="bg-[#20C1AA] text-white py-2 px-4 rounded justify-center ml-44 mt-10">
+                <div class="hover:text-[#1B9188]">View More</div>
               </button>
             </div>
           </div>

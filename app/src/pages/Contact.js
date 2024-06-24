@@ -1,7 +1,34 @@
-import React from "react"
+import React, { useState } from "react"
 import { images } from "../utils/constants/Images"
 
+
 const Contact = () => {
+	const [formData, setFormData] = useState({email: '', message: ''});
+
+	const handleSubmit = async (event) => {
+		event.preventDefault();
+		console.log(formData)
+
+		/*try {
+			const response = await fetch('http://localhost:4000/contactSubmit', {
+			  method: 'POST',
+			  headers: {
+				'Content-Type': 'application/json',
+			  },
+			  credentials: 'include',
+			  body: JSON.stringify({formData.email, formData.message}),
+	  
+			})
+			alert("Succes! message sent")
+		}catch(error){
+			console.log(error)
+		 }*/
+	}
+
+	const handleChange = (e) => {
+		setFormData({ ...formData, [e.target.name]: e.target.value });
+	};
+
 	return (
 		<div className="">
 			{/* Main Content Section */}
@@ -15,13 +42,15 @@ const Contact = () => {
 						className="w-40 h-40 mx-auto mb-4"
 					/>
 					<h1 className="text-5xl text-center mb-16">Contact Us</h1>
-					<form id="contactForm">
+					<form id="contactForm" onSubmit={handleSubmit}>
 						<div className="mb-4">
 							<input
 								type="email"
 								id="email"
 								name="email"
 								placeholder="Email..."
+								onChange={handleChange}
+								value={formData.email}
 								className="w-full text-lg p-3 mb-4 border border-gray-300 rounded"
 							/>
 						</div>
@@ -31,6 +60,8 @@ const Contact = () => {
 								name="message"
 								placeholder="Start typing here..."
 								rows="8"
+								onChange={handleChange}
+								value={formData.message}
 								className="w-full text-xl p-2  border border-gray-300 rounded resize-vertical"
 							></textarea>
 						</div>

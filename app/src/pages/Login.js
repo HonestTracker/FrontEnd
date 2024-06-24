@@ -62,9 +62,9 @@ const Login = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   return (
-    <div className="flex flex-col min-h-screen bg-gray-100">
-      <main className="flex flex-1 justify-center items-center py-10">
-        <div className="bg-white p-10 rounded-lg  shadow-lg w-2/4 ">
+    <div className=" bg-gray-100">
+      <main className="flex items-center  py-24 ">
+        <div className="bg-white mx-auto  p-10 rounded-lg  shadow-lg w-2/4 ">
           <h2 className="text-5xl text-center mb-4">Log In</h2>
           <p className="mb-4 text-center text-lg">
             Don't have an account yet?{" "}

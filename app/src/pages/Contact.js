@@ -3,11 +3,11 @@ import { images } from "../utils/constants/Images"
 
 const Contact = () => {
 	return (
-		<div className="min-h-screen flex flex-col">
+		<div className="">
 			{/* Main Content Section */}
-			<main className="flex flex-1 justify-center items-center bg-gray-100">
+			<main className="py-24 bg-gray-100">
 				{/* Contact Form Container */}
-				<div className="bg-white p-10 rounded-lg  shadow-lg w-2/4 ">
+				<div className="bg-white mx-auto p-10 rounded-lg  shadow-lg w-2/4 ">
 					{/* Contact Logo Image */}
 					<img
 						src={images.logoFNBG}

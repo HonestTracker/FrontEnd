@@ -2,9 +2,9 @@ import React from "react";
 
 const Register = () => {
   return (
-    <div className="flex flex-col  bg-gray-100">
-      <main className="flex flex-auto justify-center items-center py-10 ">
-        <div className="bg-white p-10 rounded-lg  shadow-lg w-2/4">
+    <div className=" bg-gray-100">
+      <main className="py-24">
+        <div className="bg-white p-10 rounded-lg mx-auto  shadow-lg w-2/4">
           <h2 className="text-5xl text-center mb-4">Register</h2>
           <p className="mb-4 text-center text-lg">
             Already have an account?{" "}

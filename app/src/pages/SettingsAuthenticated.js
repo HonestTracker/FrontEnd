@@ -3,17 +3,44 @@ import BackButton from "../utils/BackButton"
 import { images } from "../utils/constants/Images"
 import {icons} from "../utils/constants/Icons"
 function SettingsAuthenticated() {
+
+  const refreshPage = async (event) => {
+    window.location.reload()
+  }
+
+  const changeProfilePicture = async (event) => {
+
+  }
+
+  const changeUsername = async (event) => {
+
+  }
+
+  const changeEmail = async (event) => {
+
+  }
+
+  const changePassword = async (event) => {
+
+  }
   
   return (
+
+    
     <main class="p-48">
-      <BackButton/>
+      <div className="absolute -mt-40 z-10"> {/* Ensuring button is on top */}
+        <BackButton />
+      </div>
       <div className="grid grid-cols-3 gap-4 -mt-24">
         <div class="col-span-2 mb-14">
             <h1 className="text-xl font-semibold">Edit account details</h1>
             <div className="bg-white border-2  border-gray-200 shadow-md p-4 rounded-lg">
                 <div class="flex relative">
+                  <form>
                   <img src={images.footerLogo} class="opacity-50"/>
-                  <icons.Pencil style={{ width: "20px", height: "20px", position: "absolute", right: 860, top: "50%", transform: "translateY(-50%)", cursor: "pointer" }} />
+                  <icons.Pencil style={{ width: "20px", height: "20px", position: "absolute", right: 720, top: "50%", transform: "translateY(-50%)", cursor: "pointer" }} />
+                  </form>
+                  
                   <div class="flex-col ml-16 w-80">
                     <p class="text-xl mt-16">Username</p>
                     <div className="relative w-full">
@@ -30,7 +57,7 @@ function SettingsAuthenticated() {
                   <icons.Pencil style={{ width: "20px", height: "20px", position: "absolute", right: 16, top: "50%", transform: "translateY(-50%)"}} />
                 </div>
                 <div class="flex justify-center space-x-4 mt-4">
-                  <button class="text-customGray border-2 border-gray-200 rounded-md p-2  w-28" >Cancel</button>
+                  <button class="text-customGray border-2 border-gray-200 rounded-md p-2  w-28" onClick={refreshPage}>Cancel</button>
                   <button className="bg-teal-400 cursor-pointer text-white  ml-6 p-2 rounded hover:bg-teal-300 w-28">Save</button>
                 </div>
               </div>
@@ -66,22 +93,22 @@ function SettingsAuthenticated() {
               <div class="mb-10 relative">
                 <p class="text-xl mt-6">Old password</p>
                 <input type="text" className="text-customGray border-2 border-gray-200 rounded-md p-2 h-12 w-full focus:outline-none focus:border-blue-500" placeholder="Type here"/>
-                <icons.Pencil style={{ width: "20px", height: "20px", position: "absolute", right: 16, top: "70%", transform: "translateY(-50%)" }} />
+                
               </div>
 
             <div class="mb-10 relative">
               <p class="text-xl mt-6">New password</p>
               <input type="text" className="text-customGray border-2 border-gray-200 rounded-md p-2 h-12 w-full focus:outline-none focus:border-blue-500" placeholder="Type here"/>
-              <icons.Pencil style={{ width: "20px", height: "20px", position: "absolute", right: 16, top: "70%", transform: "translateY(-50%)" }} />
+              
             </div>
 
             <div class="mb-4 relative">
               <p class="text-xl mt-6">Repeat new password</p>
               <input type="text" class="text-customGray border-2 border-gray-200 rounded-md p-2 w-full focus:outline-none focus:border-blue-500" placeholder="Type here"/>
-              <icons.Pencil style={{ width: "20px", height: "20px", position: "absolute", right: 16, top: "70%", transform: "translateY(-50%)" }} />
+              
             </div>
             <div class="flex justify-center space-x-4 mt-4">
-                <button class="text-customGray border-2 border-gray-200 rounded-md p-2 w-28" >Cancel</button>
+                <button class="text-customGray border-2 border-gray-200 rounded-md p-2 w-28" onClick={refreshPage}>Cancel</button>
                 <button className="bg-teal-400 cursor-pointer text-white  ml-6 p-2 rounded hover:bg-teal-300 w-28">Save</button>
             </div>
           </div>

@@ -4,6 +4,8 @@ import { images } from "../utils/constants/Images"
 import {icons} from "../utils/constants/Icons"
 import ProductCard from "../utils/components/navigation/ProductCard"
 function ProfilePage() {
+
+    
     return (
       <main class="p-48">
         <div > 

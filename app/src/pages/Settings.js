@@ -7,8 +7,10 @@ function Settings() {
   
   return (
     <main class="p-48">
-      <BackButton/>
-                         
+      
+      <div className="absolute -mt-40 z-10"> {/* Ensuring button is on top */}
+        <BackButton />
+      </div>                   
     <div class="flex-column justify-between rounded-lg w-1/2  bg-white border-2 border-gray-200 shadow-md -mt-28" style={{ fontFamily: "Poppins, sans-serif" }}>
       <div class=" h-96">
         <div class="mb-10">
@@ -33,6 +35,7 @@ function Settings() {
         </div>
       </div>
     </div>
+    
   </main>
   );
 }

@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { images } from "../utils/constants/Images"
-
+import {icons} from "../utils/constants/Icons"
 
 const Contact = () => {
 	const [formData, setFormData] = useState({email: '', message: ''});
@@ -67,8 +67,9 @@ const Contact = () => {
 						</div>
 						<button
 							type="submit"
-							className="bg-teal-500 text-white text-2xl px-6 py-2 rounded"
+							className="bg-teal-500 text-white flex text-2xl px-4 py-2 rounded"
 						>
+							<icons.Send class="h-8 w-8 mr-2 -ml-2s "/>
 							Send
 						</button>
 					</form>

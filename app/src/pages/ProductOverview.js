@@ -4,6 +4,8 @@ import { icons } from "../utils/constants/Icons";
 import BackButton from "../utils/BackButton"
 import "@fontsource/poppins";
 
+
+
 function ProductOverview() {
   const products = [
     {
@@ -35,16 +37,19 @@ function ProductOverview() {
   return (
     
     <div className="container mx-auto p-4">
-      <div className="flex items-center mb-8 mt-12">
+      <div className="flex items-center mb-8 mt-12 ml-4">
 
-      <div class="flex  mt-24 absolute w-8 h-2">
-          <BackButton/>
+      <div class="flex normal h-10"  style={{ width: "14rem" }}>
+        
+        <BackButton/>
+        
+         
         </div>
         
         <input
           type="text"
           placeholder="Search"
-          className="p-2 border border-gray-300 rounded w-full ml-60"
+          className="p-2 ml-12 border border-gray-300 rounded w-full"
         />
 
 

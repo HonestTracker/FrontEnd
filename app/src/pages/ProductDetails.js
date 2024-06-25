@@ -1,11 +1,51 @@
-import React from "react";
+import React, { useState } from "react";
 import BackButton from "../utils/BackButton";
 import { images } from "../utils/constants/Images";
 import { icons } from "../utils/constants/Icons";
-
 import LineChart from "../utils/components/LineChart";
 
 function ProductDetails() {
+  const [message, setMessage] = useState("");
+
+  const handleMessageSend = async (event) => {
+    event.preventDefault();
+    console.log(message);
+    /*try {
+      console.log(email, password);
+      const response = await fetch(
+        "https://api.honesttracker.nl/api/auth/sendMessage",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            message: message,
+            device: "web",
+          }),
+        }
+      );
+
+      const responseData = await response.json();
+
+      if (!response.ok) {
+        console.log(response);
+        if (response.status === 422) {
+          console.log(responseData.errors);
+          setErrors(responseData.errors);
+        } else {
+          throw new Error(responseData.message || "An error occurred.");
+        }
+      }
+    } catch (error) {
+      console.error("Error when trying to send message:", error);
+    }*/
+  };
+
+  const handleMessageChange = (event) => {
+    setMessage(event.target.value);
+  };
   return (
     <main class="p-48">
       <div>
@@ -149,10 +189,11 @@ function ProductDetails() {
                   </div>
                 </div>
               </div>
+
               <div class="flex w-full border-b-2 border-black py-2">
                 <icons.Amazon alt="Tag" class="h-10 w-10 ml-4 mt-4" />
                 <div class="flex justify-between w-full">
-                  <div class="flex flex-col items-center ml-2 mt-2">
+                  <div class="flex flex-col items-center ml-2 mt-2 py-2">
                     <span className="text-lg mr-8">amazon.com</span>
                     <span className="text-xs mr-12 -mt-2 text-[#575757]">
                       09-05-2024 11:23
@@ -169,13 +210,13 @@ function ProductDetails() {
               <div class="flex w-full border-b-2 border-black py-2">
                 <icons.Amazon alt="Tag" class="h-10 w-10 ml-4 mt-4" />
                 <div class="flex justify-between w-full">
-                  <div class="flex flex-col items-center ml-2 mt-2">
+                  <div class="flex flex-col items-center ml-2 mt-2 py-2">
                     <span className="text-lg mr-8">amazon.com</span>
                     <span className="text-xs mr-12 -mt-2 text-[#575757]">
                       09-05-2024 11:23
                     </span>
                   </div>
-                  <div class="flex flex-col items-end mr-4 mt-4">
+                  <div class="flex flex-col items-end mr-4 mt-4 py-2">
                     <span className="text-lg -mt-2 text-red-500">+2,47%</span>
                     <span className="text-sm mr-2 mb-1 text-red-500">
                       (3,94)
@@ -183,16 +224,17 @@ function ProductDetails() {
                   </div>
                 </div>
               </div>
-              <div class="flex w-full border-b-2 border-black">
+
+              <div class="flex w-full border-b-2 border-black py-2">
                 <icons.Amazon alt="Tag" class="h-10 w-10 ml-4 mt-4" />
                 <div class="flex justify-between w-full">
-                  <div class="flex flex-col items-center ml-2 mt-2">
+                  <div class="flex flex-col items-center ml-2 mt-2 py-2">
                     <span className="text-lg mr-8">amazon.com</span>
                     <span className="text-xs mr-12 -mt-2 text-[#575757]">
                       09-05-2024 11:23
                     </span>
                   </div>
-                  <div class="flex flex-col items-end mr-4 mt-4">
+                  <div class="flex flex-col items-end mr-4 mt-4 py-2">
                     <span className="text-lg -mt-2 text-red-500">+2,47%</span>
                     <span className="text-sm mr-2 mb-1 text-red-500">
                       (3,94)
@@ -200,16 +242,17 @@ function ProductDetails() {
                   </div>
                 </div>
               </div>
-              <div class="flex w-full border-b-2 border-black">
+
+              <div class="flex w-full border-b-2 border-black py-2">
                 <icons.Amazon alt="Tag" class="h-10 w-10 ml-4 mt-4" />
                 <div class="flex justify-between w-full">
-                  <div class="flex flex-col items-center ml-2 mt-2">
+                  <div class="flex flex-col items-center ml-2 mt-2 py-2">
                     <span className="text-lg mr-8">amazon.com</span>
                     <span className="text-xs mr-12 -mt-2 text-[#575757]">
                       09-05-2024 11:23
                     </span>
                   </div>
-                  <div class="flex flex-col items-end mr-4 mt-4">
+                  <div class="flex flex-col items-end mr-4 mt-4 py-2">
                     <span className="text-lg -mt-2 text-red-500">+2,47%</span>
                     <span className="text-sm mr-2 mb-1 text-red-500">
                       (3,94)
@@ -217,16 +260,17 @@ function ProductDetails() {
                   </div>
                 </div>
               </div>
-              <div class="flex w-full border-b-2 border-black">
+
+              <div class="flex w-full border-b-2 border-black py-2">
                 <icons.Amazon alt="Tag" class="h-10 w-10 ml-4 mt-4" />
                 <div class="flex justify-between w-full">
-                  <div class="flex flex-col items-center ml-2 mt-2">
+                  <div class="flex flex-col items-center ml-2 mt-2 py-2">
                     <span className="text-lg mr-8">amazon.com</span>
                     <span className="text-xs mr-12 -mt-2 text-[#575757]">
                       09-05-2024 11:23
                     </span>
                   </div>
-                  <div class="flex flex-col items-end mr-4 mt-4">
+                  <div class="flex flex-col items-end mr-4 mt-4 py-2">
                     <span className="text-lg -mt-2 text-red-500">+2,47%</span>
                     <span className="text-sm mr-2 mb-1 text-red-500">
                       (3,94)
@@ -234,65 +278,18 @@ function ProductDetails() {
                   </div>
                 </div>
               </div>
-              <div class="flex w-full border-b-2 border-black">
-                <icons.Amazon alt="Tag" class="h-10 w-10 ml-4 mt-4" />
-                <div class="flex justify-between w-full">
-                  <div class="flex flex-col items-center ml-2 mt-2">
-                    <span className="text-lg mr-8">amazon.com</span>
-                    <span className="text-xs mr-12 -mt-2 text-[#575757]">
-                      09-05-2024 11:23
-                    </span>
-                  </div>
-                  <div class="flex flex-col items-end mr-4 mt-4">
-                    <span className="text-lg -mt-2 text-red-500">+2,47%</span>
-                    <span className="text-sm mr-2 mb-1 text-red-500">
-                      (3,94)
-                    </span>
-                  </div>
-                </div>
+
+              <div class="flex items-center h-full">
+                <button class="bg-[#20C1AA] text-white py-2 px-4 mx-auto mt-4 -mb-4 rounded-md">
+                  View More
+                </button>
               </div>
-              <div class="flex w-full border-b-2 border-black">
-                <icons.Bolcom alt="Tag" class="h-10 w-10 ml-4 mt-4" />
-                <div class="flex justify-between w-full">
-                  <div class="flex flex-col items-center ml-2 mt-2">
-                    <span className="text-lg mr-8">bol.com</span>
-                    <span className="text-xs mr-12 -mt-2 text-[#575757]">
-                      09-05-2024 11:23
-                    </span>
-                  </div>
-                  <div class="flex flex-col items-end mr-4 mt-4">
-                    <span className="text-lg -mt-2 text-red-500">+2,47%</span>
-                    <span className="text-sm mr-2 mb-1 text-red-500">
-                      (3,94)
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div class="flex w-full border-b-2 border-black">
-                <icons.Coolblue alt="Tag" class="h-10 w-10 ml-4 mt-4" />
-                <div class="flex justify-between w-full">
-                  <div class="flex flex-col items-center ml-2 mt-2">
-                    <span className="text-lg mr-8">coolblue</span>
-                    <span className="text-xs mr-12 -mt-2 text-[#575757]">
-                      06-05-2024 13:23
-                    </span>
-                  </div>
-                  <div class="flex flex-col items-end mr-4 mt-4">
-                    <span className="text-lg -mt-2 text-red-500">+2,47%</span>
-                    <span className="text-sm mr-2 mb-1 text-red-500">
-                      (3,94)
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <button class="bg-[#20C1AA] text-white py-2 px-4 rounded justify-center ml-28 mt-10">
-                <div class="hover:text-[#1B9188]">View More</div>
-              </button>
             </div>
           </div>
         </div>
 
         <div class="col-span-2 mt-12">
+          <h1 className="text-2xl font-semibold">Comments</h1>
           <div class="bg-white border-2 h-72 mb-16 border-gray-200 shadow-sm p-4 rounded-lg">
             <div class="flex justify-between">
               <div class="flex items-center gap-4">
@@ -327,13 +324,15 @@ function ProductDetails() {
                 />
               </div>
             </div>
-            <form>
+            <form onSubmit={handleMessageSend}>
               <div className="bg-gray-300 mt-4 h-32 p-4 flex items-center rounded-md">
                 <icons.Pencil className="h-8 w-8 -mt-12 fill-gray-500" />
                 <textarea
                   className="ml-4 flex-1 bg-transparent border-none outline-none text-gray-500 placeholder-gray-500 resize-none"
                   placeholder="Write a comment..."
                   rows="3"
+                  value={message}
+                  onChange={handleMessageChange}
                 />
               </div>
 
@@ -390,41 +389,141 @@ function ProductDetails() {
           </div>
         </div>
 
-        <div class="col-span-1 mt-12">
+        <div class="col-span-1 mt-12 ">
           <h1 className="text-2xl font-semibold">Similar products</h1>
-          <div className="flex items-center  border-2 h-96 bg-white rounded-lg shadow-md overflow-hidden">
+          <div className="flex items-center border-2 h-44 bg-white  rounded-lg shadow-md overflow-hidden mb-4">
             <img
-              src={images.footerLogo}
+              src={images.pikachu}
               alt="Pokemon Shoes"
-              className="w-36 h-full"
+              className="w-48 h-full"
             />
-            <div className="flex-grow p-4">
+            <div className="flex-grow p-4 ">
               <div className="flex justify-between items-center">
                 <div>
-                  <div className="mt-2 mb-2 ml-4 flex items-center">
+                  <div className="mt-2 mb-2 flex items-center space-x-1">
                     <icons.Bolcom
                       src={images.footerLogo}
                       alt="Pikachu"
-                      class="h-10 w-10 fill-blue-400"
+                      class="h-8 w-8 fill-blue-400"
                     />
                     <a
                       href="https://www.amazon.com"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-500 hover:text-blue-600 transition duration-300 ease-in-out"
+                      className="text-black-500 hover:text-gray-600 transition duration-300 ease-in-out"
                     >
                       amazon.com
                     </a>
                   </div>
-                  <h2 className="text-lg font-bold ml-6 text-gray-800">
-                    €423,93
-                  </h2>
-                  <p className="text-red-500 ml-6">-2,73%</p>
-                  <icons.Link
-                    src={images.footerLogo}
-                    alt="Pikachu"
-                    class="h-8 ml-56 w-10 cursor-pointer \"
-                  />
+                  <h2 className="text-lg  text-red-500">€423,93</h2>
+                  <p className="text-red-500 font-bold">-2,73%</p>
+                  <div class="flex ml-12">
+                    <icons.Heart alt="Tag" class="h-6 w-6 ml-4 mt-4" />
+                    <icons.Ketting alt="Tag" class="h-6 w-6 ml-4 mt-4" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="flex items-center border-2 h-44 bg-white rounded-lg shadow-md overflow-hidden mb-4">
+            <img
+              src={images.pikachu}
+              alt="Pokemon Shoes"
+              className="w-48 h-full"
+            />
+            <div className="flex-grow p-4">
+              <div className="flex justify-between items-center">
+                <div>
+                  <div className="mt-2 mb-2 flex items-center space-x-1">
+                    <icons.Bolcom
+                      src={images.footerLogo}
+                      alt="Pikachu"
+                      class="h-8 w-8 fill-blue-400"
+                    />
+                    <a
+                      href="https://www.amazon.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-black-500 hover:text-gray-600 transition duration-300 ease-in-out"
+                    >
+                      amazon.com
+                    </a>
+                  </div>
+                  <h2 className="text-lg  text-red-500">€423,93</h2>
+                  <p className="text-red-500 font-bold">-2,73%</p>
+                  <div class="flex ml-12">
+                    <icons.Heart alt="Tag" class="h-6 w-6 ml-4 mt-4" />
+                    <icons.Ketting alt="Tag" class="h-6 w-6 ml-4 mt-4" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex items-center  border-2 h-44 bg-white rounded-lg shadow-md overflow-hidden mb-4">
+            <img
+              src={images.pikachu}
+              alt="Pokemon Shoes"
+              className="w-48 h-full"
+            />
+            <div className="flex-grow p-4">
+              <div className="flex justify-between items-center">
+                <div>
+                  <div className="mt-2 mb-2 flex items-center space-x-1">
+                    <icons.Bolcom
+                      src={images.footerLogo}
+                      alt="Pikachu"
+                      class="h-8 w-8 fill-blue-400"
+                    />
+                    <a
+                      href="https://www.amazon.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-black-500 hover:text-gray-600 transition duration-300 ease-in-out"
+                    >
+                      amazon.com
+                    </a>
+                  </div>
+                  <h2 className="text-lg  text-red-500">€423,93</h2>
+                  <p className="text-red-500 font-bold">-2,73%</p>
+                  <div class="flex ml-12">
+                    <icons.Heart alt="Tag" class="h-6 w-6 ml-4 mt-4" />
+                    <icons.Ketting alt="Tag" class="h-6 w-6 ml-4 mt-4" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="flex items-center border-2 h-44 bg-white rounded-lg shadow-md overflow-hidden mb-4">
+            <img
+              src={images.pikachu}
+              alt="Pokemon Shoes"
+              className="w-48 h-full"
+            />
+            <div className="flex-grow p-4">
+              <div className="flex justify-between items-center">
+                <div>
+                  <div className="mt-2 mb-2 flex items-center space-x-1">
+                    <icons.Bolcom
+                      src={images.footerLogo}
+                      alt="Pikachu"
+                      class="h-8 w-8 fill-blue-400"
+                    />
+                    <a
+                      href="https://www.amazon.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-black-500 hover:text-gray-600 transition duration-300 ease-in-out"
+                    >
+                      amazon.com
+                    </a>
+                  </div>
+                  <h2 className="text-lg  text-red-500">€423,93</h2>
+                  <p className="text-red-500 font-bold">-2,73%</p>
+                  <div class="flex ml-12">
+                    <icons.Heart alt="Tag" class="h-6 w-6 ml-4 mt-4" />
+                    <icons.Ketting alt="Tag" class="h-6 w-6 ml-4 mt-4" />
+                  </div>
                 </div>
               </div>
             </div>

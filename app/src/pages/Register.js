@@ -1,22 +1,19 @@
-import React from "react";
-import { useState } from "react";
-//import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react"
+import { Link, useLocation, useNavigate } from "react-router-dom"
+
 const Register = () => {
-  
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  let navigate = useNavigate();
   const [errors, setErrors] = useState({})
   const [formData, setFormData] = useState({
-    username: '',
+    name: '',
     email: '',
     password: '',
-    password_confirmation: ''
+    repeat_password: '',
   });
-  const handleSubmit = async (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault()
-    console.log(formData)
-    /*try {
-      console.log(email, password)
+    try {
+      console.log(formData)
       const response = await fetch(
         "https://api.honesttracker.nl/api/auth/register",
         {
@@ -26,10 +23,10 @@ const Register = () => {
             Accept: "application/json",
           },
           body: JSON.stringify({
-            username: formData.username,
+            name: formData.name,
             email: formData.email,
             password: formData.password,
-            password_confirmation: formData.password_confirmation,
+            repeat_password: formData.repeat_password,
             device: "web",
           }),
         }
@@ -57,11 +54,14 @@ const Register = () => {
         console.log("Token and user stored successfully");
         console.log("Token stored successfully")
         console.log("Response received:", accessToken)
+        const expirationTime = new Date().getTime() + 3600 * 1000; // Calculate expiration time in milliseconds
+        localStorage.setItem("token", accessToken);
+        localStorage.setItem("tokenExpiration", expirationTime.toString());
         navigate('/')
       }
     } catch (error) {
       console.error("Error during login:", error)
-    }*/
+    }
   }
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -77,20 +77,19 @@ const Register = () => {
               Log In
             </a>
           </p>
-          <form onSubmit={handleSubmit} class="text-xl ">
+          <form class="text-xl" onSubmit={handleRegister} method="post">
             <label htmlFor="username" className="block mb-1">
               Username
             </label>
             <input
               type="text"
               id="username"
-              name="username"
-              value={formData.username}
-              onChange={handleChange}
+              name="name"
               placeholder="Username..."
               className="w-full p-3 mb-4 border rounded shadow-md shadow-gray-400"
+              onChange={handleChange}
             />
-
+            {errors.name && <div className="text-red-400 mb-4">{errors.name[0]}</div>}
             <label htmlFor="email" className="block mb-1 mt-4 ">
               Email
             </label>
@@ -98,12 +97,11 @@ const Register = () => {
               type="email"
               id="email"
               name="email"
-              value={formData.email}
-              onChange={handleChange}
               placeholder="Email..."
               className="w-full p-3 mb-4 border rounded shadow-md shadow-gray-400"
+              onChange={handleChange}
             />
-
+            {errors.email && <div className="text-red-400 mb-4">{errors.email[0]}</div>}
             <label htmlFor="password" className="block mb-b mt-4 ">
               Password
             </label>
@@ -111,39 +109,37 @@ const Register = () => {
               type="password"
               id="password"
               name="password"
-              value={formData.password}
-              onChange={handleChange}
               placeholder="Password..."
               className="w-full p-3 border rounded shadow-md shadow-gray-400"
+              onChange={handleChange}
             />
-
+            {errors.password && <div className="text-red-400 mb-4">{errors.password[0]}</div>}
             <label htmlFor="confirm-password" className="block mb-1 mt-8">
               Repeat password
             </label>
             <input
               type="password"
               id="confirm-password"
-              name="password_confirmation"
-              value={formData.password_confirmation}
-              onChange={handleChange}
+              name="repeat_password"
               placeholder="Password..."
               className="w-full p-3 mb-6 border rounded shadow-md shadow-gray-400"
+              onChange={handleChange}
             />
-
-<input id="termsCheckbox" type="checkbox" class="h-4 w-4  mb-6 text-blue-600 border-gray-300 rounded focus:ring-blue-500"/>
-    <label for="termsCheckbox" class="ml-2 absolute mt-1  text-sm text-gray-700">
-        I have read and agree to the terms and conditions
-    </label>
+            {errors.repeat_password && <div className="text-red-400 mb-4">{errors.repeat_password[0]}</div>}
+            <input id="termsCheckbox" type="checkbox" class="h-4 w-4  mb-6 text-blue-600 border-gray-300 rounded focus:ring-blue-500" />
+            <label for="termsCheckbox" class="ml-2 absolute mt-1  text-sm text-gray-700">
+              I have read and agree to the terms and conditions
+            </label>
 
             <div class="flex justify-center">
-            <button
-              type="submit"
-              className="w-80 p-2 bg-teal-500 rounded "
-            >
-              <p class="text-2xl text-white font-bold ">Register</p>
-            </button>
+              <button
+                type="submit"
+                className="w-80 p-2 bg-teal-500 rounded "
+              >
+                <p class="text-2xl text-white font-bold ">Register</p>
+              </button>
             </div>
-            
+
           </form>
         </div>
       </main>

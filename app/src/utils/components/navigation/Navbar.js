@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { images } from "../../constants/Images";
 import { icons } from "../../constants/Icons";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import CustomLink from "../../CustomLink";
-
-const isLoggedIn = false;
-const isLoginPage = false;
 
 function Navbar() {
   const location = useLocation();
-  let [isLoginPage, setIsLoginPage] = useState(false);
-  let [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
+  const [isLoginPage, setIsLoginPage] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => setIsOpen(!isOpen);
@@ -19,7 +17,10 @@ function Navbar() {
     const token = localStorage.getItem("token");
     if (token) {
       setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
     }
+
     const path = location.pathname;
     if (path === "/login" || path === "/register") {
       setIsLoginPage(true);
@@ -27,6 +28,7 @@ function Navbar() {
       setIsLoginPage(false);
     }
   }, [location]);
+
   const renderSignInButton = () => {
     if (!isLoggedIn && !isLoginPage) {
       return (
@@ -40,10 +42,52 @@ function Navbar() {
     return null;
   };
 
+  const handleLogout = async () => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("No token found");
+      return;
+    }
+
+    try {
+      const response = await fetch("https://api.honesttracker.nl/api/auth/logout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!response.ok) {
+        const responseData = await response.json();
+        throw new Error(responseData.message || "An error occurred during logout.");
+      }
+
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      localStorage.removeItem("tokenExpiration");
+      navigate("/login");
+    } catch (error) {
+      console.error("Error during logout:", error);
+    }
+  };
+
   const renderLoggedInUser = () => {
     if (isLoggedIn) {
       const loggedUserString = localStorage.getItem("user");
-      const loggedUser = JSON.parse(loggedUserString);
+      if (!loggedUserString) {
+        console.error("No user data found");
+        return null;
+      }
+
+      let loggedUser;
+      try {
+        loggedUser = JSON.parse(loggedUserString);
+      } catch (error) {
+        console.error("Error parsing user data:", error);
+        return null;
+      }
 
       return (
         <div className="absolute right-40 flex items-center space-x-2">
@@ -72,10 +116,16 @@ function Navbar() {
                   <icons.SettingsGear class="h-10 w-10  mr-8" />
                   <p class="text-xl -ml-5">Settings</p>
                 </div>
-
-                <div className="flex items-center cursor-pointer  px-4 py-2 text-lg text-gray-700 hover:bg-gray-100">
-                  <icons.DoorOpen class="h-10 -ml-32" />
-                  <p class="text-xl absolute ml-12">Logout</p>
+                <div className="flex items-center cursor-pointer px-4 py-2 text-lg text-gray-700 hover:bg-gray-100">
+                  <icons.DoorOpen className="h-10 -ml-32" />
+                  <button
+                    className="text-xl absolute ml-12"
+                    onClick={handleLogout}
+                    style={{ fontFamily: "Poppins, sans-serif", right: "10px" }}
+                    type="button"
+                  >
+                    Logout
+                  </button>
                 </div>
               </div>
             )}
@@ -87,7 +137,7 @@ function Navbar() {
   };
 
   return (
-    <nav className="bg-customTeal p-4 flex items-center w-full shadow-lg ">
+    <nav className="bg-customTeal p-4 flex items-center w-full shadow-lg">
       {/* Container for logo and links */}
       <div className="relative flex items-center w-full">
         {/* Logo on the left */}
@@ -103,40 +153,19 @@ function Navbar() {
         <div className="mx-auto">
           <div className="flex space-x-10 text-white text-lg">
             <CustomLink to="/">Home</CustomLink>
-            <CustomLink to="/Products">Products</CustomLink>
-            <CustomLink to="/About">About</CustomLink>
-            <CustomLink to="/Contact">Contact</CustomLink>
-            <CustomLink to="/Settings">Settings</CustomLink>
+            <CustomLink to="/products">Products</CustomLink>
+            <CustomLink to="/about">About</CustomLink>
+            <CustomLink to="/contact">Contact</CustomLink>
+            {isLoggedIn ? (
+              <CustomLink to="/settingsauth">Settings</CustomLink>
+            ) : (
+              <CustomLink to="/settings">Settings</CustomLink>
+            )}
           </div>
         </div>
 
         {/* Conditionally render sign-in button */}
         {renderSignInButton()}
-
-        <div className="bg-white hidden rounded-lg fixed shadow-lg p-4  w-48">
-          <div className="flex items-center space-x-3 mb-6">
-            <img
-              src="path_to_pikachu_image.jpg"
-              alt="Pikachu"
-              className="h-12 w-12 rounded-full"
-            />
-            <span className="font-semibold text-lg">Jur</span>
-          </div>
-          <ul>
-            <li className="flex items-center mb-3">
-              <img class="h-16" />
-              Profile Page
-            </li>
-            <li className="flex items-center mb-3">
-              <img class="h-16" />
-              Settings
-            </li>
-            <li className="flex items-center">
-              <img class="h-16" />
-              Logout
-            </li>
-          </ul>
-        </div>
 
         {/* Conditionally render logged-in user */}
         {renderLoggedInUser()}

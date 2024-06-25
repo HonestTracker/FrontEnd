@@ -1,70 +1,58 @@
-import React, { useState, useEffect } from "react"
-import { Link, useLocation, useNavigate } from "react-router-dom"
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  let navigate = useNavigate();
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [errors, setErrors] = useState({})
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-  });
-  const handleLogin = async (e) => {
-    e.preventDefault()
-    try {
-      console.log(email, password)
-      const response = await fetch(
-        "https://api.honesttracker.nl/api/auth/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          body: JSON.stringify({
-            email: formData.email,
-            password: formData.password,
-            device: "web",
-          }),
-        }
-      )
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({ email: "", password: "" });
+  const [errors, setErrors] = useState({});
 
-      const responseData = await response.json()
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch("https://api.honesttracker.nl/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password,
+          device: "web",
+        }),
+      });
+
+      const responseData = await response.json();
 
       if (!response.ok) {
-        console.log(response)
         if (response.status === 422) {
-          console.log(responseData.errors)
-          setErrors(responseData.errors)
+          setErrors(responseData.errors);
         } else {
-          throw new Error(responseData.message || "An error occurred.")
+          throw new Error(responseData.message || "An error occurred.");
         }
       } else {
-        const accessToken = responseData.access_token
-        const user = responseData.user;
-        console.log("Access Token:", accessToken)
-        console.log("User:", user);
+        const { access_token: accessToken, user } = responseData;
+        const expirationTime = new Date().getTime() + 3600 * 1000; // 1 hour
 
-        await localStorage.setItem('token', accessToken);
-        await localStorage.setItem("user", JSON.stringify(user));
+        localStorage.setItem("token", accessToken);
+        localStorage.setItem("user", JSON.stringify(user));
+        localStorage.setItem("tokenExpiration", expirationTime.toString());
 
-        console.log("Token and user stored successfully");
-        console.log("Token stored successfully")
-        console.log("Response received:", accessToken)
-        navigate('/')
+        navigate("/");
       }
     } catch (error) {
-      console.error("Error during login:", error)
+      console.error("Error during login:", error);
     }
-  }
+  };
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
   return (
-    <div className=" bg-gray-100">
-      <main className="flex items-center  py-24 ">
-        <div className="bg-white mx-auto  p-10 rounded-lg  shadow-lg w-2/4 ">
+    <div className="bg-gray-100">
+      <main className="flex items-center py-24">
+        <div className="bg-white mx-auto p-10 rounded-lg shadow-lg w-2/4">
           <h2 className="text-5xl text-center mb-4">Log In</h2>
           <p className="mb-4 text-center text-lg">
             Don't have an account yet?{" "}
@@ -72,7 +60,7 @@ const Login = () => {
               Sign Up
             </a>
           </p>
-          <form onSubmit={handleLogin} method="post" class="text-xl ">
+          <form onSubmit={handleLogin} method="post" className="text-xl">
             <label htmlFor="email" className="block mb-1">
               Email
             </label>
@@ -97,7 +85,6 @@ const Login = () => {
               onChange={handleChange}
             />
             {errors.password && <div className="text-red-400 -mt-5 mb-4">{errors.password[0]}</div>}
-
             <div className="flex justify-between items-center mb-4">
               <label className="flex items-center">
                 <input type="checkbox" name="remember" className="mr-2" />
@@ -107,14 +94,10 @@ const Login = () => {
                 Forgot password?
               </a>
             </div>
-
-            <div class="flex justify-center">
-            <button
-              type="submit"
-              className="w-80 p-2 bg-teal-500 rounded "
-            >
-              <p class="text-2xl text-white font-bold ">Login</p>
-            </button>
+            <div className="flex justify-center">
+              <button type="submit" className="w-80 p-2 bg-teal-500 rounded">
+                <p className="text-2xl text-white font-bold">Login</p>
+              </button>
             </div>
           </form>
         </div>

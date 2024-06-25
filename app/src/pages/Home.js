@@ -3,6 +3,7 @@ import { images } from "../utils/constants/Images";
 import { icons } from "../utils/constants/Icons";
 import "@fontsource/poppins";
 import { getHomeData } from "../backend/get_homedata.js"
+import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
 
 function Home() {
   const [loading, setLoading] = useState(true);
@@ -12,8 +13,29 @@ function Home() {
   const [latestDropProducts, setLatestDropProducts] = useState({})
   const [latestUpdatedProducts, setLatestUpdatedProducts] = useState({})
   const [error, setError] = useState(null)
-
+  let navigate = useNavigate();
+  const checkTokenExpiry = () => {
+    const tokenExpiration = localStorage.getItem("tokenExpiration");
+    if (!tokenExpiration) {
+      // No token expiration stored, handle accordingly (e.g., redirect to login)
+      return false;
+    }
+  
+    const expirationDate = new Date(tokenExpiration);
+    if (expirationDate <= new Date()) {
+      // Token has expired, clear localStorage
+      localStorage.removeItem("token");
+      localStorage.removeItem("tokenExpiration");
+      return false;
+    }
+  
+    return true;
+  };
   useEffect(() => {
+    const tokenValid = checkTokenExpiry();
+    if (!tokenValid) {
+      navigate("/login"); // Redirect to login page if token is expired or not found
+    }
     const fetchData = async () => {
       setLoading(true);
       try {

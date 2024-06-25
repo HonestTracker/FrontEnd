@@ -1,123 +1,133 @@
-import React from "react";
-import BackButton from "../utils/BackButton"
-import { images } from "../utils/constants/Images"
-import {icons} from "../utils/constants/Icons"
+import React from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
+import BackButton from "../utils/BackButton";
+import { images } from "../utils/constants/Images";
+import { icons } from "../utils/constants/Icons";
+
 function SettingsAuthenticated() {
+  let navigate = useNavigate();
 
-  const refreshPage = async (event) => {
-    window.location.reload()
-  }
+  const handleLogout = async () => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("No token found");
+      return;
+    }
 
-  const changeProfilePicture = async (event) => {
+    try {
+      const response = await fetch(
+        "https://api.honesttracker.nl/api/auth/logout",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
-  }
+      if (!response.ok) {
+        const responseData = await response.json();
+        throw new Error(responseData.message || "An error occurred during logout.");
+      }
 
-  const changeUsername = async (event) => {
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      navigate("/login");
+    } catch (error) {
+      console.error("Error during logout:", error);
+    }
+  };
 
-  }
-
-  const changeEmail = async (event) => {
-
-  }
-
-  const changePassword = async (event) => {
-
-  }
-  
   return (
-
-    
-    <main class="p-48">
+    <main className="p-48">
       <div className="absolute -mt-40 z-10"> {/* Ensuring button is on top */}
         <BackButton />
       </div>
+
       <div className="grid grid-cols-3 gap-4 -mt-24">
-        <div class="col-span-2 mb-14">
-            <h1 className="text-xl font-semibold">Edit account details</h1>
-            <div className="bg-white border-2  border-gray-200 shadow-md p-4 rounded-lg">
-                <div class="flex relative">
-                  <form>
-                  <img src={images.footerLogo} class="opacity-50"/>
-                  <icons.Pencil style={{ width: "20px", height: "20px", position: "absolute", right: 720, top: "50%", transform: "translateY(-50%)", cursor: "pointer" }} />
-                  </form>
-                  
-                  <div class="flex-col ml-16 w-80">
-                    <p class="text-xl mt-16">Username</p>
-                    <div className="relative w-full">
-                    <input type="text" className="text-customGray border-2 border-gray-200 rounded-md p-2 h-12 w-full focus:outline-none focus:border-blue-500"/>
-                    <icons.Pencil style={{ width: "20px", height: "20px", position: "absolute", right: 16, top: "50%", transform: "translateY(-50%)" }} />
-                    </div>
-                  </div>
-                </div>
-                
-              <div class="flex-col">
-                <p class="text-xl mt-6">Email</p>
+        <div className="col-span-2 mb-14">
+          <h1 className="text-xl font-semibold">Edit account details</h1>
+          <div className="bg-white border-2 border-gray-200 shadow-md p-4 rounded-lg">
+            <div className="flex relative">
+              <form>
+                <img src={images.footerLogo} className="opacity-50" alt="Footer Logo" />
+                <icons.Pencil style={{ width: "20px", height: "20px", position: "absolute", right: 16, top: "50%", transform: "translateY(-50%)", cursor: "pointer" }} />
+              </form>
+              <div className="flex-col ml-16 w-80">
+                <p className="text-xl mt-16">Username</p>
                 <div className="relative w-full">
-                  <input type="text" className="text-customGray border-2 border-gray-200 rounded-md p-2 h-12 w-full focus:outline-none focus:border-blue-500"/>
-                  <icons.Pencil style={{ width: "20px", height: "20px", position: "absolute", right: 16, top: "50%", transform: "translateY(-50%)"}} />
-                </div>
-                <div class="flex justify-center space-x-4 mt-4">
-                  <button class="text-customGray border-2 border-gray-200 rounded-md p-2  w-28" onClick={refreshPage}>Cancel</button>
-                  <button className="bg-teal-400 cursor-pointer text-white  ml-6 p-2 rounded hover:bg-teal-300 w-28">Save</button>
+                  <input type="text" className="text-customGray border-2 border-gray-200 rounded-md p-2 h-12 w-full focus:outline-none focus:border-blue-500" />
+                  <icons.Pencil style={{ width: "20px", height: "20px", position: "absolute", right: 16, top: "50%", transform: "translateY(-50%)" }} />
                 </div>
               </div>
             </div>
-          </div>
-        <div>
-            
-            <h1 className="text-xl font-semibold">Appearance</h1>
-            <div className="bg-white border-2 border-gray-200 shadow-md p-4 rounded-lg">
-              <div class="mb-10">
-                <p class=" pl-6 pr-6 text-xl">Theme</p>
-                <select id="currency" class="text-customGray border-2 border-gray-200 rounded-md p-2 ml-6 w-56 focus:outline-none focus:border-blue-500">
-                  <option>Light</option>
-                  <option>Dark</option>
-                </select>
+
+            <div className="flex-col">
+              <p className="text-xl mt-6">Email</p>
+              <div className="relative w-full">
+                <input type="text" className="text-customGray border-2 border-gray-200 rounded-md p-2 h-12 w-full focus:outline-none focus:border-blue-500" />
+                <icons.Pencil style={{ width: "20px", height: "20px", position: "absolute", right: 16, top: "50%", transform: "translateY(-50%)" }} />
               </div>
-
-              <div class="mb-10">
-                <p class=" pl-6 pr-6 text-xl">Currency</p>
-                <select id="currency" class="text-customGray border-2 border-gray-200 rounded-md p-2 ml-6  pr-28 w-56 focus:outline-none focus:border-blue-500">
-                  <option>Euro</option>
-                  <option>USD</option>
-                  <option>GBP</option>
-                </select>
+              <div className="flex justify-center space-x-4 mt-4">
+                <button className="text-customGray border-2 border-gray-200 rounded-md p-2 w-28">Cancel</button>
+                <button className="bg-teal-400 cursor-pointer text-white ml-6 p-2 rounded hover:bg-teal-300 w-28">Save</button>
               </div>
-            </div>
-            </div>
-         
-
-        <div class="col-span-2 -mt-6  ">
-            <h1 className="text-xl font-semibold">Edit password</h1>
-            <div className="bg-white border-2  border-gray-200 shadow-md p-4 rounded-lg">
-              <div class="mb-10 relative">
-                <p class="text-xl mt-6">Old password</p>
-                <input type="text" className="text-customGray border-2 border-gray-200 rounded-md p-2 h-12 w-full focus:outline-none focus:border-blue-500" placeholder="Type here"/>
-                
-              </div>
-
-            <div class="mb-10 relative">
-              <p class="text-xl mt-6">New password</p>
-              <input type="text" className="text-customGray border-2 border-gray-200 rounded-md p-2 h-12 w-full focus:outline-none focus:border-blue-500" placeholder="Type here"/>
-              
-            </div>
-
-            <div class="mb-4 relative">
-              <p class="text-xl mt-6">Repeat new password</p>
-              <input type="text" class="text-customGray border-2 border-gray-200 rounded-md p-2 w-full focus:outline-none focus:border-blue-500" placeholder="Type here"/>
-              
-            </div>
-            <div class="flex justify-center space-x-4 mt-4">
-                <button class="text-customGray border-2 border-gray-200 rounded-md p-2 w-28" onClick={refreshPage}>Cancel</button>
-                <button className="bg-teal-400 cursor-pointer text-white  ml-6 p-2 rounded hover:bg-teal-300 w-28">Save</button>
             </div>
           </div>
-    </div>
-  </div>              
-    
-      
-    
-  </main>
+        </div>
+
+        <div className="col-span-1">
+          <h1 className="text-xl font-semibold">Appearance</h1>
+          <div className="bg-white border-2 border-gray-200 shadow-md p-4 rounded-lg">
+            <div className="mb-10">
+              <p className="pl-6 pr-6 text-xl">Theme</p>
+              <select id="currency" className="text-customGray border-2 border-gray-200 rounded-md p-2 ml-6 w-56 focus:outline-none focus:border-blue-500">
+                <option>Light</option>
+                <option>Dark</option>
+              </select>
+            </div>
+
+            <div className="mb-10">
+              <p className="pl-6 pr-6 text-xl">Currency</p>
+              <select id="currency" className="text-customGray border-2 border-gray-200 rounded-md p-2 ml-6 pr-28 w-56 focus:outline-none focus:border-blue-500">
+                <option>Euro</option>
+                <option>USD</option>
+                <option>GBP</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div className="col-span-2 -mt-6">
+          <h1 className="text-xl font-semibold">Edit password</h1>
+          <div className="bg-white border-2 border-gray-200 shadow-md p-4 rounded-lg">
+            <div className="mb-10 relative">
+              <p className="text-xl mt-6">Old password</p>
+              <input type="text" className="text-customGray border-2 border-gray-200 rounded-md p-2 h-12 w-full focus:outline-none focus:border-blue-500" placeholder="Type here" />
+              <icons.Pencil style={{ width: "20px", height: "20px", position: "absolute", right: 16, top: "70%", transform: "translateY(-50%)" }} />
+            </div>
+
+            <div className="mb-10 relative">
+              <p className="text-xl mt-6">New password</p>
+              <input type="text" className="text-customGray border-2 border-gray-200 rounded-md p-2 h-12 w-full focus:outline-none focus:border-blue-500" placeholder="Type here" />
+              <icons.Pencil style={{ width: "20px", height: "20px", position: "absolute", right: 16, top: "70%", transform: "translateY(-50%)" }} />
+            </div>
+
+            <div className="mb-4 relative">
+              <p className="text-xl mt-6">Repeat new password</p>
+              <input type="text" className="text-customGray border-2 border-gray-200 rounded-md p-2 w-full focus:outline-none focus:border-blue-500" placeholder="Type here" />
+              <icons.Pencil style={{ width: "20px", height: "20px", position: "absolute", right: 16, top: "70%", transform: "translateY(-50%)" }} />
+            </div>
+            <div className="flex justify-center space-x-4 mt-4">
+              <button className="text-customGray border-2 border-gray-200 rounded-md p-2 w-28">Cancel</button>
+              <button className="bg-teal-400 cursor-pointer text-white ml-6 p-2 rounded hover:bg-teal-300 w-28">Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
   );
 }
 

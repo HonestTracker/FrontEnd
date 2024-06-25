@@ -61,10 +61,12 @@ function Navbar() {
             </button>
             {isOpen && (
               <div className="absolute right-4 z-10  w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                <div className="flex items-center cursor-pointer  px-4 py-2 text-lg text-gray-700 hover:bg-gray-100">
-                  <icons.AddressCard class="h-10" />
-                  <p class="text-xl ml-2">Profile</p>
-                </div>
+                <CustomLink to="">
+                  <div className="flex items-center cursor-pointer  px-4 py-2 text-lg text-gray-700 hover:bg-gray-100">
+                    <icons.AddressCard class="h-10" />
+                    <p class="text-xl ml-2">Profile</p>
+                  </div>
+                </CustomLink>
 
                 <div className="flex items-center cursor-pointer px-4 py-2 text-lg text-gray-700 hover:bg-gray-100">
                   <icons.SettingsGear class="h-10 w-10  mr-8" />

@@ -1,10 +1,7 @@
 import React from "react";
 import { images } from "../utils/constants/Images";
 import { icons } from "../utils/constants/Icons";
-import BackButton from "../utils/BackButton"
-import "@fontsource/poppins";
-
-
+import BackButton from "../utils/BackButton";
 
 function ProductOverview() {
   const products = [
@@ -35,26 +32,19 @@ function ProductOverview() {
   ];
 
   return (
-    
     <div className="container mx-auto p-4">
       <div className="flex items-center mb-8 mt-12 ml-4">
-
-      <div class="flex normal h-10"  style={{ width: "14rem" }}>
-        
-        <BackButton/>
-        
-         
+        <div class="flex normal h-10" style={{ width: "14rem" }}>
+          <BackButton />
         </div>
-        
+
         <input
           type="text"
           placeholder="Search"
           className="p-2 ml-12 border border-gray-300 rounded w-full"
         />
-
-
       </div>
-      
+
       <div className="flex">
         <Filter />
         <div className="w-4/5 ml-4">
@@ -152,8 +142,18 @@ function ProductCard({ product, isSecond }) {
           href={product.link}
           className="text-2xl font-semibold text-black mt-2 ml-2"
         >
-          {product.title}
+          {" "}
+          <div class="flex ml-1">
+            {product.title}
+
+            <icons.Heart
+              alt="Tag"
+              class="h-6 w-6 ml-96 mt-1 hover:fill-red-500"
+            />
+            <icons.Ketting alt="Tag" class="h-6 w-6 ml-4 mt-1" />
+          </div>
         </a>
+
         <div className="flex items-center mt-2 ml-1">
           <p
             style={{ color: isSecond ? "red" : "#24BA4E" }}

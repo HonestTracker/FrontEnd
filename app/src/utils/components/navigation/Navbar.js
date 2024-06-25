@@ -12,8 +12,25 @@ function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => setIsOpen(!isOpen);
-
+  const checkTokenExpiry = () => {
+    const tokenExpiration = localStorage.getItem("tokenExpiration");
+    if (!tokenExpiration) {
+      // No token expiration stored, handle accordingly (e.g., redirect to login)
+      return false;
+    }
+  
+    const expirationDate = new Date(tokenExpiration);
+    if (expirationDate <= new Date()) {
+      // Token has expired, clear localStorage
+      localStorage.removeItem("token");
+      localStorage.removeItem("tokenExpiration");
+      return false;
+    }
+  
+    return true;
+  };
   useEffect(() => {
+    const tokenValid = checkTokenExpiry();
     const token = localStorage.getItem("token");
     if (token) {
       setIsLoggedIn(true);

@@ -285,7 +285,7 @@ function ProductDetails() {
                   </div>
                 </div>
               </div>
-              <button class="bg-[#20C1AA] text-white py-2 px-4 rounded justify-center ml-44 mt-10">
+              <button class="bg-[#20C1AA] text-white py-2 px-4 rounded justify-center ml-28 mt-10">
                 <div class="hover:text-[#1B9188]">View More</div>
               </button>
             </div>

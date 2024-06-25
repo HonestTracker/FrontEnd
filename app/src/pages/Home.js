@@ -15,6 +15,8 @@ function Home() {
   const [error, setError] = useState(null)
   let navigate = useNavigate();
   useEffect(() => {
+    localStorage.clear();
+  	console.log('Local storage cleared');
     const fetchData = async () => {
       setLoading(true);
       try {

@@ -30,7 +30,7 @@ function Navbar() {
     return true;
   };
   useEffect(() => {
-    const tokenValid = checkTokenExpiry();
+    checkTokenExpiry();
     const token = localStorage.getItem("token");
     if (token) {
       setIsLoggedIn(true);

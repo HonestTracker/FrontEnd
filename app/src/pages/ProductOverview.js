@@ -39,7 +39,9 @@ function ProductOverview() {
     setLoading(true);
     try {
       const response = await fetch(
-        `https://api.honesttracker.nl/api/products/search?search_data=${encodeURIComponent(searchQuery)}`
+        `https://api.honesttracker.nl/api/products/search?search_data=${encodeURIComponent(
+          searchQuery
+        )}`
       );
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -68,7 +70,10 @@ function ProductOverview() {
   // Logic to paginate products
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+  const currentProducts = products.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
 
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -106,15 +111,25 @@ function ProductOverview() {
           </header>
           <div className="flex flex-wrap justify-around">
             {currentProducts.map((product, i) => (
-              <ProductCard key={i} product={product} isSecond={i === 1 || i === 2} />
+              <ProductCard
+                key={i}
+                product={product}
+                isSecond={i === 1 || i === 2}
+              />
             ))}
           </div>
           <div className="text-center mt-6 flex justify-end">
             {/* Pagination buttons */}
-            {[...Array(Math.ceil(products.length / productsPerPage)).keys()].map((pageNumber) => (
+            {[
+              ...Array(Math.ceil(products.length / productsPerPage)).keys(),
+            ].map((pageNumber) => (
               <button
                 key={pageNumber}
-                className={`mx-2 px-4 py-2 border rounded ${currentPage === pageNumber + 1 ? 'bg-[#20C1AA] text-white' : ''}`}
+                className={`mx-2 px-4 py-2 border rounded ${
+                  currentPage === pageNumber + 1
+                    ? "bg-[#20C1AA] text-white"
+                    : ""
+                }`}
                 onClick={() => paginate(pageNumber + 1)}
               >
                 {pageNumber + 1}
@@ -155,10 +170,12 @@ function Filter({ categories }) {
 
 function ProductCard({ product, isSecond }) {
   const priceColor = product.change_percentage > 0 ? "red" : "#24BA4E";
-  const percentageColor = product.change_percentage > 0 ? "text-red-500" : "text-green-500";
-  const cardBackground = product.change_percentage > 0
-    ? "linear-gradient(135deg, #FFFFFF 80%, #F44040 100%)"
-    : "linear-gradient(135deg, #FFFFFF 80%, #10B981 100%)";
+  const percentageColor =
+    product.change_percentage > 0 ? "text-red-500" : "text-green-500";
+  const cardBackground =
+    product.change_percentage > 0
+      ? "linear-gradient(135deg, #FFFFFF 80%, #F44040 100%)"
+      : "linear-gradient(135deg, #FFFFFF 80%, #10B981 100%)";
 
   const formatPrice = (price) => {
     return new Intl.NumberFormat("en-US", {
@@ -196,7 +213,7 @@ function ProductCard({ product, isSecond }) {
         >
           {" "}
           <div class="flex ml-1">
-           {product.name}
+            {product.name}
 
             <icons.Heart
               alt="Tag"
@@ -212,13 +229,16 @@ function ProductCard({ product, isSecond }) {
           </p>
           <p style={{ color: priceColor }} className="text-xl ml-4 font-bold">
             <span className={`text-sm ${percentageColor}`}>
-              {product.change_percentage > 0 ? '+' : '-'}
+              {product.change_percentage > 0 ? "+" : "-"}
               {Math.abs(product.change_percentage)}%
             </span>
           </p>
         </div>
         <div className="flex items-center text-gray-600 text-xs mt-2">
-          {/* ... your component */}
+          <a href="productdetails">
+            <icons.Textvak alt="Tag" class="h-6 w-6 ml-4 mt-12" />
+          </a>
+          <span className="ml-2 mt-12 text-lg">38</span>
         </div>
       </div>
     </div>

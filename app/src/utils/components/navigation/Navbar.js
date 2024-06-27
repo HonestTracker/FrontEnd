@@ -15,39 +15,32 @@ function Navbar() {
   const checkTokenExpiry = () => {
     const tokenExpiration = localStorage.getItem("tokenExpiration");
     if (!tokenExpiration) {
-      console.log("No token")
-      // No token expiration stored, handle accordingly (e.g., redirect to login)
+      console.log("No token expiration found");
       setIsLoggedIn(false);
       return false;
     }
-
+  
     const expirationDate = new Date(tokenExpiration);
-    if (expirationDate <= new Date()) {
+    const currentTime = new Date();
+    
+    if (expirationDate <= currentTime) {
+      console.log("Token expired");
       // Token has expired, clear localStorage
       localStorage.removeItem("token");
       localStorage.removeItem("tokenExpiration");
-      console.log("Token expired")
       setIsLoggedIn(false);
       return false;
     }
-
+  
+    // Token is valid
     return true;
   };
   useEffect(() => {
-    checkTokenExpiry();
-    const token = localStorage.getItem("token");
-    if (token) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
-
+    const isValidToken = checkTokenExpiry();
+    setIsLoggedIn(isValidToken);
+  
     const path = location.pathname;
-    if (path === "/login" || path === "/register") {
-      setIsLoginPage(true);
-    } else {
-      setIsLoginPage(false);
-    }
+    setIsLoginPage(path === "/login" || path === "/register");
   }, [location]);
 
   const renderSignInButton = () => {
@@ -88,6 +81,7 @@ function Navbar() {
       localStorage.removeItem("token");
       localStorage.removeItem("user");
       localStorage.removeItem("tokenExpiration");
+      navigate('/')
     } catch (error) {
       console.error("Error during logout:", error);
     }
@@ -108,7 +102,9 @@ function Navbar() {
         console.error("Error parsing user data:", error);
         return null;
       }
-
+      const profilePictureUrl = loggedUser.picture_url.startsWith('/')
+      ? `https://api.honesttracker.nl${loggedUser.picture_url}`
+      : images.placeholder;
       return (
         <div className="absolute right-40 flex items-center space-x-2">
           <div className="inline-block text-left">
@@ -118,7 +114,7 @@ function Navbar() {
             >
               <span className="text-white mt-3">{loggedUser.name}</span>
               <img
-                src={images.placeholder}
+                 src={profilePictureUrl}
                 alt="thomas"
                 className="h-12 w-12 ml-4 rounded-full"
               />

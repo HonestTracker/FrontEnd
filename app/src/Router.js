@@ -25,7 +25,6 @@ function AppRouter() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/404" element={<NotFoundPage />} />
         <Route path="/about" element={<About />} />
         <Route path="/comments" element={<CommentsPage />} />
         <Route path="/contact" element={<Contact />} />
@@ -35,6 +34,8 @@ function AppRouter() {
         <Route path="/products" element={<ProductOverview />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/productdetails" element={<ProductDetails />} />
+        <Route path="/404" element={<NotFoundPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Footer />
     </Router>

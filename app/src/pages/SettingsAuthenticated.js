@@ -1,11 +1,25 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
+import { useNavigate } from 'react-router-dom'; 
 import BackButton from "../utils/BackButton";
 import { images } from "../utils/constants/Images";
 import { icons } from "../utils/constants/Icons";
 
 function SettingsAuthenticated() {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
+  const loggedUserString = localStorage.getItem("user");
+
+  if (!loggedUserString) {
+    console.error("No user data found");
+    return null;
+  }
+
+  let loggedUser;
+  try {
+    loggedUser = JSON.parse(loggedUserString);
+  } catch (error) {
+    console.error("Error parsing user data:", error);
+    return null;
+  }
 
   const handleLogout = async () => {
     const token = localStorage.getItem("token");
@@ -40,9 +54,17 @@ function SettingsAuthenticated() {
     }
   };
 
+  const baseURL = "https://api.honesttracker.nl";
+  const getProfileImageUrl = (pictureUrl) => {
+    if (!pictureUrl || pictureUrl.startsWith("/")) {
+      return pictureUrl ? `${baseURL}${pictureUrl}` : images.placeholder;
+    }
+    return pictureUrl;
+  };
+
   return (
     <main className="p-48">
-      <div className="absolute -mt-40 z-10"> {/* Ensuring button is on top */}
+      <div className="absolute -mt-40 z-10">
         <BackButton />
       </div>
 
@@ -52,7 +74,10 @@ function SettingsAuthenticated() {
           <div className="bg-white border-2 border-gray-200 shadow-md p-4 rounded-lg">
             <div className="flex relative">
               <form>
-                <img src={images.footerLogo} className="opacity-50" alt="Footer Logo" />
+                <img
+                  src={getProfileImageUrl(loggedUser.picture_url)}
+                  alt="Profile"
+                />
                 <icons.Pencil style={{ width: "20px", height: "20px", position: "absolute", right: 16, top: "50%", transform: "translateY(-50%)", cursor: "pointer" }} />
               </form>
               <div className="flex-col ml-16 w-80">

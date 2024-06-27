@@ -15,18 +15,22 @@ function Navbar() {
   const checkTokenExpiry = () => {
     const tokenExpiration = localStorage.getItem("tokenExpiration");
     if (!tokenExpiration) {
+      console.log("No token")
       // No token expiration stored, handle accordingly (e.g., redirect to login)
+      setIsLoggedIn(false);
       return false;
     }
-  
+
     const expirationDate = new Date(tokenExpiration);
     if (expirationDate <= new Date()) {
       // Token has expired, clear localStorage
       localStorage.removeItem("token");
       localStorage.removeItem("tokenExpiration");
+      console.log("Token expired")
+      setIsLoggedIn(false);
       return false;
     }
-  
+
     return true;
   };
   useEffect(() => {

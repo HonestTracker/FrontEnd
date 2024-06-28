@@ -2,10 +2,59 @@ import React, { useState } from "react";
 import BackButton from "../utils/BackButton";
 import { images } from "../utils/constants/Images";
 import { icons } from "../utils/constants/Icons";
-import LineChart from "../utils/components/LineChart";
-
+import { Line, LinearScale, } from 'react-chartjs-2';
+import Chart from 'chart.js/auto'; // Automatically registers controllers, elements, scales, and plugins.
 function ProductDetails() {
   const [message, setMessage] = useState("");
+  const [selectedData, setSelectedData] = useState("1M")
+  const [hovered, setHovered] = useState(0)
+  const [rating, setRating] = useState(0)
+  const handleHover = (value) => {
+    setHovered(value);
+  };
+
+  const handleStarClick = (value) => {
+    setHovered(value)
+    console.log(value)
+  }
+
+  const handleRatingClick = (value) => {
+    setRating(value)
+    console.log(rating)
+  }
+
+  const labels = {
+    "1M": ["Week 1", "Week 2", "Week 3", "Week 4"],
+    "1Y": ["Januari", "Februari", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+    "All": ["Januari", "Februari", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+  }
+
+  const dataSets = {
+    '1M': [423.93, 425.00, 422.50, 423.93], // Replace with actual 1M data
+    '1Y': [423.93, 450.00, 400.00, 470.00, 420.00, 430.00, 423.93, 425.00, 422.50, 423.93, 430.00, 423.93], // Replace with actual 1Y data
+    'All': [350.00, 375.00, 400.00, 425.00, 423.93], // Replace with actual All data
+  };
+
+  const data = {
+    labels: labels[selectedData],
+    datasets: [{
+      label: selectedData,
+      data: dataSets[selectedData],
+      fill: false,
+      borderColor: 'rgb(75, 192, 192)',
+      tension: 0.1
+    }]
+  };
+
+  const options = {
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
+  };
+
+
 
   const handleMessageSend = async (event) => {
     event.preventDefault();
@@ -128,27 +177,15 @@ function ProductDetails() {
                 </div>
               </div>
               <div class="flex space-x-4 h-12">
-                <button
-                  className="bg-teal-400 cursor-pointer text-white px-4 border-gray-200 rounded"
-                  style={{ fontFamily: "Poppins, sans-serif" }}
-                >
-                  1M
-                </button>
-                <button
-                  className="bg-white border-2 cursor-pointer text-black px-4 py-2 rounded  "
-                  style={{ fontFamily: "Poppins, sans-serif" }}
-                >
-                  1Y
-                </button>
-                <button
-                  className="bg-white cursor-pointer text-black px-4 border-2 border-gray-200 rounded "
-                  style={{ fontFamily: "Poppins, sans-serif" }}
-                >
-                  All
-                </button>
+              <button className="bg-teal-400 cursor-pointer text-white px-4 border-gray-200 rounded"
+                  style={{ fontFamily: "Poppins, sans-serif" }} onClick={() => setSelectedData('1M')}>1M</button>
+              <button className="bg-white border-2 cursor-pointer text-black px-4 py-2 rounded  "
+                  style={{ fontFamily: "Poppins, sans-serif" }} onClick={() => setSelectedData('1Y')}>1Y</button>
+              <button className="bg-white cursor-pointer text-black px-4 border-2 border-gray-200 rounded "
+                  style={{ fontFamily: "Poppins, sans-serif" }} onClick={() => setSelectedData('All')}>All</button>
               </div>
             </div>
-            <LineChart />
+            <Line data={data} options={options} />
 
             <div class="flex justify-around w-full mt-6 -mb-7">
               <div class="flex-col">
@@ -297,31 +334,15 @@ function ProductDetails() {
                 <h1>Jur</h1>
               </div>
               <div class="flex">
-                <icons.Star
-                  src={images.footerLogo}
-                  alt="Pikachu"
-                  class="h-10 w-10 cursor-pointer "
-                />
-                <icons.Star
-                  src={images.footerLogo}
-                  alt="Pikachu"
-                  class="h-10 w-10 cursor-pointer"
-                />
-                <icons.Star
-                  src={images.footerLogo}
-                  alt="Pikachu"
-                  class="h-10 w-10 cursor-pointer  "
-                />
-                <icons.Star
-                  src={images.footerLogo}
-                  alt="Pikachu"
-                  class="h-10 w-10 cursor-pointer  "
-                />
-                <icons.Star
-                  src={images.footerLogo}
-                  alt="Pikachu"
-                  class="h-10 w-10 cursor-pointer "
-                />
+              {[1, 2, 3, 4, 5].map((star) => (
+              <icons.Star
+              key={star}
+              className={`cursor-pointer h-10 w-10 ${star <= (hovered || rating) ? "fill-yellow-400" : ""}`}
+              onClick={() => handleRatingClick(star)}
+              onMouseEnter={() => handleHover(star)}
+              onMouseLeave={() => setHovered(0)}
+              />
+              ))}
               </div>
             </div>
             <form onSubmit={handleMessageSend}>

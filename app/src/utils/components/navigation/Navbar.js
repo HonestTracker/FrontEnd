@@ -14,6 +14,12 @@ function Navbar() {
   const toggleDropdown = () => setIsOpen(!isOpen);
   const checkTokenExpiry = () => {
     const tokenExpiration = localStorage.getItem("tokenExpiration");
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.log("No token found");
+      setIsLoggedIn(false);
+      return false;
+    }
     if (!tokenExpiration) {
       console.log("No token expiration found");
       setIsLoggedIn(false);
@@ -35,6 +41,7 @@ function Navbar() {
     // Token is valid
     return true;
   };
+
   useEffect(() => {
     const isValidToken = checkTokenExpiry();
     setIsLoggedIn(isValidToken);
@@ -81,7 +88,7 @@ function Navbar() {
       localStorage.removeItem("token");
       localStorage.removeItem("user");
       localStorage.removeItem("tokenExpiration");
-      navigate('/')
+      navigate('/');
     } catch (error) {
       console.error("Error during logout:", error);
     }
@@ -102,9 +109,15 @@ function Navbar() {
         console.error("Error parsing user data:", error);
         return null;
       }
+
+      if (!loggedUser) {
+        console.error("Invalid user data");
+        return null;
+      }
       const profilePictureUrl = loggedUser.picture_url.startsWith('/')
-      ? `https://api.honesttracker.nl${loggedUser.picture_url}`
-      : images.placeholder;
+        ? `https://api.honesttracker.nl${loggedUser.picture_url}`
+        : images.placeholder;
+
       return (
         <div className="absolute right-40 flex items-center space-x-2">
           <div className="inline-block text-left">

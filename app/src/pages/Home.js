@@ -161,7 +161,11 @@ function Home() {
 								</div>
 								<div className="flex flex-row items-center gap-1">
 									<icons.Plane style={{ width: "20px", height: "20px" }} />
-									<a href="#" className="text-black">
+									<a
+										href={featuredProduct.url}
+										target="_blank"
+										className="text-black"
+									>
 										Visit webpage
 									</a>
 								</div>

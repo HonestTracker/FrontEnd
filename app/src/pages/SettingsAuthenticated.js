@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
 import BackButton from "../utils/BackButton";
 import { images } from "../utils/constants/Images";
 import { icons } from "../utils/constants/Icons";
@@ -55,12 +55,9 @@ function SettingsAuthenticated() {
   };
 
   const baseURL = "https://api.honesttracker.nl";
-  const getProfileImageUrl = (pictureUrl) => {
-    if (!pictureUrl || pictureUrl.startsWith("/")) {
-      return pictureUrl ? `${baseURL}${pictureUrl}` : images.placeholder;
-    }
-    return pictureUrl;
-  };
+  const profilePictureUrl = loggedUser.picture_url.startsWith('/')
+    ? `https://api.honesttracker.nl${loggedUser.picture_url}`
+    : images.placeholder;
 
   return (
     <main className="p-48">
@@ -74,16 +71,17 @@ function SettingsAuthenticated() {
           <div className="bg-white border-2 border-gray-200 shadow-md p-4 rounded-lg">
             <div className="flex relative">
               <form>
-                <img
-                  src={getProfileImageUrl(loggedUser.picture_url)}
-                  alt="Profile"
-                />
+              <img
+              src={profilePictureUrl}
+              alt="Profile"
+              className="h-64 w-64 border-2 border-gray-300 shadow-md"
+            />
                 <icons.Pencil style={{ width: "20px", height: "20px", position: "absolute", right: 16, top: "50%", transform: "translateY(-50%)", cursor: "pointer" }} />
               </form>
               <div className="flex-col ml-16 w-80">
                 <p className="text-xl mt-16">Username</p>
                 <div className="relative w-full">
-                  <input type="text" className="text-customGray border-2 border-gray-200 rounded-md p-2 h-12 w-full focus:outline-none focus:border-blue-500" />
+                  <input type="text" defaultValue={loggedUser.name} className="text-customGray border-2 border-gray-200 rounded-md p-2 h-12 w-full focus:outline-none focus:border-blue-500" />
                   <icons.Pencil style={{ width: "20px", height: "20px", position: "absolute", right: 16, top: "50%", transform: "translateY(-50%)" }} />
                 </div>
               </div>
@@ -92,7 +90,7 @@ function SettingsAuthenticated() {
             <div className="flex-col">
               <p className="text-xl mt-6">Email</p>
               <div className="relative w-full">
-                <input type="text" className="text-customGray border-2 border-gray-200 rounded-md p-2 h-12 w-full focus:outline-none focus:border-blue-500" />
+                <input type="text" defaultValue={loggedUser.email} className="text-customGray border-2 border-gray-200 rounded-md p-2 h-12 w-full focus:outline-none focus:border-blue-500" />
                 <icons.Pencil style={{ width: "20px", height: "20px", position: "absolute", right: 16, top: "50%", transform: "translateY(-50%)" }} />
               </div>
               <div className="flex justify-center space-x-4 mt-4">

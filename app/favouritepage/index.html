@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favourite Products</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <img src="logo.jpg" alt="Logo" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Products</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="user">
+                <span>Jur</span>
+                <img src="user-icon.png" alt="User Icon" class="user-icon">
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <button class="go-back">Go Back</button>
+            <h1>Your Favourite Products</h1>
+            <input type="text" placeholder="Search..." class="search">
+            <div class="products">
+                <div class="filters">
+                    <h2>Filters</h2>
+                    <div class="filter-category">
+                        <h3>Categories</h3>
+                        <ul>
+                            <li>Shoes (40)</li>
+                            <li>Footwear (21)</li>
+                            <li>Gaming (10)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="product-list">
+                    <p>Showing Jur’s favourite products</p>
+                    <div class="product" data-id="1">
+                        <img src="pikachu-shoes.jpg" alt="Product Image">
+                        <div class="product-details">
+                            <a href="https://amazon.com" class="product-link">Pokemon Pikachu Shoes</a>
+                            <span class="price">€423,93 <span class="discount">-7,73% (€3,94)</span></span>
+                            <div class="product-actions">
+                                <button class="heart-button"><img src="heart-thin-icon.png" alt="Heart"></button>
+                                <a href="https://amazon.com" class="link-button"><img src="link.jpg" alt="Link Icon"></a>
+                                <span class="reviews">379</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product" data-id="2">
+                        <img src="pikachu-shoes.jpg" alt="Product Image">
+                        <div class="product-details">
+                            <a href="https://amazon.com" class="product-link">Pokemon Pikachu Shoes</a>
+                            <span class="price">€423,93 <span class="discount">-7,73% (€3,94)</span></span>
+                            <div class="product-actions">
+                                <button class="heart-button"><img src="heart-thin-icon.png" alt="Heart"></button>
+                                <a href="https://amazon.com" class="link-button"><img src="link.jpg" alt="Link Icon"></a>
+                                <span class="reviews">379</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product" data-id="3">
+                        <img src="pikachu-shoes.jpg" alt="Product Image">
+                        <div class="product-details">
+                            <a href="https://amazon.com" class="product-link">Pokemon Pikachu Shoes</a>
+                            <span class="price">€423,93 <span class="discount">-7,73% (€3,94)</span></span>
+                            <div class="product-actions">
+                                <button class="heart-button"><img src="heart-thin-icon.png" alt="Heart"></button>
+                                <a href="https://amazon.com" class="link-button"><img src="link.jpg" alt="Link Icon"></a>
+                                <span class="reviews">379</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pagination">
+                        <button>1</button>
+                        <button>2</button>
+                        <button>3</button>
+                        <button>4</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-container">
+            <p>Netherlands, Groningen</p>
+            <p>info@website.nl | +31-55-545656</p>
+            <p>672321</p>
+        </div>
+        <div class="footer-links">
+            <a href="#">Terms and conditions</a>
+            <a href="#">About us</a>
+        </div>
+    </footer>
+    <script src="scripts.js"></script>
+</body>
+</html>

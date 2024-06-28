@@ -220,7 +220,7 @@ function ProductCard({ product, isSecond }) {
 			<div className="ml-4 w-full flex flex-col justify-between">
 				<a
 					href={product.url}
-					className="text-2xl font-semibold text-black mt-2 flex flex-row items-start justify-between p-2"
+					className="text-xl font-semibold text-black mt-2 flex flex-row items-start justify-between p-2"
 				>
 					<div className="flex flex-row gap-2 items-center">
 						{getIconComponent(product.site?.site_name) &&

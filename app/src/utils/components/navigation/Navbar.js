@@ -138,24 +138,37 @@ function Navbar() {
               />
             </button>
             {isOpen && (
-              <div className="absolute right-4 z-10  w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                <CustomLink to="">
+              <div className="absolute right-4 z-10 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                <CustomLink to="/profile">
                   <div className="flex items-center cursor-pointer  px-4 py-2 text-lg text-gray-700 hover:bg-gray-100">
-                    <icons.AddressCard class="h-10" />
-                    <p class="text-xl ml-2">Profile</p>
+                    <icons.AddressCard
+                      width={30}
+                      height={30}
+                      className="mr-2"
+                    />
+                    <p class="text-xl">Profile</p>
                   </div>
                 </CustomLink>
 
+                <CustomLink to="/settings">
+                  <div className="flex items-center cursor-pointer px-4 py-2 text-lg text-gray-700 hover:bg-gray-100">
+                    <icons.SettingsGear
+                      width={30}
+                      height={30}
+                      className="mr-2"
+                    />
+                    <p class="text-xl">Settings</p>
+                  </div>
+                </CustomLink>
                 <div className="flex items-center cursor-pointer px-4 py-2 text-lg text-gray-700 hover:bg-gray-100">
-                  <icons.SettingsGear class="h-10 w-10  mr-8" />
-                  <p class="text-xl -ml-5">Settings</p>
-                </div>
-                <div className="flex items-center cursor-pointer px-4 py-2 text-lg text-gray-700 hover:bg-gray-100">
-                  <icons.DoorOpen className="h-10 -ml-32" />
+                  <icons.DoorOpen width={30} height={30} className="mr-2" />
                   <button
-                    className="text-xl absolute ml-12"
+                    className="text-xl"
                     onClick={handleLogout}
-                    style={{ fontFamily: "Poppins, sans-serif", right: "10px" }}
+                    style={{
+                      fontFamily: "Poppins, sans-serif",
+                      right: "10px",
+                    }}
                     type="button"
                   >
                     Logout

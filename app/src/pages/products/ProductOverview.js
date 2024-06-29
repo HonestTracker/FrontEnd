@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { images } from "../../utils/constants/images/Images";
-import { icons } from "../../utils/constants/images/Icons";
 import BackButton from "../../utils/components/navigation/BackButton";
-import { useNavigate } from "react-router-dom";
 import {
   formatPrice,
   getIconComponent,
-} from "../../utils/components/products/Formatters";
+} from "../../utils/products/utils/Formatters";
 import ProductCardOverview from "./utils/ProductCardOverview";
-import Filter from "../../utils/components/products/Filter";
+import Filter from "../../utils/products/components/Filter";
 
 function ProductOverview() {
   const [loading, setLoading] = useState(true);
@@ -63,6 +60,14 @@ function ProductOverview() {
       setLoading(false);
     }
   };
+
+  if (loading) {
+    return (
+      <div className="h-screen flex justify-center items-center">
+        <p>Loading...</p>
+      </div>
+    );
+  }
 
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;

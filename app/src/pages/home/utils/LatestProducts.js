@@ -1,5 +1,5 @@
 import React from "react";
-import ProductList from "../../../utils/components/products/ProductList";
+import ProductList from "../../../utils/products/components/ProductList";
 
 const LatestProducts = ({
   latestRiseProducts,

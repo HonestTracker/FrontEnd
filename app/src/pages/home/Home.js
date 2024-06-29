@@ -8,7 +8,7 @@ import {
   formatDateTime,
   formatPrice,
   getIconComponent,
-} from "../../utils/components/products/Formatters"; // Import utility functions
+} from "../../utils/products/utils/Formatters"; // Import utility functions
 
 function Home() {
   const [loading, setLoading] = useState(true);

@@ -88,23 +88,25 @@ function ProductOverview() {
 
   return (
     <div className="container mx-auto p-4">
-      <div className="flex items-center mb-8 mt-12 ml-4">
+      <div className="flex items-center mb-8 mt-12 ml-4 justify-between">
         <div className="flex normal h-10" style={{ width: "14rem" }}>
           <BackButton />
         </div>
-        <input
-          type="text"
-          placeholder="Search"
-          className="p-2 ml-12 border border-gray-300 rounded w-full"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
-        <button
-          className="bg-[#20C1AA] text-white font-bold py-2 px-4 rounded ml-4 hover:text-gray-200"
-          onClick={handleSearch}
-        >
-          Search
-        </button>
+        <div className="flex flex-row w-5/6">
+          <input
+            type="text"
+            placeholder="Search"
+            className="p-2 ml-12 border border-gray-300 rounded w-full"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          <button
+            className="bg-[#20C1AA] text-white font-bold py-2 px-4 rounded ml-4 hover:text-gray-200"
+            onClick={handleSearch}
+          >
+            Search
+          </button>
+        </div>
       </div>
       <div className="flex">
         <Filter categories={categories} />

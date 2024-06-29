@@ -20,9 +20,6 @@ function ProductDetails() {
 
   useEffect(() => {
     const fetchProduct = async () => {
-      console.log(
-        `trying to go to: https://api.honesttracker.nl/api/products/${id}`
-      );
       try {
         const response = await fetch(
           `https://api.honesttracker.nl/api/products/${id}`
@@ -79,67 +76,103 @@ function ProductDetails() {
     console.log(rating);
   };
 
-  const labels = {
-    "1M": ["Week 1", "Week 2", "Week 3", "Week 4"],
-    "1Y": [
-      "Januari",
-      "Februari",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ],
-    All: [
-      "Januari",
-      "Februari",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ],
+  // Extract prices and dates
+  const prices = product.prices.map((price) => ({
+    date: new Date(price.date),
+    price: parseFloat(price.price),
+  }));
+
+  const calculateMedian = (array) => {
+    const sorted = array.slice().sort((a, b) => a - b);
+    const mid = Math.floor(sorted.length / 2);
+    return sorted.length % 2 !== 0
+      ? sorted[mid]
+      : (sorted[mid - 1] + sorted[mid]) / 2;
   };
 
-  const dataSets = {
-    "1M": [423.93, 425.0, 422.5, 423.93], // Replace with actual 1M data
-    "1Y": [
-      423.93, 450.0, 400.0, 470.0, 420.0, 430.0, 423.93, 425.0, 422.5, 423.93,
-      430.0, 423.93,
-    ], // Replace with actual 1Y data
-    All: [350.0, 375.0, 400.0, 425.0, 423.93], // Replace with actual All data
+  // Get the lowest price
+  const lowestPrice = Math.min(...prices.map((price) => price.price));
+
+  // Generate labels and data sets based on selected data
+  const generateChartData = (range) => {
+    let filteredPrices;
+    switch (range) {
+      case "1M":
+        filteredPrices = prices.slice(-4); // Get last 4 weeks for 1 month
+        break;
+      case "1Y":
+        filteredPrices = prices.slice(-12); // Get last 12 months for 1 year
+        break;
+      case "All":
+        filteredPrices = prices; // Get all available data
+        break;
+      default:
+        filteredPrices = [];
+    }
+
+    const labels = filteredPrices.map(
+      (price) =>
+        range === "1M"
+          ? price.date.toLocaleDateString("en-US", {
+              day: "numeric",
+              month: "short",
+            }) // Show day and month for 1M
+          : range === "1Y"
+          ? price.date.toLocaleDateString("en-US", {
+              month: "short",
+              year: "numeric",
+            }) // Show month and year for 1Y
+          : price.date.toLocaleDateString("en-US", {
+              day: "numeric",
+              month: "short",
+              year: "numeric",
+            }) // Show full date for All
+    );
+    const dataSets = filteredPrices.map((price) => price.price);
+
+    return {
+      labels,
+      datasets: [
+        {
+          label: range,
+          data: dataSets,
+          fill: false,
+          borderColor: "rgb(75, 192, 192)",
+          tension: 0.1,
+        },
+      ],
+    };
   };
 
-  const data = {
-    labels: labels[selectedData],
-    datasets: [
-      {
-        label: selectedData,
-        data: dataSets[selectedData],
-        fill: false,
-        borderColor: "rgb(75, 192, 192)",
-        tension: 0.1,
-      },
-    ],
-  };
+  const data = generateChartData(selectedData);
 
   const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: false,
+      },
+      tooltip: {
+        callbacks: {
+          label: function (tooltipItem) {
+            return `Price: €${tooltipItem.raw.toFixed(2)}`;
+          },
+        },
+      },
+    },
     scales: {
       y: {
         beginAtZero: true,
+        ticks: {
+          callback: function (value) {
+            return `€${value.toFixed(2)}`;
+          },
+        },
       },
     },
   };
+
+  console.log(product);
 
   const handleMessageSend = async (event) => {
     event.preventDefault();
@@ -180,472 +213,469 @@ function ProductDetails() {
   const handleMessageChange = (event) => {
     setMessage(event.target.value);
   };
+
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "EUR",
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format(price);
+  };
+
+  const getIconComponent = (siteName) => {
+    const siteIcons = {
+      "amazon.com": icons.Amazon,
+      "bol.com": icons.Bolcom,
+      "coolblue.nl": icons.Coolblue,
+      // Add more mappings as needed
+    };
+
+    return siteIcons[siteName] || null;
+  };
+
+  const handleFavouriteClick = (event) => {
+    event.stopPropagation();
+    // Handle the favourite action here
+  };
+
+  const handleShareClick = (event) => {
+    event.stopPropagation();
+    // Handle the share action here
+  };
+
+  const handleVisitWebpageClick = (event) => {
+    event.stopPropagation();
+    // Handle the visit webpage action here
+  };
+
   return (
-    <main class="p-48">
-      <div>
-        <BackButton />
-        <h1 class="text-3xl font-bold absolute right-48 top-24">
-          Product overview
-        </h1>
-      </div>
-      <div class="grid grid-cols-3 gap-x-16 gap-y-4 -mt-24">
-        <div class="bg-white border-2 mb-10 border-gray-200 flex items-center shadow-sm rounded-lg col-span-3">
-          <img
-            src={images.pikachu}
-            alt="Pikachu"
-            class="h-full rounded-md w-64"
-          />
-          <div class="flex items-center ml-8 flex-column flex-col items-stretch">
-            <p class="text-black font-extrabold text-2xl mt-10">
-              {product.name}
-            </p>
-            <div class="flex items-center">
-              <icons.Tag alt="Tag" class="h-8 w-8 hover:cursor-pointer" />
-              <p class="text-[#575757] ml-2">Shoes, Gaming</p>
-            </div>
-            <div class="flex items-center text-[#575757]">
-              <p class="ml-2 mt-4">Current price:</p>
-              <p class=" mt-4 ml-14 mb-1">Current cheapest website:</p>
-            </div>
-            <div class="flex items-center">
-              <p class="text-red-500 text-xl ml-2">€423,93</p>
-              <icons.Amazon alt="Tag" class="h-8 w-8 ml-20" />
-              <p class="">amazon.com</p>
-            </div>
-            <p class="text-red-500 ml-2 font-bold">+2,73% (€3,94)</p>
-            <div class="flex justify-between items-center">
-              <div class="flex ml-2">
-                <icons.Heart
-                  alt="Tag"
-                  class="h-8 w-8 mt-2 cursor-pointer transition duration-800 ease-in-out transform hover:fill-heartRed"
-                />
-                <p class="text-xl ml-2 mt-2">Favourite</p>
-              </div>
-              <div class="flex">
-                <icons.Ketting
-                  alt="Tag"
-                  class="h-8 w-8 mt-2 ml-20 hover:cursor-pointer"
-                />
-                <p class="text-xl ml-2 mt-2">Share</p>
-              </div>
-              <div class="flex">
-                <icons.Plane
-                  alt="Tag"
-                  class="h-8 w-8 mt-2 ml-20 hover:cursor-pointer"
-                />
-                <p class="text-xl ml-2 mt-2">Visit webpage</p>
-              </div>
-            </div>
-          </div>
+    <main className="flex flex-col flex items-center mt-20 mb-20">
+      <div className="w-5/6">
+        {/* TITLE */}
+        <div className="flex flex-row mb-10 justify-between">
+          <BackButton />
+          <h1 class="text-3xl font-bold">Product overview</h1>
         </div>
 
-        <div class="col-span-2 -mt-8">
-          <h1 className="text-2xl font-semibold">Price history</h1>
-          <div class="bg-white border-2  h-full flex-col   border-gray-200 shadow-sm p-4 rounded-lg">
-            <div class="flex justify-between">
-              <div class="flex-col items-center gap-4">
-                <h1 class="">Current cheapest website:</h1>
-                <div class="flex">
-                  <icons.Amazon
-                    src={images.footerLogo}
-                    alt="Pikachu"
-                    class="h-10 w-10 fill-blue-400"
+        {/* CONTAINER */}
+        <div className="flex flex-col">
+          {/* PRODUCT CARD */}
+          <div
+            className="bg-white flex rounded-lg mb-12"
+            style={{
+              boxShadow:
+                "0 -2px 5px rgba(0, 0, 0, 0.1), 0 2px 3px rgba(0, 0, 0, 0.1)",
+            }}
+          >
+            <div>
+              <img
+                src={images.pikachu}
+                alt={product.name || "Placeholder"}
+                className="w-72 h-72 rounded-lg"
+              />
+            </div>
+            <div className="w-2/3 flex flex-col justify-between p-6">
+              <div>
+                <h3 className="text-xl font-black">{product.name}</h3>
+                <div className="flex items-center space-x-2">
+                  <icons.Tag style={{ width: "20px", height: "20px" }} />
+                  <p className="text-gray-500">
+                    {product.site?.category?.name || "No category"}
+                  </p>
+                </div>
+                <div className="flex items-start mt-6 space-x-4">
+                  <div className="mr-4">
+                    <p className="text-gray-500">Current price:</p>
+                    <p
+                      className={`text-2xl text-bold ${
+                        product.change_percentage > 0
+                          ? "text-red-500"
+                          : "text-green-500"
+                      }`}
+                    >
+                      {formatPrice(product.current_price)}
+                    </p>
+                    <span
+                      className={`text-sm ${
+                        product.change_percentage > 0
+                          ? "text-red-500"
+                          : "text-green-500"
+                      }`}
+                    >
+                      {product.change_percentage > 0 ? "+" : "-"}
+                      {Math.abs(product.change_percentage)}%
+                    </span>
+                  </div>
+                  <div className="flex flex-col">
+                    <p className="text-gray-500">Current cheapest website:</p>
+                    <div className="flex items-center">
+                      <div className="mr-2">
+                        {getIconComponent(product.site?.site_name) &&
+                          React.createElement(
+                            getIconComponent(product.site.site_name),
+                            {
+                              style: { width: "20px", height: "20px" },
+                            }
+                          )}
+                      </div>
+                      <p className="text-gray-500">
+                        {product.site?.site_name || "Unknown"}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-4 flex items-center space-x-2 gap-4">
+                <div
+                  className="flex flex-row items-center gap-1 cursor-pointer"
+                  onClick={handleFavouriteClick}
+                >
+                  <icons.Heart
+                    style={{ width: "20px", height: "20px" }}
+                    className="hover:fill-red-500"
                   />
-                  <a
-                    href="https://www.amazon.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-500 mt-2 hover:text-blue-600 transition duration-300 ease-in-out"
-                  >
-                    amazon.com
+                  <a href="#" className="text-black">
+                    Favourite
+                  </a>
+                </div>
+                <div
+                  className="flex flex-row items-center gap-1 cursor-pointer"
+                  onClick={handleShareClick}
+                >
+                  <icons.Link style={{ width: "20px", height: "20px" }} />
+                  <a href="#" className="text-black">
+                    Share
+                  </a>
+                </div>
+                <div
+                  className="flex flex-row items-center gap-1 cursor-pointer"
+                  onClick={handleVisitWebpageClick}
+                >
+                  <icons.Plane style={{ width: "20px", height: "20px" }} />
+                  <a href={product.url} target="_blank" className="text-black">
+                    Visit webpage
                   </a>
                 </div>
               </div>
-              <div class="flex space-x-4 h-12">
-                <button
-                  className="bg-teal-400 cursor-pointer text-white px-4 border-gray-200 rounded"
-                  style={{ fontFamily: "Poppins, sans-serif" }}
-                  onClick={() => setSelectedData("1M")}
-                >
-                  1M
-                </button>
-                <button
-                  className="bg-white border-2 cursor-pointer text-black px-4 py-2 rounded  "
-                  style={{ fontFamily: "Poppins, sans-serif" }}
-                  onClick={() => setSelectedData("1Y")}
-                >
-                  1Y
-                </button>
-                <button
-                  className="bg-white cursor-pointer text-black px-4 border-2 border-gray-200 rounded "
-                  style={{ fontFamily: "Poppins, sans-serif" }}
-                  onClick={() => setSelectedData("All")}
-                >
-                  All
-                </button>
-              </div>
-            </div>
-            <Line data={data} options={options} />
-
-            <div class="flex justify-around w-full mt-6 -mb-7">
-              <div class="flex-col">
-                <h1 class="text-2xl">Current price:</h1>
-                <h1 class=" text-xl">€423,93</h1>
-                <h1 class="text-green-500 text-lg ">(+2,73%)</h1>
-              </div>
-              <div class="flex-col">
-                <h1 class="text-2xl">Median price:</h1>
-                <h1 class="text-xl">€473,93</h1>
-              </div>
-              <div class="flex-col">
-                <h1 class="text-2xl">Lowest price:</h1>
-                <h1 class="text-xl">€323,93</h1>
-              </div>
             </div>
           </div>
-        </div>
 
-        <div class="col-span-1 -mt-8">
-          <h1 className="text-2xl font-semibold">Latest Updates</h1>
-          <div class="bg-white border-2 h-full  flex-col  border-gray-200 shadow-sm rounded-lg">
-            <div class="self-start">
-              <div class="flex w-full border-b-2 border-black py-2">
-                <icons.Amazon alt="Tag" class="h-10 w-10 ml-4 mt-4" />
-                <div class="flex justify-between w-full">
-                  <div class="flex flex-col items-center ml-2 mt-2 py-2">
-                    <span className="text-lg mr-8">amazon.com</span>
-                    <span className="text-xs mr-12 -mt-2 text-[#575757]">
-                      09-05-2024 11:23
-                    </span>
-                  </div>
-                  <div class="flex flex-col items-end mr-4 mt-4 py-2">
-                    <span className="text-lg -mt-2 text-red-500">+2,47%</span>
-                    <span className="text-sm mr-2 mb-1 text-red-500">
-                      (3,94)
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="flex w-full border-b-2 border-black py-2">
-                <icons.Amazon alt="Tag" class="h-10 w-10 ml-4 mt-4" />
-                <div class="flex justify-between w-full">
-                  <div class="flex flex-col items-center ml-2 mt-2 py-2">
-                    <span className="text-lg mr-8">amazon.com</span>
-                    <span className="text-xs mr-12 -mt-2 text-[#575757]">
-                      09-05-2024 11:23
-                    </span>
-                  </div>
-                  <div class="flex flex-col items-end mr-4 mt-4 py-2">
-                    <span className="text-lg -mt-2 text-red-500">+2,47%</span>
-                    <span className="text-sm mr-2 mb-1 text-red-500">
-                      (3,94)
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div class="flex w-full border-b-2 border-black py-2">
-                <icons.Amazon alt="Tag" class="h-10 w-10 ml-4 mt-4" />
-                <div class="flex justify-between w-full">
-                  <div class="flex flex-col items-center ml-2 mt-2 py-2">
-                    <span className="text-lg mr-8">amazon.com</span>
-                    <span className="text-xs mr-12 -mt-2 text-[#575757]">
-                      09-05-2024 11:23
-                    </span>
-                  </div>
-                  <div class="flex flex-col items-end mr-4 mt-4 py-2">
-                    <span className="text-lg -mt-2 text-red-500">+2,47%</span>
-                    <span className="text-sm mr-2 mb-1 text-red-500">
-                      (3,94)
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="flex w-full border-b-2 border-black py-2">
-                <icons.Amazon alt="Tag" class="h-10 w-10 ml-4 mt-4" />
-                <div class="flex justify-between w-full">
-                  <div class="flex flex-col items-center ml-2 mt-2 py-2">
-                    <span className="text-lg mr-8">amazon.com</span>
-                    <span className="text-xs mr-12 -mt-2 text-[#575757]">
-                      09-05-2024 11:23
-                    </span>
-                  </div>
-                  <div class="flex flex-col items-end mr-4 mt-4 py-2">
-                    <span className="text-lg -mt-2 text-red-500">+2,47%</span>
-                    <span className="text-sm mr-2 mb-1 text-red-500">
-                      (3,94)
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="flex w-full border-b-2 border-black py-2">
-                <icons.Amazon alt="Tag" class="h-10 w-10 ml-4 mt-4" />
-                <div class="flex justify-between w-full">
-                  <div class="flex flex-col items-center ml-2 mt-2 py-2">
-                    <span className="text-lg mr-8">amazon.com</span>
-                    <span className="text-xs mr-12 -mt-2 text-[#575757]">
-                      09-05-2024 11:23
-                    </span>
-                  </div>
-                  <div class="flex flex-col items-end mr-4 mt-4 py-2">
-                    <span className="text-lg -mt-2 text-red-500">+2,47%</span>
-                    <span className="text-sm mr-2 mb-1 text-red-500">
-                      (3,94)
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="flex w-full border-b-2 border-black py-2">
-                <icons.Amazon alt="Tag" class="h-10 w-10 ml-4 mt-4" />
-                <div class="flex justify-between w-full">
-                  <div class="flex flex-col items-center ml-2 mt-2 py-2">
-                    <span className="text-lg mr-8">amazon.com</span>
-                    <span className="text-xs mr-12 -mt-2 text-[#575757]">
-                      09-05-2024 11:23
-                    </span>
-                  </div>
-                  <div class="flex flex-col items-end mr-4 mt-4 py-2">
-                    <span className="text-lg -mt-2 text-red-500">+2,47%</span>
-                    <span className="text-sm mr-2 mb-1 text-red-500">
-                      (3,94)
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="flex items-center h-full">
-                <button class="bg-[#20C1AA] text-white py-2 px-4 mx-auto mt-4 -mb-4 rounded-md">
-                  View More
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-span-2 mt-12">
-          <h1 className="text-2xl font-semibold">Comments</h1>
-          <div class="bg-white border-2 h-72 mb-16 border-gray-200 shadow-sm p-4 rounded-lg">
-            <div class="flex justify-between">
-              <div class="flex items-center gap-4">
-                <img src={images.footerLogo} class="h-14" />
-                <h1>Jur</h1>
-              </div>
-              <div class="flex">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <icons.Star
-                    key={star}
-                    className={`cursor-pointer h-10 w-10 ${
-                      star <= (hovered || rating) ? "fill-yellow-400" : ""
-                    }`}
-                    onClick={() => handleRatingClick(star)}
-                    onMouseEnter={() => handleHover(star)}
-                    onMouseLeave={() => setHovered(0)}
-                  />
-                ))}
-              </div>
-            </div>
-            <form onSubmit={handleMessageSend}>
-              <div className="bg-gray-300 mt-4 h-32 p-4 flex items-center rounded-md">
-                <icons.Pencil className="h-8 w-8 -mt-12 fill-gray-500" />
-                <textarea
-                  className="ml-4 flex-1 bg-transparent border-none outline-none text-gray-500 placeholder-gray-500 resize-none"
-                  placeholder="Write a comment..."
-                  rows="3"
-                  value={message}
-                  onChange={handleMessageChange}
-                />
-              </div>
-
-              <button
-                type="submit"
-                class="text-white text-xl ml-auto flex bg-customTeal p-2 px-4 rounded-md mt-2 "
+          {/* PRODUCT PRICE HISTORY */}
+          <div className="flex flex-row justify-between">
+            <div className="w-2/3">
+              <h1 className="text-2xl font-semibold mb-4">Price history</h1>
+              <div
+                className="bg-white rounded-lg p-6"
+                style={{
+                  boxShadow:
+                    "0 -2px 5px rgba(0, 0, 0, 0.1), 0 2px 3px rgba(0, 0, 0, 0.1)",
+                }}
               >
-                <icons.Send class="h-8 w-8 " />
-                <p class="ml-1">Post</p>
-              </button>
-            </form>
-          </div>
-
-          <div class="bg-white border-2 h-36 mt-4 border-gray-200 shadow-sm p-4 rounded-lg">
-            <div class="flex justify-between">
-              <div class="flex items-center gap-4">
-                <img src={images.footerLogo} class="h-14" />
-                <h1>Jur</h1>
-              </div>
-              <div class="flex">
-                <icons.Star
-                  src={images.footerLogo}
-                  alt="Pikachu"
-                  class="h-10 w-10 fill-yellow-400 "
-                />
-                <icons.Star
-                  src={images.footerLogo}
-                  alt="Pikachu"
-                  class="h-10 w-10 fill-yellow-400  border-10 "
-                />
-                <icons.Star
-                  src={images.footerLogo}
-                  alt="Pikachu"
-                  class="h-10 w-10 fill-yellow-400  "
-                />
-                <icons.Star
-                  src={images.footerLogo}
-                  alt="Pikachu"
-                  class="h-10 w-10 fill-yellow-400  "
-                />
-                <icons.Star
-                  src={images.footerLogo}
-                  alt="Pikachu"
-                  class="h-10 w-10  "
-                />
-              </div>
-            </div>
-            <p class="pl-24 pt-2 overflow-hidden">
-              {" "}
-              eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-              proident, sunt in culpa qui officia deserunt mollit anim id est
-              laborum.
-            </p>
-          </div>
-        </div>
-
-        <div class="col-span-1 mt-12 ">
-          <h1 className="text-2xl font-semibold">Similar products</h1>
-          <div className="flex items-center border-2 h-44 bg-white  rounded-lg shadow-md overflow-hidden mb-4">
-            <img
-              src={images.pikachu}
-              alt="Pokemon Shoes"
-              className="w-48 h-full"
-            />
-            <div className="flex-grow p-4 ">
-              <div className="flex justify-between items-center">
-                <div>
-                  <div className="mt-2 mb-2 flex items-center space-x-1">
-                    <icons.Bolcom
-                      src={images.footerLogo}
-                      alt="Pikachu"
-                      class="h-8 w-8 fill-blue-400"
-                    />
-                    <a
-                      href="https://www.amazon.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-black-500 hover:text-gray-600 transition duration-300 ease-in-out"
-                    >
-                      amazon.com
-                    </a>
+                <div class="flex justify-between">
+                  <div className="flex flex-col">
+                    <p className="text-gray-500">Current cheapest website:</p>
+                    <div className="flex items-center">
+                      <div className="mr-2">
+                        {getIconComponent(product.site?.site_name) &&
+                          React.createElement(
+                            getIconComponent(product.site.site_name),
+                            {
+                              style: { width: "20px", height: "20px" },
+                            }
+                          )}
+                      </div>
+                      <p className="text-gray-500">
+                        {product.site?.site_name || "Unknown"}
+                      </p>
+                    </div>
                   </div>
-                  <h2 className="text-lg  text-red-500">€423,93</h2>
-                  <p className="text-red-500 font-bold">-2,73%</p>
-                  <div class="flex ml-12">
-                    <icons.Heart alt="Tag" class="h-6 w-6 ml-4 mt-4" />
-                    <icons.Ketting alt="Tag" class="h-6 w-6 ml-4 mt-4" />
+                  <div class="flex space-x-4 h-8">
+                    <button
+                      className={`cursor-pointer px-4 py-2 rounded flex items-center justify-center ${
+                        selectedData === "1M"
+                          ? "bg-teal-400 text-white border-none"
+                          : "bg-white border-2 border-gray-200 text-black"
+                      } `}
+                      style={{ fontFamily: "Poppins, sans-serif" }}
+                      onClick={() => setSelectedData("1M")}
+                    >
+                      1M
+                    </button>
+                    <button
+                      className={`cursor-pointer px-4 py-2 rounded flex items-center justify-center ${
+                        selectedData === "1Y"
+                          ? "bg-teal-400 text-white border-none"
+                          : "bg-white border-2 border-gray-200 text-black"
+                      } `}
+                      style={{ fontFamily: "Poppins, sans-serif" }}
+                      onClick={() => setSelectedData("1Y")}
+                    >
+                      1Y
+                    </button>
+                    <button
+                      className={`cursor-pointer px-4 py-2 rounded flex items-center justify-center ${
+                        selectedData === "All"
+                          ? "bg-teal-400 text-white border-none"
+                          : "bg-white border-2 border-gray-200 text-black"
+                      } `}
+                      style={{ fontFamily: "Poppins, sans-serif" }}
+                      onClick={() => setSelectedData("All")}
+                    >
+                      All
+                    </button>
+                  </div>
+                </div>
+                <Line data={data} options={options} className="mt-4" />
+
+                <div class="flex justify-around w-full mt-6 ">
+                  <div>
+                    <p className="text-gray-500">Current price:</p>
+                    <p
+                      className={`text-2xl text-bold ${
+                        product.change_percentage > 0
+                          ? "text-red-500"
+                          : "text-green-500"
+                      }`}
+                    >
+                      {formatPrice(product.current_price)}
+                    </p>
+                    <span
+                      className={`text-sm ${
+                        product.change_percentage > 0
+                          ? "text-red-500"
+                          : "text-green-500"
+                      }`}
+                    >
+                      {product.change_percentage > 0 ? "+" : "-"}
+                      {Math.abs(product.change_percentage)}%
+                    </span>
+                  </div>
+                  <div>
+                    <p className="text-gray-500">Median price:</p>
+                    <p className={`text-2xl text-bold text-gray-500`}>
+                      {formatPrice(calculateMedian(prices.map((p) => p.price)))}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-gray-500">Lowest price:</p>
+                    <p className={`text-2xl text-bold text-gray-500`}>
+                      {formatPrice(lowestPrice)}
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="flex items-center border-2 h-44 bg-white rounded-lg shadow-md overflow-hidden mb-4">
-            <img
-              src={images.pikachu}
-              alt="Pokemon Shoes"
-              className="w-48 h-full"
-            />
-            <div className="flex-grow p-4">
-              <div className="flex justify-between items-center">
-                <div>
-                  <div className="mt-2 mb-2 flex items-center space-x-1">
-                    <icons.Bolcom
-                      src={images.footerLogo}
-                      alt="Pikachu"
-                      class="h-8 w-8 fill-blue-400"
-                    />
-                    <a
-                      href="https://www.amazon.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-black-500 hover:text-gray-600 transition duration-300 ease-in-out"
+
+            <div className="w-1/4">
+              <h2 className="text-2xl font-semibold mb-4">Latest Updates</h2>
+              <div
+                className="bg-white rounded-lg p-6"
+                style={{
+                  boxShadow:
+                    "0 -2px 5px rgba(0, 0, 0, 0.1), 0 2px 3px rgba(0, 0, 0, 0.1)",
+                }}
+              >
+                <ul className="list-none">
+                  {product.prices.map((priceUpdate) => (
+                    <li
+                      key={priceUpdate.id}
+                      className="flex justify-between items-center border-b border-gray-200 py-2"
                     >
-                      amazon.com
-                    </a>
-                  </div>
-                  <h2 className="text-lg  text-red-500">€423,93</h2>
-                  <p className="text-red-500 font-bold">-2,73%</p>
-                  <div class="flex ml-12">
-                    <icons.Heart alt="Tag" class="h-6 w-6 ml-4 mt-4" />
-                    <icons.Ketting alt="Tag" class="h-6 w-6 ml-4 mt-4" />
-                  </div>
-                </div>
+                      <div className="flex items-center">
+                        {getIconComponent(product.site.site_name) &&
+                          React.createElement(
+                            getIconComponent(product.site.site_name),
+                            {
+                              style: {
+                                width: "30px",
+                                height: "30px",
+                                marginRight: "10px",
+                              },
+                            }
+                          )}
+                        <div className="flex flex-col">
+                          <p className="text-gray-800">
+                            {product.site.site_name}
+                          </p>
+                          <span className="text-sm text-gray-500">
+                            {new Date(priceUpdate.date).toLocaleDateString()}{" "}
+                            {new Date(priceUpdate.date).toLocaleTimeString()}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex flex-col items-end">
+                        <p
+                          className={`text-m ${
+                            parseFloat(priceUpdate.change_percentage) > 0
+                              ? "text-red-500"
+                              : "text-green-500"
+                          }`}
+                        >
+                          €{priceUpdate.price}
+                        </p>
+                        <p
+                          className={`text-m font-semibold ${
+                            parseFloat(priceUpdate.change_percentage) > 0
+                              ? "text-red-500"
+                              : "text-green-500"
+                          }`}
+                        >
+                          {parseFloat(priceUpdate.change_percentage) > 0
+                            ? "+"
+                            : ""}
+                          {priceUpdate.change_percentage}%
+                        </p>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           </div>
 
-          <div className="flex items-center  border-2 h-44 bg-white rounded-lg shadow-md overflow-hidden mb-4">
-            <img
-              src={images.pikachu}
-              alt="Pokemon Shoes"
-              className="w-48 h-full"
-            />
-            <div className="flex-grow p-4">
-              <div className="flex justify-between items-center">
-                <div>
-                  <div className="mt-2 mb-2 flex items-center space-x-1">
-                    <icons.Bolcom
-                      src={images.footerLogo}
-                      alt="Pikachu"
-                      class="h-8 w-8 fill-blue-400"
-                    />
-                    <a
-                      href="https://www.amazon.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-black-500 hover:text-gray-600 transition duration-300 ease-in-out"
-                    >
-                      amazon.com
-                    </a>
+          {/* PRODUCT COMMENTS N STUFF */}
+          <div className="flex flex-row justify-between">
+            <div class="mt-20 w-2/3">
+              <h1 className="text-2xl font-semibold mb-4">Comments</h1>
+              <div
+                className="bg-white rounded-lg p-6 mb-10"
+                style={{
+                  boxShadow:
+                    "0 -2px 5px rgba(0, 0, 0, 0.1), 0 2px 3px rgba(0, 0, 0, 0.1)",
+                }}
+              >
+                <div class="flex justify-between">
+                  <div class="flex items-center gap-2 pl-4">
+                    <img src={images.footerLogo} class="h-14 rounded-md" />
+                    <p className="text-xl font-bold text-gray-500">Jur</p>
                   </div>
-                  <h2 className="text-lg  text-red-500">€423,93</h2>
-                  <p className="text-red-500 font-bold">-2,73%</p>
-                  <div class="flex ml-12">
-                    <icons.Heart alt="Tag" class="h-6 w-6 ml-4 mt-4" />
-                    <icons.Ketting alt="Tag" class="h-6 w-6 ml-4 mt-4" />
+                  <div class="flex">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <icons.Star
+                        key={star}
+                        className={`cursor-pointer h-10 w-10 ${
+                          star <= (hovered || rating) ? "fill-yellow-400" : ""
+                        }`}
+                        onClick={() => handleRatingClick(star)}
+                        onMouseEnter={() => handleHover(star)}
+                        onMouseLeave={() => setHovered(0)}
+                      />
+                    ))}
                   </div>
                 </div>
+                <form onSubmit={handleMessageSend}>
+                  <div className="bg-gray-100 mt-4 p-4 flex items-start rounded-md">
+                    <textarea
+                      className="flex-1 bg-transparent border-none outline-none text-gray-500 placeholder-gray-500 resize-none"
+                      placeholder="Write a comment..."
+                      rows="3"
+                      value={message}
+                      onChange={handleMessageChange}
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    class="text-white text-xl ml-auto flex bg-customTeal p-2 px-4 rounded-md mt-2 "
+                  >
+                    <icons.Send class="h-8 w-8 " />
+                    <p class="ml-1">Post</p>
+                  </button>
+                </form>
               </div>
-            </div>
-          </div>
-          <div className="flex items-center border-2 h-44 bg-white rounded-lg shadow-md overflow-hidden mb-4">
-            <img
-              src={images.pikachu}
-              alt="Pokemon Shoes"
-              className="w-48 h-full"
-            />
-            <div className="flex-grow p-4">
-              <div className="flex justify-between items-center">
-                <div>
-                  <div className="mt-2 mb-2 flex items-center space-x-1">
-                    <icons.Bolcom
+
+              <div
+                className="bg-white rounded-lg p-6 mb-4"
+                style={{
+                  boxShadow:
+                    "0 -2px 5px rgba(0, 0, 0, 0.1), 0 2px 3px rgba(0, 0, 0, 0.1)",
+                }}
+              >
+                <div class="flex justify-between">
+                  <div class="flex items-center gap-2 pl-4">
+                    <img src={images.footerLogo} class="h-14 rounded-md" />
+                    <p className="text-xl font-bold text-gray-500">Jur</p>
+                  </div>
+                  <div class="flex">
+                    <icons.Star
                       src={images.footerLogo}
                       alt="Pikachu"
-                      class="h-8 w-8 fill-blue-400"
+                      class="h-10 w-10 fill-yellow-400 "
                     />
-                    <a
-                      href="https://www.amazon.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-black-500 hover:text-gray-600 transition duration-300 ease-in-out"
-                    >
-                      amazon.com
-                    </a>
+                    <icons.Star
+                      src={images.footerLogo}
+                      alt="Pikachu"
+                      class="h-10 w-10 fill-yellow-400  border-10 "
+                    />
+                    <icons.Star
+                      src={images.footerLogo}
+                      alt="Pikachu"
+                      class="h-10 w-10 fill-yellow-400  "
+                    />
+                    <icons.Star
+                      src={images.footerLogo}
+                      alt="Pikachu"
+                      class="h-10 w-10 fill-yellow-400  "
+                    />
+                    <icons.Star
+                      src={images.footerLogo}
+                      alt="Pikachu"
+                      class="h-10 w-10  "
+                    />
                   </div>
-                  <h2 className="text-lg  text-red-500">€423,93</h2>
-                  <p className="text-red-500 font-bold">-2,73%</p>
-                  <div class="flex ml-12">
-                    <icons.Heart alt="Tag" class="h-6 w-6 ml-4 mt-4" />
-                    <icons.Ketting alt="Tag" class="h-6 w-6 ml-4 mt-4" />
+                </div>
+                <p class="font-semibold text-gray-500 pt-4 overflow-hidden">
+                  eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+                  non proident, sunt in culpa qui officia deserunt mollit anim
+                  id est laborum.
+                </p>
+              </div>
+            </div>
+
+            <div class="mt-20 w-1/4">
+              <h1 className="text-2xl font-semibold mb-4">Similar products</h1>
+              <div
+                className="bg-white rounded-lg mb-10 flex flex-row"
+                style={{
+                  boxShadow:
+                    "0 -2px 5px rgba(0, 0, 0, 0.1), 0 2px 3px rgba(0, 0, 0, 0.1)",
+                }}
+              >
+                <img
+                  src={images.pikachu}
+                  alt="Pokemon Shoes"
+                  className="w-36 h-full"
+                />
+                <div>
+                  <div className="flex justify-center h-full">
+                    <div className="flex flex-col justify-center ml-4">
+                      <h3 className="text-l font-black">{product.name}</h3>
+                      <div className="flex items-start">
+                        <div className="mr-4">
+                          <p
+                            className={`text-2xl text-bold ${
+                              product.change_percentage > 0
+                                ? "text-red-500"
+                                : "text-green-500"
+                            }`}
+                          >
+                            {formatPrice(product.current_price)}
+                          </p>
+                          <span
+                            className={`text-sm ${
+                              product.change_percentage > 0
+                                ? "text-red-500"
+                                : "text-green-500"
+                            }`}
+                          >
+                            {product.change_percentage > 0 ? "+" : "-"}
+                            {Math.abs(product.change_percentage)}%
+                          </span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

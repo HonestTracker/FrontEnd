@@ -25,10 +25,10 @@ function Navbar() {
       setIsLoggedIn(false);
       return false;
     }
-  
+
     const expirationDate = new Date(tokenExpiration);
     const currentTime = new Date();
-    
+
     if (expirationDate <= currentTime) {
       console.log("Token expired");
       // Token has expired, clear localStorage
@@ -37,7 +37,7 @@ function Navbar() {
       setIsLoggedIn(false);
       return false;
     }
-  
+
     // Token is valid
     return true;
   };
@@ -45,7 +45,7 @@ function Navbar() {
   useEffect(() => {
     const isValidToken = checkTokenExpiry();
     setIsLoggedIn(isValidToken);
-  
+
     const path = location.pathname;
     setIsLoginPage(path === "/login" || path === "/register");
   }, [location]);
@@ -71,24 +71,29 @@ function Navbar() {
     }
 
     try {
-      const response = await fetch("https://api.honesttracker.nl/api/auth/logout", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await fetch(
+        "https://api.honesttracker.nl/api/auth/logout",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       if (!response.ok) {
         const responseData = await response.json();
-        throw new Error(responseData.message || "An error occurred during logout.");
+        throw new Error(
+          responseData.message || "An error occurred during logout."
+        );
       }
 
       localStorage.removeItem("token");
       localStorage.removeItem("user");
       localStorage.removeItem("tokenExpiration");
-      navigate('/');
+      navigate("/");
     } catch (error) {
       console.error("Error during logout:", error);
     }
@@ -114,7 +119,7 @@ function Navbar() {
         console.error("Invalid user data");
         return null;
       }
-      const profilePictureUrl = loggedUser.picture_url.startsWith('/')
+      const profilePictureUrl = loggedUser.picture_url.startsWith("/")
         ? `https://api.honesttracker.nl${loggedUser.picture_url}`
         : images.placeholder;
 
@@ -127,7 +132,7 @@ function Navbar() {
             >
               <span className="text-white mt-3">{loggedUser.name}</span>
               <img
-                 src={profilePictureUrl}
+                src={profilePictureUrl}
                 alt="thomas"
                 className="h-12 w-12 ml-4 rounded-full"
               />

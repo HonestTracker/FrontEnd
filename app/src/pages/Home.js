@@ -262,15 +262,27 @@ function Home() {
                           </span>
                         </div>
                       </div>
-                      <p
-                        className={`text-lg font-semibold ${
-                          product.change_percentage > 0
-                            ? "text-red-500"
-                            : "text-green-500"
-                        }`}
-                      >
-                        {product.change_percentage}%
-                      </p>
+                      <div className="flex flex-col items-end">
+                        <p
+                          className={`text-m ${
+                            parseFloat(product.change_percentage) > 0
+                              ? "text-red-500"
+                              : "text-green-500"
+                          }`}
+                        >
+                          €{product.current_price}
+                        </p>
+                        <p
+                          className={`text-m font-semibold ${
+                            parseFloat(product.change_percentage) > 0
+                              ? "text-red-500"
+                              : "text-green-500"
+                          }`}
+                        >
+                          {parseFloat(product.change_percentage) > 0 ? "+" : ""}
+                          {product.change_percentage}%
+                        </p>
+                      </div>
                     </li>
                   ))}
               </ul>
@@ -311,15 +323,27 @@ function Home() {
                           </span>
                         </div>
                       </div>
-                      <p
-                        className={`text-lg font-semibold ${
-                          product.change_percentage > 0
-                            ? "text-red-500"
-                            : "text-green-500"
-                        }`}
-                      >
-                        {product.change_percentage}%
-                      </p>
+                      <div className="flex flex-col items-end">
+                        <p
+                          className={`text-m ${
+                            parseFloat(product.change_percentage) > 0
+                              ? "text-red-500"
+                              : "text-green-500"
+                          }`}
+                        >
+                          €{product.current_price}
+                        </p>
+                        <p
+                          className={`text-m font-semibold ${
+                            parseFloat(product.change_percentage) > 0
+                              ? "text-red-500"
+                              : "text-green-500"
+                          }`}
+                        >
+                          {parseFloat(product.change_percentage) > 0 ? "+" : ""}
+                          {product.change_percentage}%
+                        </p>
+                      </div>
                     </li>
                   ))}
               </ul>
@@ -360,15 +384,27 @@ function Home() {
                           </span>
                         </div>
                       </div>
-                      <p
-                        className={`text-lg font-semibold ${
-                          product.change_percentage > 0
-                            ? "text-red-500"
-                            : "text-green-500"
-                        }`}
-                      >
-                        {product.change_percentage}%
-                      </p>
+                      <div className="flex flex-col items-end">
+                        <p
+                          className={`text-m ${
+                            parseFloat(product.change_percentage) > 0
+                              ? "text-red-500"
+                              : "text-green-500"
+                          }`}
+                        >
+                          €{product.current_price}
+                        </p>
+                        <p
+                          className={`text-m font-semibold ${
+                            parseFloat(product.change_percentage) > 0
+                              ? "text-red-500"
+                              : "text-green-500"
+                          }`}
+                        >
+                          {parseFloat(product.change_percentage) > 0 ? "+" : ""}
+                          {product.change_percentage}%
+                        </p>
+                      </div>
                     </li>
                   ))}
               </ul>

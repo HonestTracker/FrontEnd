@@ -280,9 +280,7 @@ function ProductCard({ product, isSecond }) {
           </div>
         </div>
         <div className="flex items-center text-gray-600 text-xs mb-2 p-2">
-          <a href="productdetails">
-            <icons.Textvak alt="Tag" height={30} width={30} />
-          </a>
+          <icons.Textvak alt="Tag" height={30} width={30} />
           <span className="ml-2 text-lg">38</span>
         </div>
       </div>

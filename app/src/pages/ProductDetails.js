@@ -3,32 +3,75 @@ import BackButton from "../utils/BackButton";
 import { images } from "../utils/constants/Images";
 import { icons } from "../utils/constants/Icons";
 import { Line, LinearScale } from "react-chartjs-2";
-import Chart from "chart.js/auto"; // Automatically registers controllers, elements, scales, and plugins.
-import { useLocation, useNavigate } from "react-router-dom";
+
+import { useParams, useNavigate, uselo } from "react-router-dom";
 
 function ProductDetails() {
-  const location = useLocation();
-  const { product } = location.state || {};
+  const { id } = useParams(); // Get the product ID from the URL
+  const [product, setProduct] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true); // Added loading state
   const [message, setMessage] = useState("");
   const [selectedData, setSelectedData] = useState("1M");
   const [hovered, setHovered] = useState(0);
   const [rating, setRating] = useState(0);
-  const handleHover = (value) => {
-    setHovered(value);
-  };
 
   const navigate = useNavigate();
 
-  console.log(product);
   useEffect(() => {
-    if (!product) {
+    const fetchProduct = async () => {
+      console.log(
+        `trying to go to: https://api.honesttracker.nl/api/products/${id}`
+      );
+      try {
+        const response = await fetch(
+          `https://api.honesttracker.nl/api/products/${id}`
+        );
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        setProduct(data.product);
+      } catch (error) {
+        console.error("Error fetching product:", error);
+        setError("Product not found"); // Update the error state with a meaningful message
+        navigate("/404"); // Redirect to 404 page if product is not found
+      } finally {
+        setLoading(false); // Set loading to false after fetch operation is done
+      }
+    };
+
+    if (id) {
+      fetchProduct();
+    } else {
+      setError("No product ID provided");
       navigate("/404");
     }
-  }, []);
+  }, [id, navigate]);
+
+  if (loading) {
+    return (
+      <div className="h-screen flex justify-center items-center">
+        <p>Loading...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return <div>{error}</div>; // Display the error message
+  }
+
+  if (!product) {
+    return null; // This should be handled by the 404 redirect
+  }
 
   const handleStarClick = (value) => {
     setHovered(value);
     console.log(value);
+  };
+
+  const handleHover = (value) => {
+    setHovered(value);
   };
 
   const handleRatingClick = (value) => {
@@ -242,7 +285,7 @@ function ProductDetails() {
                 </button>
               </div>
             </div>
-            <Line data={data} options={options} />
+            {/*  <Line data={data} options={options} /> */}
 
             <div class="flex justify-around w-full mt-6 -mb-7">
               <div class="flex-col">

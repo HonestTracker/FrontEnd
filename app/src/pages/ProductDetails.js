@@ -3,7 +3,7 @@ import BackButton from "../utils/BackButton";
 import { images } from "../utils/constants/Images";
 import { icons } from "../utils/constants/Icons";
 import { Line, LinearScale } from "react-chartjs-2";
-
+import Chart from "chart.js/auto";
 import { useParams, useNavigate, uselo } from "react-router-dom";
 
 function ProductDetails() {
@@ -285,7 +285,7 @@ function ProductDetails() {
                 </button>
               </div>
             </div>
-            {/*  <Line data={data} options={options} /> */}
+            <Line data={data} options={options} />
 
             <div class="flex justify-around w-full mt-6 -mb-7">
               <div class="flex-col">

@@ -1,5 +1,6 @@
 import React from "react";
 import { images } from "../../constants/Images";
+import CustomLink from "../../CustomLink";
 
 const Footer = () => {
   return (
@@ -25,7 +26,7 @@ const Footer = () => {
           <p className="text-white text-lg">
             Terms and conditions
             <br />
-            About us
+            <CustomLink to="/about">About Us</CustomLink>
           </p>
         </div>
       </div>

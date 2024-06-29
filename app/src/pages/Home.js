@@ -69,6 +69,26 @@ function Home() {
     return `${formattedDate} ${formattedTime}`;
   };
 
+  const navigateToDetails = () => {
+    navigate(`/product/${featuredProduct.id}`);
+    window.scrollTo(0, 0);
+  };
+
+  const handleFavouriteClick = (event) => {
+    event.stopPropagation();
+    // Handle the favourite action here
+  };
+
+  const handleShareClick = (event) => {
+    event.stopPropagation();
+    // Handle the share action here
+  };
+
+  const handleVisitWebpageClick = (event) => {
+    event.stopPropagation();
+    // Handle the visit webpage action here
+  };
+
   return (
     <div>
       <main className="p-6">
@@ -87,7 +107,7 @@ function Home() {
           }}
         >
           <div className="flex">
-            <div>
+            <div onClick={navigateToDetails}>
               <img
                 src={images.placeholder}
                 alt={featuredProduct.name || "Placeholder"}
@@ -95,7 +115,7 @@ function Home() {
               />
             </div>
             <div className="w-2/3 flex flex-col justify-between p-6">
-              <div>
+              <div onClick={navigateToDetails}>
                 <h3 className="text-xl font-black">{featuredProduct.name}</h3>
                 <div className="flex items-center space-x-2">
                   <icons.Tag style={{ width: "20px", height: "20px" }} />
@@ -148,14 +168,24 @@ function Home() {
 
               <div className="mt-4 flex items-center space-x-2 gap-4">
                 <div className="flex flex-row items-center gap-1">
-                  <icons.Heart style={{ width: "20px", height: "20px" }} />
-                  <a href="#" className="text-black">
+                  <icons.Heart
+                    style={{ width: "20px", height: "20px" }}
+                    onClick={handleFavouriteClick}
+                  />
+                  <a
+                    href="#"
+                    className="text-black"
+                    onClick={handleFavouriteClick}
+                  >
                     Favourite
                   </a>
                 </div>
                 <div className="flex flex-row items-center gap-1">
-                  <icons.Link style={{ width: "20px", height: "20px" }} />
-                  <a href="#" className="text-black">
+                  <icons.Link
+                    style={{ width: "20px", height: "20px" }}
+                    onClick={handleShareClick}
+                  />
+                  <a href="#" className="text-black" onClick={handleShareClick}>
                     Share
                   </a>
                 </div>
@@ -165,6 +195,7 @@ function Home() {
                     href={featuredProduct.url}
                     target="_blank"
                     className="text-black"
+                    onClick={handleVisitWebpageClick}
                   >
                     Visit webpage
                   </a>

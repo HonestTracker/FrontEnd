@@ -207,6 +207,16 @@ function ProductCard({ product, isSecond }) {
     window.scrollTo(0, 0);
   };
 
+  const handleFavouriteClick = (event) => {
+    event.stopPropagation();
+    // Handle the favourite action here
+  };
+
+  const handleShareClick = (event) => {
+    event.stopPropagation();
+    // Handle the share action here
+  };
+
   return (
     <div
       style={{
@@ -244,8 +254,14 @@ function ProductCard({ product, isSecond }) {
               height={30}
               width={30}
               className="hover:fill-red-500"
+              onClick={handleFavouriteClick}
             />
-            <icons.Ketting alt="Tag" height={30} width={30} />
+            <icons.Ketting
+              alt="Tag"
+              height={30}
+              width={30}
+              onClick={handleShareClick}
+            />
           </div>
         </a>
 

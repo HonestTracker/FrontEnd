@@ -94,7 +94,7 @@ function Home() {
       <main className="p-6">
         {/* Logo Section */}
         <section className="flex justify-center mb-8">
-          <img src={images.logoFNBG} alt="logo" className="w-24 h-24" />
+          <img src={images.logoFNBG} alt="logo" className="w-64 h-64" />
         </section>
 
         <h2 className="text-2xl font-semibold mb-4">Featured Product</h2>

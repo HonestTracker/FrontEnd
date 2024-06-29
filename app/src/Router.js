@@ -14,6 +14,7 @@ import Navbar from "./utils/components/navigation/Navbar";
 import Footer from "./utils/components/navigation/Footer";
 import SettingsAuthenticated from "./pages/SettingsAuthenticated";
 import ProfilePage from "./pages/ProfilePage";
+import FavouriteProducts from "./pages/FavouritesPage";
 
 function AppRouter() {
   return (
@@ -33,6 +34,7 @@ function AppRouter() {
         <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="/404" element={<NotFoundPage />} />
         <Route path="*" element={<NotFoundPage />} />
+        <Route path="/favourites" element={<FavouriteProducts />} />
       </Routes>
       <Footer />
     </Router>

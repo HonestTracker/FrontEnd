@@ -1,6 +1,6 @@
 import React from "react";
-import BackButton from "../utils/components/navigation/BackButton";
-import { images } from "../utils/constants/images/Images";
+import BackButton from "../../utils/components/navigation/BackButton";
+import { images } from "../../utils/constants/images/Images";
 
 function Settings() {
   return (

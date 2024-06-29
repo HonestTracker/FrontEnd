@@ -4,19 +4,19 @@ import Navbar from "../components/navigation/Navbar";
 import Footer from "../components/navigation/Footer";
 
 // Pages
-import Home from "../../pages/Home";
-import Login from "../../pages/Login";
-import Register from "../../pages/Register";
-import About from "../../pages/About";
-import Contact from "../../pages/Contact";
-import ProductDetails from "../../pages/ProductDetails";
-import CommentsPage from "../../pages/CommentsPage";
-import Settings from "../../pages/Settings";
-import ProductOverview from "../../pages/ProductOverview";
+import Home from "../../pages/home/Home";
+import Login from "../../pages/login/Login";
+import Register from "../../pages/login/Register";
+import About from "../../pages/about/About";
+import Contact from "../../pages/about/Contact";
+import ProductDetails from "../../pages/products/ProductDetails";
+import CommentsPage from "../../pages/account/CommentsPage";
+import Settings from "../../pages/account/Settings";
+import ProductOverview from "../../pages/products/ProductOverview";
 import SettingsAuthenticated from "../../pages/SettingsAuthenticated";
-import ProfilePage from "../../pages/ProfilePage";
-import FavouriteProducts from "../../pages/FavouritesPage";
-import NotFoundPage from "../../pages/404Page";
+import ProfilePage from "../../pages/account/ProfilePage";
+import FavouriteProducts from "../../pages/account/FavouritesPage";
+import NotFoundPage from "../../pages/utils/404Page";
 
 const AppRouter = () => (
   <Router>

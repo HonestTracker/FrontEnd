@@ -9,18 +9,21 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("https://api.honesttracker.nl/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          email: formData.email,
-          password: formData.password,
-          device: "web",
-        }),
-      });
+      const response = await fetch(
+        "https://api.honesttracker.nl/api/auth/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            email: formData.email,
+            password: formData.password,
+            device: "web",
+          }),
+        }
+      );
 
       const responseData = await response.json();
 
@@ -50,7 +53,7 @@ const Login = () => {
   };
 
   return (
-    <div className="bg-gray-100">
+    <div className="h-screen ">
       <main className="flex items-center py-24">
         <div className="bg-white mx-auto p-10 rounded-lg shadow-lg w-2/4">
           <h2 className="text-5xl text-center mb-4">Log In</h2>
@@ -72,7 +75,9 @@ const Login = () => {
               className="w-full p-3 mb-8 border rounded shadow-md shadow-gray-400"
               onChange={handleChange}
             />
-            {errors.email && <div className="text-red-400 -mt-5 mb-4">{errors.email[0]}</div>}
+            {errors.email && (
+              <div className="text-red-400 -mt-5 mb-4">{errors.email[0]}</div>
+            )}
             <label htmlFor="password" className="block mb-1">
               Password
             </label>
@@ -84,7 +89,11 @@ const Login = () => {
               className="w-full p-3 border mb-8 rounded shadow-md shadow-gray-400"
               onChange={handleChange}
             />
-            {errors.password && <div className="text-red-400 -mt-5 mb-4">{errors.password[0]}</div>}
+            {errors.password && (
+              <div className="text-red-400 -mt-5 mb-4">
+                {errors.password[0]}
+              </div>
+            )}
             <div className="flex justify-between items-center mb-4">
               <label className="flex items-center">
                 <input type="checkbox" name="remember" className="mr-2" />

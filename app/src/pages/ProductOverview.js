@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { images } from "../utils/constants/images/Images";
 import { icons } from "../utils/constants/images/Icons";
-import BackButton from "../utils/BackButton";
+import BackButton from "../utils/components/navigation/BackButton";
 import { useNavigate } from "react-router-dom";
 
 function ProductOverview() {

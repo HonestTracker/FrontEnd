@@ -1,6 +1,6 @@
 import React from "react";
 import { images } from "../utils/constants/images/Images";
-import BackButton from "../utils/BackButton";
+import BackButton from "../utils/components/navigation/BackButton";
 
 //placeholder
 function CommentsPage() {

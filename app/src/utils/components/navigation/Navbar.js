@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { images } from "../../constants/images/Images";
 import { icons } from "../../constants/images/Icons";
 import { useLocation, useNavigate } from "react-router-dom";
-import CustomLink from "../../CustomLink";
+import CustomLink from "./CustomLink";
 
 function Navbar() {
   const location = useLocation();

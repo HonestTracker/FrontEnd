@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { icons } from "./constants/images/Icons";
+import { icons } from "../../constants/images/Icons";
 
 function BackButton() {
   let navigate = useNavigate();

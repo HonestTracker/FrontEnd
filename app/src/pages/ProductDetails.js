@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import BackButton from "../utils/BackButton";
+import BackButton from "../utils/components/navigation/BackButton";
 import { images } from "../utils/constants/images/Images";
 import { icons } from "../utils/constants/images/Icons";
 import { Line, LinearScale } from "react-chartjs-2";

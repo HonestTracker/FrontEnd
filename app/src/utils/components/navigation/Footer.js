@@ -1,6 +1,6 @@
 import React from "react";
 import { images } from "../../constants/images/Images";
-import CustomLink from "../../CustomLink";
+import CustomLink from "./CustomLink";
 
 const Footer = () => {
   return (

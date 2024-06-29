@@ -38,7 +38,7 @@ const ProductList = ({
                     : "text-green-500"
                 }`}
               >
-                €{formatPrice(product.current_price)}
+                {formatPrice(product.current_price)}
               </p>
               <p
                 className={`text-m font-semibold ${

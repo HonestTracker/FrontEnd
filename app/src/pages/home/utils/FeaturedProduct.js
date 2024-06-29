@@ -16,19 +16,19 @@ const FeaturedProduct = ({
     window.scrollTo(0, 0);
   };
 
+  // HANDLE FAVOURITE CLICK
   const handleFavouriteClick = (event) => {
     event.stopPropagation();
-    // Handle the favourite action here
   };
 
+  // HANDLE SHARE CLICK
   const handleShareClick = (event) => {
     event.stopPropagation();
-    // Handle the share action here
   };
 
+  // HANDLE VISIT WEBPAGE CLICK
   const handleVisitWebpageClick = (event) => {
     event.stopPropagation();
-    // Handle the visit webpage action here
   };
 
   return (

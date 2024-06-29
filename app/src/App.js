@@ -1,10 +1,11 @@
 import React from "react";
+import "./App.css";
 import AppRouter from "./utils/navigation/Router";
 import "./utils/constants/styles/globals.css";
 
 function App() {
   return (
-    <div className="app-container">
+    <div style={{ fontFamily: "Poppins, sans-serif" }}>
       <AppRouter />
     </div>
   );

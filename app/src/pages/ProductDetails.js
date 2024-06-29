@@ -1,60 +1,102 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import BackButton from "../utils/BackButton";
 import { images } from "../utils/constants/Images";
 import { icons } from "../utils/constants/Icons";
-import { Line, LinearScale, } from 'react-chartjs-2';
-import Chart from 'chart.js/auto'; // Automatically registers controllers, elements, scales, and plugins.
+import { Line, LinearScale } from "react-chartjs-2";
+import Chart from "chart.js/auto"; // Automatically registers controllers, elements, scales, and plugins.
+import { useLocation, useNavigate } from "react-router-dom";
+
 function ProductDetails() {
+  const location = useLocation();
+  const { product } = location.state || {};
   const [message, setMessage] = useState("");
-  const [selectedData, setSelectedData] = useState("1M")
-  const [hovered, setHovered] = useState(0)
-  const [rating, setRating] = useState(0)
+  const [selectedData, setSelectedData] = useState("1M");
+  const [hovered, setHovered] = useState(0);
+  const [rating, setRating] = useState(0);
   const handleHover = (value) => {
     setHovered(value);
   };
 
+  const navigate = useNavigate();
+
+  console.log(product);
+  useEffect(() => {
+    if (!product) {
+      navigate("/404");
+    }
+  }, []);
+
   const handleStarClick = (value) => {
-    setHovered(value)
-    console.log(value)
-  }
+    setHovered(value);
+    console.log(value);
+  };
 
   const handleRatingClick = (value) => {
-    setRating(value)
-    console.log(rating)
-  }
+    setRating(value);
+    console.log(rating);
+  };
 
   const labels = {
     "1M": ["Week 1", "Week 2", "Week 3", "Week 4"],
-    "1Y": ["Januari", "Februari", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-    "All": ["Januari", "Februari", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-  }
+    "1Y": [
+      "Januari",
+      "Februari",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ],
+    All: [
+      "Januari",
+      "Februari",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ],
+  };
 
   const dataSets = {
-    '1M': [423.93, 425.00, 422.50, 423.93], // Replace with actual 1M data
-    '1Y': [423.93, 450.00, 400.00, 470.00, 420.00, 430.00, 423.93, 425.00, 422.50, 423.93, 430.00, 423.93], // Replace with actual 1Y data
-    'All': [350.00, 375.00, 400.00, 425.00, 423.93], // Replace with actual All data
+    "1M": [423.93, 425.0, 422.5, 423.93], // Replace with actual 1M data
+    "1Y": [
+      423.93, 450.0, 400.0, 470.0, 420.0, 430.0, 423.93, 425.0, 422.5, 423.93,
+      430.0, 423.93,
+    ], // Replace with actual 1Y data
+    All: [350.0, 375.0, 400.0, 425.0, 423.93], // Replace with actual All data
   };
 
   const data = {
     labels: labels[selectedData],
-    datasets: [{
-      label: selectedData,
-      data: dataSets[selectedData],
-      fill: false,
-      borderColor: 'rgb(75, 192, 192)',
-      tension: 0.1
-    }]
+    datasets: [
+      {
+        label: selectedData,
+        data: dataSets[selectedData],
+        fill: false,
+        borderColor: "rgb(75, 192, 192)",
+        tension: 0.1,
+      },
+    ],
   };
 
   const options = {
     scales: {
       y: {
-        beginAtZero: true
-      }
-    }
+        beginAtZero: true,
+      },
+    },
   };
-
-
 
   const handleMessageSend = async (event) => {
     event.preventDefault();
@@ -112,7 +154,7 @@ function ProductDetails() {
           />
           <div class="flex items-center ml-8 flex-column flex-col items-stretch">
             <p class="text-black font-extrabold text-2xl mt-10">
-              Pokemon Pikachu shoes
+              {product.name}
             </p>
             <div class="flex items-center">
               <icons.Tag alt="Tag" class="h-8 w-8 hover:cursor-pointer" />
@@ -177,12 +219,27 @@ function ProductDetails() {
                 </div>
               </div>
               <div class="flex space-x-4 h-12">
-              <button className="bg-teal-400 cursor-pointer text-white px-4 border-gray-200 rounded"
-                  style={{ fontFamily: "Poppins, sans-serif" }} onClick={() => setSelectedData('1M')}>1M</button>
-              <button className="bg-white border-2 cursor-pointer text-black px-4 py-2 rounded  "
-                  style={{ fontFamily: "Poppins, sans-serif" }} onClick={() => setSelectedData('1Y')}>1Y</button>
-              <button className="bg-white cursor-pointer text-black px-4 border-2 border-gray-200 rounded "
-                  style={{ fontFamily: "Poppins, sans-serif" }} onClick={() => setSelectedData('All')}>All</button>
+                <button
+                  className="bg-teal-400 cursor-pointer text-white px-4 border-gray-200 rounded"
+                  style={{ fontFamily: "Poppins, sans-serif" }}
+                  onClick={() => setSelectedData("1M")}
+                >
+                  1M
+                </button>
+                <button
+                  className="bg-white border-2 cursor-pointer text-black px-4 py-2 rounded  "
+                  style={{ fontFamily: "Poppins, sans-serif" }}
+                  onClick={() => setSelectedData("1Y")}
+                >
+                  1Y
+                </button>
+                <button
+                  className="bg-white cursor-pointer text-black px-4 border-2 border-gray-200 rounded "
+                  style={{ fontFamily: "Poppins, sans-serif" }}
+                  onClick={() => setSelectedData("All")}
+                >
+                  All
+                </button>
               </div>
             </div>
             <Line data={data} options={options} />
@@ -334,15 +391,17 @@ function ProductDetails() {
                 <h1>Jur</h1>
               </div>
               <div class="flex">
-              {[1, 2, 3, 4, 5].map((star) => (
-              <icons.Star
-              key={star}
-              className={`cursor-pointer h-10 w-10 ${star <= (hovered || rating) ? "fill-yellow-400" : ""}`}
-              onClick={() => handleRatingClick(star)}
-              onMouseEnter={() => handleHover(star)}
-              onMouseLeave={() => setHovered(0)}
-              />
-              ))}
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <icons.Star
+                    key={star}
+                    className={`cursor-pointer h-10 w-10 ${
+                      star <= (hovered || rating) ? "fill-yellow-400" : ""
+                    }`}
+                    onClick={() => handleRatingClick(star)}
+                    onMouseEnter={() => handleHover(star)}
+                    onMouseLeave={() => setHovered(0)}
+                  />
+                ))}
               </div>
             </div>
             <form onSubmit={handleMessageSend}>

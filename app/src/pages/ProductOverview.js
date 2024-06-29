@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { images } from "../utils/constants/Images";
 import { icons } from "../utils/constants/Icons";
 import BackButton from "../utils/BackButton";
+import { useNavigate } from "react-router-dom";
 
 function ProductOverview() {
   const [loading, setLoading] = useState(true);
@@ -200,6 +201,12 @@ function ProductCard({ product, isSecond }) {
     }).format(price);
   };
 
+  const navigate = useNavigate();
+  const navigateToDetails = () => {
+    navigate(`/productdetails/${product.id}`, { state: { product } });
+    window.scrollTo(0, 0);
+  };
+
   return (
     <div
       style={{
@@ -210,7 +217,9 @@ function ProductCard({ product, isSecond }) {
         background: cardBackground,
         display: "flex",
         width: "100%",
+        cursor: "pointer",
       }}
+      onClick={navigateToDetails}
     >
       <img
         src={images.pikachu}
@@ -218,10 +227,7 @@ function ProductCard({ product, isSecond }) {
         className="w-64 h-64 object-cover rounded-lg"
       />
       <div className="ml-4 w-full flex flex-col justify-between">
-        <a
-          href={product.url}
-          className="text-xl font-semibold text-black mt-2 flex flex-row items-start justify-between p-2"
-        >
+        <a className="text-xl font-semibold text-black mt-2 flex flex-row items-start justify-between p-2">
           <div className="flex flex-row gap-2 items-center">
             {getIconComponent(product.site?.site_name) &&
               React.createElement(getIconComponent(product.site.site_name), {

@@ -29,3 +29,36 @@ export const formatDateTime = (dateTime) => {
   });
   return `${formattedDate} ${formattedTime}`;
 };
+
+export const generateChartData = (prices, selectedData) => {
+  const filteredPrices = prices.filter((price) => {
+    const priceDate = new Date(price.date);
+    const today = new Date();
+
+    switch (selectedData) {
+      case "1M":
+        return priceDate >= new Date(today.setMonth(today.getMonth() - 1));
+      case "1Y":
+        return (
+          priceDate >= new Date(today.setFullYear(today.getFullYear() - 1))
+        );
+      case "All":
+      default:
+        return true;
+    }
+  });
+
+  return {
+    labels: filteredPrices.map((price) =>
+      new Date(price.date).toLocaleDateString()
+    ),
+    datasets: [
+      {
+        label: "Price",
+        data: filteredPrices.map((price) => price.price),
+        borderColor: "rgba(75, 192, 192, 1)",
+        fill: false,
+      },
+    ],
+  };
+};

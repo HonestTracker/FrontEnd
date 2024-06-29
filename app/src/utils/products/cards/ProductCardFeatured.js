@@ -1,9 +1,9 @@
 import React from "react";
-import { icons } from "../../../utils/constants/images/Icons";
-import { images } from "../../../utils/constants/images/Images";
+import { icons } from "../../constants/images/Icons";
+import { images } from "../../constants/images/Images";
 import { useNavigate } from "react-router-dom";
 
-const FeaturedProduct = ({
+const FeaturedProductCard = ({
   featuredProduct,
   formatPrice,
   getIconComponent,
@@ -130,4 +130,4 @@ const FeaturedProduct = ({
   );
 };
 
-export default FeaturedProduct;
+export default FeaturedProductCard;

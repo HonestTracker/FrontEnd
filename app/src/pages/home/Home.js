@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getHomeData } from "../../backend/get_homedata";
 import { images } from "../../utils/constants/images/Images";
-import FeaturedProduct from "./utils/FeaturedProduct";
+import FeaturedProductCard from "../../utils/products/cards/ProductCardFeatured";
 import TrendingCategories from "./utils/TrendingCategories";
 import LatestProducts from "./utils/LatestProducts";
 import {
@@ -49,7 +49,7 @@ function Home() {
         </section>
 
         {/* Featured Product Section */}
-        <FeaturedProduct
+        <FeaturedProductCard
           featuredProduct={featuredProduct}
           formatPrice={formatPrice}
           formatDateTime={formatDateTime}

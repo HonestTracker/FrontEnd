@@ -4,7 +4,7 @@ import {
   formatPrice,
   getIconComponent,
 } from "../../utils/products/utils/Formatters";
-import ProductCardOverview from "./utils/ProductCardOverview";
+import ProductCardOverview from "../../utils/products/cards/ProductCardOverview";
 import Filter from "../../utils/products/components/Filter";
 
 function ProductOverview() {

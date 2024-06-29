@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { images } from "../../../utils/constants/images/Images";
-import { icons } from "../../../utils/constants/images/Icons";
+import { images } from "../../constants/images/Images";
+import { icons } from "../../constants/images/Icons";
 
 function ProductCardOverview({ product, getIconComponent, formatPrice }) {
   const priceColor = product.change_percentage > 0 ? "red" : "#24BA4E";

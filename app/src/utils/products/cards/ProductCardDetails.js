@@ -3,6 +3,14 @@ import { images } from "../../constants/images/Images";
 import { icons } from "../../constants/images/Icons";
 import { formatPrice, getIconComponent } from "../utils/Formatters";
 
+/**
+ * Renders the product card on the details page.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {Object} props.product - The product object containing the details of the product.
+ * @returns {JSX.Element} The JSX element representing the product card for the details page.
+ */
 const ProductCardDetails = ({ product }) => {
   return (
     <div

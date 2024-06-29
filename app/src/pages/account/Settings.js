@@ -2,7 +2,12 @@ import React from "react";
 import BackButton from "../../utils/components/navigation/BackButton";
 import { images } from "../../utils/constants/images/Images";
 
+/**
+ * Renders the Settings page.
+ * @returns {JSX.Element} The rendered Settings page.
+ */
 function Settings() {
+  // NOTE: DOESNT WORK YET
   return (
     <main class="flex flex-col h-full flex items-start p-10 h-screen">
       <div className="mb-10">

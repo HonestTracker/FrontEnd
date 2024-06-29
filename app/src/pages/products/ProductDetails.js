@@ -7,6 +7,11 @@ import LatestUpdates from "../../utils/products/components/LatestUpdates";
 import CommentsSection from "../../utils/products/components/CommentsSection";
 import SimilarProducts from "../../utils/products/components/SimilarProducts";
 
+/**
+ * Renders the details of a product.
+ *
+ * @returns {JSX.Element|null} The JSX element representing the product details, or null if the product is not available.
+ */
 function ProductDetails() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
@@ -16,6 +21,7 @@ function ProductDetails() {
 
   const navigate = useNavigate();
 
+  // fetch the data for a product with the given id
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -29,10 +35,10 @@ function ProductDetails() {
         setProduct(data.product);
       } catch (error) {
         console.error("Error fetching product:", error);
-        setError("Product not found"); // Update the error state with a meaningful message
-        navigate("/404"); // Redirect to 404 page if product is not found
+        setError("Product not found");
+        navigate("/404");
       } finally {
-        setLoading(false); // Set loading to false after fetch operation is done
+        setLoading(false);
       }
     };
 

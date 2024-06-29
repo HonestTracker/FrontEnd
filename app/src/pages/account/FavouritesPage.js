@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { images } from "../../utils/constants/images/Images";
 import { icons } from "../../utils/constants/images/Icons";
 
+// the backend for this stuff isnt done yet, so this is just a placeholder
 const FavouriteProducts = () => {
   const [liked, setLiked] = useState([]);
 

@@ -4,14 +4,20 @@ import { icons } from "../../constants/images/Icons";
 import { useLocation, useNavigate } from "react-router-dom";
 import CustomLink from "./CustomLink";
 
+/**
+ * Represents a navigation bar component.
+ *
+ * @returns {JSX.Element} The JSX element representing the navigation bar.
+ */
 function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
   const [isLoginPage, setIsLoginPage] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-
   const toggleDropdown = () => setIsOpen(!isOpen);
+
+  // check if the token is still valid
   const checkTokenExpiry = () => {
     const tokenExpiration = localStorage.getItem("tokenExpiration");
     const token = localStorage.getItem("token");
@@ -25,23 +31,19 @@ function Navbar() {
       setIsLoggedIn(false);
       return false;
     }
-
     const expirationDate = new Date(tokenExpiration);
     const currentTime = new Date();
-
     if (expirationDate <= currentTime) {
       console.log("Token expired");
-      // Token has expired, clear localStorage
       localStorage.removeItem("token");
       localStorage.removeItem("tokenExpiration");
       setIsLoggedIn(false);
       return false;
     }
-
-    // Token is valid
     return true;
   };
 
+  // check if the token is still valid on page load. wait, didnt we just do this? ooooh, this is for the first time the page loads, the other one is for when the user navigates to a different page
   useEffect(() => {
     const isValidToken = checkTokenExpiry();
     setIsLoggedIn(isValidToken);
@@ -50,6 +52,7 @@ function Navbar() {
     setIsLoginPage(path === "/login" || path === "/register");
   }, [location]);
 
+  // render the sign in button if the user is not logged in and the current page is not the login page
   const renderSignInButton = () => {
     if (!isLoggedIn && !isLoginPage) {
       return (
@@ -63,13 +66,13 @@ function Navbar() {
     return null;
   };
 
+  // handle the logout process
   const handleLogout = async () => {
     const token = localStorage.getItem("token");
     if (!token) {
       console.error("No token found");
       return;
     }
-
     try {
       const response = await fetch(
         "https://api.honesttracker.nl/api/auth/logout",
@@ -93,12 +96,14 @@ function Navbar() {
       localStorage.removeItem("token");
       localStorage.removeItem("user");
       localStorage.removeItem("tokenExpiration");
+      console.log("Logged out successfully");
       navigate("/");
     } catch (error) {
       console.error("Error during logout:", error);
     }
   };
 
+  // render the logged in user if the user is logged in, also render the dropdown menu if the user clicks on the user icon
   const renderLoggedInUser = () => {
     if (isLoggedIn) {
       const loggedUserString = localStorage.getItem("user");
@@ -185,9 +190,7 @@ function Navbar() {
 
   return (
     <nav className="bg-customTeal p-4 flex items-center w-full shadow-lg">
-      {/* Container for logo and links */}
       <div className="relative flex items-center w-full">
-        {/* Logo on the left */}
         <div className="absolute left-40">
           <img
             src={images.logoFNBG}
@@ -195,8 +198,6 @@ function Navbar() {
             className="h-16 w-16 rounded-full"
           />
         </div>
-
-        {/* Centered links */}
         <div className="mx-auto">
           <div className="flex space-x-10 text-white text-lg">
             <CustomLink to="/">Home</CustomLink>
@@ -210,11 +211,7 @@ function Navbar() {
             )}
           </div>
         </div>
-
-        {/* Conditionally render sign-in button */}
         {renderSignInButton()}
-
-        {/* Conditionally render logged-in user */}
         {renderLoggedInUser()}
       </div>
     </nav>

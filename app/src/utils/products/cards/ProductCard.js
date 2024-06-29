@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { icons } from "../../constants/images/Icons";
 import { images } from "../../constants/images/Images";
 
+// TEMPORARY. when i remove this it breaks everything so i'll just leave it here for now cause im too lazy to fix it
 function ProductCard() {
   return (
     <div className="flex items-center col-span-1 border-2 mt-10  bg-white rounded-lg shadow-md overflow-hidden">

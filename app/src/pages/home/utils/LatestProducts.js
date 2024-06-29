@@ -1,6 +1,18 @@
 import React from "react";
 import ProductList from "../../../utils/products/components/ProductList";
 
+/**
+ * Renders the LatestProducts component.
+ *
+ * @param {Object} props - The component props.
+ * @param {Array} props.latestRiseProducts - The latest rise products.
+ * @param {Array} props.latestDropProducts - The latest drop products.
+ * @param {Array} props.latestUpdatedProducts - The latest updated products.
+ * @param {Function} props.formatPrice - The function to format the price.
+ * @param {Function} props.formatDateTime - The function to format the date and time.
+ * @param {Function} props.getIconComponent - The function to get the icon component.
+ * @returns {JSX.Element} The rendered LatestProducts component.
+ */
 const LatestProducts = ({
   latestRiseProducts,
   latestDropProducts,

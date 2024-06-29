@@ -2,6 +2,11 @@ import React from "react";
 import { images } from "../../constants/images/Images";
 import CustomLink from "./CustomLink";
 
+/**
+ * Footer component.
+ *
+ * @returns {JSX.Element} The rendered Footer component.
+ */
 const Footer = () => {
   return (
     <footer className="bg-teal-500 p-5">

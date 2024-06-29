@@ -1,5 +1,11 @@
 import React from "react";
 
+/**
+ * Renders a filter component with categories.
+ *
+ * @param {Object[]} categories - An array of category objects.
+ * @returns {JSX.Element} The rendered filter component.
+ */
 function Filter({ categories }) {
   return (
     <div className="w-1/5 p-4 border-r border-gray-300">

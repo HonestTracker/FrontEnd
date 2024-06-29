@@ -5,8 +5,15 @@ import {
   getIconComponent,
 } from "../utils/Formatters";
 
+/**
+ * Renders the Latest Updates component.
+ *
+ * @component
+ * @param {Object} product - The product object containing information about the product.
+ * @returns {JSX.Element} The Latest Updates component.
+ */
 const LatestUpdates = ({ product }) => {
-  // Extract prices and siteName from the product
+  // Extract the prices from the product object
   const prices = product.prices.map((price) => ({
     id: price.id,
     date: new Date(price.date),
@@ -15,7 +22,6 @@ const LatestUpdates = ({ product }) => {
   }));
   const siteName = product.site?.site_name || "Unknown";
 
-  // Get the latest 3 prices
   const latestPrices = prices.reverse();
 
   return (

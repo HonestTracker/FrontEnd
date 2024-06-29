@@ -2,6 +2,11 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { icons } from "../../constants/images/Icons";
 
+/**
+ * Renders a back button component.
+ *
+ * @returns {JSX.Element} The back button component.
+ */
 function BackButton() {
   let navigate = useNavigate();
 

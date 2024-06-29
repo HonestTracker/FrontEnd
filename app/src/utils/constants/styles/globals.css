@@ -1,3 +1,7 @@
+/* 
+this file handles our font! maybe we should put some more stuff in here later. like colors or something
+*/
+
 .app-container {
   font-family: "Poppins", sans-serif;
 }

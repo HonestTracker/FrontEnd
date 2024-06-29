@@ -2,6 +2,15 @@ import React from "react";
 import { images } from "../../constants/images/Images";
 import { formatPrice } from "../utils/Formatters";
 
+/**
+ * Renders a component that displays similar products.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {Object} props.product - The product object to display.
+ * @returns {JSX.Element} The rendered SimilarProducts component.
+ */
+
 const SimilarProducts = ({ product }) => {
   return (
     <div className="w-1/3">

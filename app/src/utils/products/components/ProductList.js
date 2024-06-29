@@ -1,5 +1,15 @@
 import React from "react";
 
+/**
+ * Renders a list of products.
+ *
+ * @param {Object} props - The component props.
+ * @param {Array} props.products - The array of products to render.
+ * @param {Function} props.formatPrice - The function to format the price of a product.
+ * @param {Function} props.formatDateTime - The function to format the date and time of a product.
+ * @param {Function} props.getIconComponent - The function to get the icon component for a product's site.
+ * @returns {JSX.Element} The rendered ProductList component.
+ */
 const ProductList = ({
   products,
   formatPrice,

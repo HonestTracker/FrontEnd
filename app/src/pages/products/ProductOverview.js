@@ -7,6 +7,11 @@ import {
 import ProductCardOverview from "../../utils/products/cards/ProductCardOverview";
 import Filter from "../../utils/products/components/Filter";
 
+/**
+ * Renders the product overview page.
+ *
+ * @returns {JSX.Element} The JSX element representing the product overview page.
+ */
 function ProductOverview() {
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
@@ -21,6 +26,7 @@ function ProductOverview() {
     fetchData();
   }, []);
 
+  // fetches the data from the API
   const fetchData = async () => {
     setLoading(true);
     try {
@@ -38,6 +44,7 @@ function ProductOverview() {
     }
   };
 
+  // handle the search process. if the search query is empty, fetch all products
   const handleSearch = async () => {
     setLoading(true);
     try {
@@ -69,6 +76,7 @@ function ProductOverview() {
     );
   }
 
+  // some variables for pagination
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProducts = products.slice(

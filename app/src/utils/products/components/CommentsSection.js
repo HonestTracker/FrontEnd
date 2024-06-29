@@ -3,13 +3,12 @@ import { icons } from "../../constants/images/Icons";
 import { images } from "../../constants/images/Images";
 import { formatDateTime } from "../utils/Formatters";
 
+// THIS SHIT IS HARD CODED RN
 const CommentsSection = () => {
-  // State to manage the comment message and rating
   const [message, setMessage] = useState("");
   const [rating, setRating] = useState(0);
   const [hovered, setHovered] = useState(0);
 
-  // Dummy data for comments
   const comments = [
     {
       id: 1,

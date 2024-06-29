@@ -1,5 +1,9 @@
 import React from "react";
 import { images } from "../../utils/constants/images/Images";
+/**
+ * Renders the About page component.
+ * @returns {JSX.Element} The About page component.
+ */
 function About() {
   return (
     <main class="p-48 flex flex-col justify-center h-screen">

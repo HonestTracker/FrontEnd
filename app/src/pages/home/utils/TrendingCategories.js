@@ -1,6 +1,14 @@
 import React from "react";
 import { images } from "../../../utils/constants/images/Images";
 
+/**
+ * Renders the Trending Categories section.
+ *
+ * @param {Object[]} categories - An array of category objects.
+ * @param {string} categories[].name - The name of the category.
+ *
+ * @returns {JSX.Element} The rendered Trending Categories section.
+ */
 const TrendingCategories = ({ categories }) => {
   return (
     <section className="mb-8">

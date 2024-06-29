@@ -6,7 +6,7 @@ import "@fontsource/poppins";
 
 function App() {
   return (
-    <div style={{ fontFamily: "Poppins, sans-serif" }}>
+    <div className="app-container">
       <AppRouter />
     </div>
   );

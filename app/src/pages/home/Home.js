@@ -10,6 +10,11 @@ import {
   getIconComponent,
 } from "../../utils/products/utils/Formatters"; // Import utility functions
 
+/**
+ * Renders the Home component.
+ *
+ * @returns {JSX.Element} The rendered Home component.
+ */
 function Home() {
   const [loading, setLoading] = useState(true);
   const [featuredProduct, setFeaturedProduct] = useState({});
@@ -19,6 +24,7 @@ function Home() {
   const [latestUpdatedProducts, setLatestUpdatedProducts] = useState([]);
   const [error, setError] = useState(null);
 
+  // load a ton of data
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -43,23 +49,15 @@ function Home() {
   return (
     <div>
       <main className="p-6">
-        {/* Logo Section */}
         <section className="flex justify-center mb-8">
           <img src={images.logoFNBG} alt="logo" className="w-64 h-64" />
         </section>
-
-        {/* Featured Product Section */}
         <FeaturedProductCard
-          featuredProduct={featuredProduct}
+          product={featuredProduct}
           formatPrice={formatPrice}
-          formatDateTime={formatDateTime}
           getIconComponent={getIconComponent}
         />
-
-        {/* Trending Categories Section */}
         <TrendingCategories categories={featuredCategories} />
-
-        {/* Latest Products Section */}
         <LatestProducts
           latestRiseProducts={latestRiseProducts}
           latestDropProducts={latestDropProducts}

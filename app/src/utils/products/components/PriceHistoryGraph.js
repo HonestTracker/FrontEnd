@@ -7,6 +7,15 @@ import {
 } from "../utils/Formatters";
 import Chart from "chart.js/auto";
 
+/**
+ * Renders a price history graph component.
+ *
+ * @param {Object} props - The component props.
+ * @param {Object} props.product - The product data.
+ * @param {Array} props.selectedData - The selected data for the graph.
+ * @param {Function} props.setSelectedData - The function to set the selected data.
+ * @returns {JSX.Element} The price history graph component.
+ */
 const PriceHistoryGraph = ({ product, selectedData, setSelectedData }) => {
   const prices = product.prices.map((price) => ({
     date: new Date(price.date),
@@ -15,6 +24,7 @@ const PriceHistoryGraph = ({ product, selectedData, setSelectedData }) => {
 
   const data = generateChartData(prices, selectedData);
 
+  // Chart.js options
   const options = {
     responsive: true,
     plugins: {
@@ -39,6 +49,12 @@ const PriceHistoryGraph = ({ product, selectedData, setSelectedData }) => {
     },
   };
 
+  /**
+   * Calculates the median value of an array.
+   *
+   * @param {number[]} array - The array of numbers.
+   * @returns {number} The median value.
+   */
   const calculateMedian = (array) => {
     const sorted = array.slice().sort((a, b) => a - b);
     const mid = Math.floor(sorted.length / 2);
@@ -46,9 +62,10 @@ const PriceHistoryGraph = ({ product, selectedData, setSelectedData }) => {
       ? sorted[mid]
       : (sorted[mid - 1] + sorted[mid]) / 2;
   };
+  // maybe this should go in formatters....................... but it's only used here soooooo idk
 
+  // some variables for the current price and lowest price
   const lowestPrice = Math.min(...prices.map((price) => price.price));
-
   const currentPrice = product.current_price;
   const changePercentage = product.change_percentage;
 

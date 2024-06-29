@@ -2,6 +2,10 @@ import React from "react";
 import { images } from "../../utils/constants/images/Images";
 import BackButton from "../../utils/components/navigation/BackButton";
 
+/**
+ * Renders the NotFoundPage component.
+ * @returns {JSX.Element} The rendered NotFoundPage component.
+ */
 function NotFoundPage() {
   return (
     <main class="p-48 h-screen">

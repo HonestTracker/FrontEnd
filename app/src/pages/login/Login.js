@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+/**
+ * Represents the Login component.
+ * @component
+ */
 const Login = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
 
+  // handle the login form submission and store the token in local storage
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
@@ -48,6 +53,7 @@ const Login = () => {
     }
   };
 
+  // this looks really complicated, but it's just a function to update the form data when the user types
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };

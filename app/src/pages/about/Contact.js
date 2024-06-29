@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import { images } from "../../utils/constants/images/Images";
 import { icons } from "../../utils/constants/images/Icons";
 
+/**
+ * Contact component for displaying a contact form.
+ * @returns {JSX.Element} The Contact component.
+ */
 const Contact = () => {
   const [formData, setFormData] = useState({ email: "", message: "" });
 

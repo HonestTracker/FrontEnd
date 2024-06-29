@@ -3,7 +3,17 @@ import { useNavigate } from "react-router-dom";
 import { images } from "../../constants/images/Images";
 import { icons } from "../../constants/images/Icons";
 
+/**
+ * Renders a product card overview component.
+ *
+ * @param {Object} props - The component props.
+ * @param {Object} props.product - The product data.
+ * @param {Function} props.getIconComponent - The function to get the icon component.
+ * @param {Function} props.formatPrice - The function to format the price.
+ * @returns {JSX.Element} The product card overview component.
+ */
 function ProductCardOverview({ product, getIconComponent, formatPrice }) {
+  // bunch of stuff here cause i'm lazy and i don't want to explain them all
   const priceColor = product.change_percentage > 0 ? "red" : "#24BA4E";
   const percentageColor =
     product.change_percentage > 0 ? "text-red-500" : "text-green-500";
@@ -18,6 +28,8 @@ function ProductCardOverview({ product, getIconComponent, formatPrice }) {
     window.scrollTo(0, 0);
   };
 
+  // bro i'm lazy so i'll just copy these here
+  // i forgot to explain but these are used to stop the event from propagating... whatever that means :D (i'm not a frontend dev, but im not a backend dev either, soooo... i'm a fullstack dev? :D no that can't be right... i'm a dev... i think... i'm not sure... i'm a human... i think... i'm not sure either)
   const handleFavouriteClick = (event) => {
     event.stopPropagation();
   };

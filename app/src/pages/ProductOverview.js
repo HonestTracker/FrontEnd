@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { images } from "../utils/constants/Images";
-import { icons } from "../utils/constants/Icons";
+import { images } from "../utils/constants/images/Images";
+import { icons } from "../utils/constants/images/Icons";
 import BackButton from "../utils/BackButton";
 import { useNavigate } from "react-router-dom";
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { images } from "../utils/constants/Images";
+import { images } from "../utils/constants/images/Images";
 import BackButton from "../utils/BackButton";
 
 function NotFoundPage() {

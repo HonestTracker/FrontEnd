@@ -1,5 +1,5 @@
 import React from "react";
-import { images } from "../utils/constants/Images";
+import { images } from "../utils/constants/images/Images";
 function About() {
   return (
     <main class="p-48 flex flex-col justify-center h-screen">

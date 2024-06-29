@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { images } from "../utils/constants/Images";
-import { icons } from "../utils/constants/Icons";
+import { images } from "../utils/constants/images/Images";
+import { icons } from "../utils/constants/images/Icons";
 
 const Contact = () => {
   const [formData, setFormData] = useState({ email: "", message: "" });

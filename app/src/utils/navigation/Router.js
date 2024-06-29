@@ -1,22 +1,22 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Navbar from "./utils/components/navigation/Navbar";
-import Footer from "./utils/components/navigation/Footer";
+import Navbar from "../components/navigation/Navbar";
+import Footer from "../components/navigation/Footer";
 
 // Pages
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import ProductDetails from "./pages/ProductDetails";
-import CommentsPage from "./pages/CommentsPage";
-import Settings from "./pages/Settings";
-import ProductOverview from "./pages/ProductOverview";
-import SettingsAuthenticated from "./pages/SettingsAuthenticated";
-import ProfilePage from "./pages/ProfilePage";
-import FavouriteProducts from "./pages/FavouritesPage";
-import NotFoundPage from "./pages/404Page";
+import Home from "../../pages/Home";
+import Login from "../../pages/Login";
+import Register from "../../pages/Register";
+import About from "../../pages/About";
+import Contact from "../../pages/Contact";
+import ProductDetails from "../../pages/ProductDetails";
+import CommentsPage from "../../pages/CommentsPage";
+import Settings from "../../pages/Settings";
+import ProductOverview from "../../pages/ProductOverview";
+import SettingsAuthenticated from "../../pages/SettingsAuthenticated";
+import ProfilePage from "../../pages/ProfilePage";
+import FavouriteProducts from "../../pages/FavouritesPage";
+import NotFoundPage from "../../pages/404Page";
 
 const AppRouter = () => (
   <Router>

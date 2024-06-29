@@ -30,7 +30,7 @@ function AppRouter() {
         <Route path="/settingsauth" element={<SettingsAuthenticated />} />
         <Route path="/products" element={<ProductOverview />} />
         <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/productdetails/:id" element={<ProductDetails />} />
+        <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="/404" element={<NotFoundPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

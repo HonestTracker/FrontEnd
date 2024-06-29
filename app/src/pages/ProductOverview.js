@@ -203,7 +203,7 @@ function ProductCard({ product, isSecond }) {
 
   const navigate = useNavigate();
   const navigateToDetails = () => {
-    navigate(`/productdetails/${product.id}`);
+    navigate(`/product/${product.id}`);
     window.scrollTo(0, 0);
   };
 

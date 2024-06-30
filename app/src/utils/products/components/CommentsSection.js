@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { icons } from "../../constants/images/Icons";
 import { images } from "../../constants/images/Images";
-import { formatDateTime } from "../utils/Formatters";
 import { useNavigate } from "react-router-dom";
+import CommentCard from "./CommentCard";
 
-// THIS SHIT IS HARD CODED RN
 const CommentsSection = ({ product, comments }) => {
   const navigate = useNavigate();
   const [message, setMessage] = useState("");
@@ -36,14 +35,11 @@ const CommentsSection = ({ product, comments }) => {
       );
 
       const responseData = await response.json();
-      console.log(responseData);
       if (!response.ok) {
         if (response.status === 422) {
           setErrors(responseData.errors);
         }
-        console.log(responseData);
       } else {
-        console.log("Comment posted successfully");
         window.location.reload();
         window.scrollTo(0, 0);
       }
@@ -55,19 +51,19 @@ const CommentsSection = ({ product, comments }) => {
   const handleRatingClick = (star) => setRating(star);
 
   const handleHover = (star) => setHovered(star);
-  const loggedUser = JSON.parse(localStorage.getItem('user'));
+  const loggedUser = JSON.parse(localStorage.getItem("user"));
   let profilePictureUrl = images.placeholder;
-  
+
   if (loggedUser) {
     profilePictureUrl = loggedUser.picture_url.startsWith("/")
       ? `https://api.honesttracker.nl${loggedUser.picture_url}`
       : images.placeholder;
   }
+
   return (
     <div className="w-1/2">
       <h1 className="text-2xl font-semibold mb-4">Comments</h1>
       {loggedUser && (
-      <>
         <div
           className="bg-white rounded-lg p-6 mb-10"
           style={{
@@ -82,7 +78,9 @@ const CommentsSection = ({ product, comments }) => {
                 className="h-14 w-14 rounded-md"
                 alt="Footer Logo"
               />
-              <p className="text-xl font-bold text-gray-500">{loggedUser.name}</p>
+              <p className="text-xl font-bold text-gray-500">
+                {loggedUser.name}
+              </p>
             </div>
             <div className="flex">
               {[1, 2, 3, 4, 5].map((star) => (
@@ -123,58 +121,17 @@ const CommentsSection = ({ product, comments }) => {
             )}
           </form>
         </div>
-      </>
-    )}
+      )}
 
-<div
-        className="bg-white rounded-lg p-6 mb-4"
-        style={{
-          boxShadow:
-            "0 -2px 5px rgba(0, 0, 0, 0.1), 0 2px 3px rgba(0, 0, 0, 0.1)",
-        }}
-      >
-           {comments.length > 0 ? (
-          comments.map((comment) => {
-            const commentProfilePictureUrl = comment.user.picture_url.startsWith("/")
-              ? `https://api.honesttracker.nl${comment.user.picture_url}`
-              : images.placeholder;
-            return (
-              <div key={comment.id} className="flex flex-col mb-4">
-                <div className="flex justify-between mb-2">
-                  <div className="flex items-center gap-2 pl-4">
-                    <img
-                      src={commentProfilePictureUrl}
-                      className="h-14 w-14 rounded-md"
-                      alt="Footer Logo"
-                    />
-                    <p className="text-xl font-bold text-gray-500">
-                      {comment.user.name}
-                    </p>
-                  </div>
-                  <div className="flex">
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <icons.Star
-                        key={star}
-                        className={`h-10 w-10 ${
-                          star <= comment.stars ? "fill-yellow-400" : ""
-                        }`}
-                      />
-                    ))}
-                  </div>
-                </div>
-                <p className="font-semibold text-gray-500 pt-4 overflow-hidden">
-                  {comment.text}
-                </p>
-                <p className="text-sm text-gray-400">
-                  {formatDateTime(comment.created_at)}
-                </p>
-              </div>
-            );
-          })
-        ) : (
-          <p className="text-gray-500 text-center">No comments yet!</p>
-        )}
-      </div>
+      {comments.length > 0 ? (
+        comments.map((comment) => (
+          <div key={comment.id} className="flex flex-col mb-4">
+            <CommentCard comment={comment} />
+          </div>
+        ))
+      ) : (
+        <p className="text-gray-500 text-center">No comments yet!</p>
+      )}
     </div>
   );
 };

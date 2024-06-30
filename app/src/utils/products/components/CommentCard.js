@@ -2,11 +2,26 @@ import React from "react";
 import { images } from "../../constants/images/Images";
 import { icons } from "../../constants/images/Icons";
 import { formatDateTime } from "../utils/Formatters";
+import { deleteComment } from '../../../backend/delete_comment.js';
 
 const CommentCard = ({ comment }) => {
   const commentProfilePictureUrl = comment.user.picture_url.startsWith("/")
     ? `https://api.honesttracker.nl${comment.user.picture_url}`
     : images.placeholder;
+  const handleDeleteComment = async () => {
+    const confirmed = window.confirm("Are you sure you want to delete this comment?");
+    if (confirmed) {
+      try {
+        const token = localStorage.getItem("token");
+        await deleteComment(token, comment.id); // Ensure comment.id is defined and passed correctly
+        console.log("Comment deleted successfully");
+        // Optionally, update the UI to reflect the deletion
+      } catch (error) {
+        console.error("Error deleting comment:", error);
+        // Handle error, show error message, etc.
+      }
+    }
+  };
 
   return (
     <div
@@ -32,9 +47,8 @@ const CommentCard = ({ comment }) => {
             {[1, 2, 3, 4, 5].map((star) => (
               <icons.Star
                 key={star}
-                className={`h-10 w-10 ${
-                  star <= comment.stars ? "fill-yellow-400" : ""
-                }`}
+                className={`h-10 w-10 ${star <= comment.stars ? "fill-yellow-400" : ""
+                  }`}
               />
             ))}
           </div>
@@ -46,7 +60,10 @@ const CommentCard = ({ comment }) => {
           {formatDateTime(comment.created_at)}
         </p>
       </div>
-      <icons.Trash className="h-6 w-6 cursor-pointer" />
+      <icons.Trash
+        className="h-6 w-6 cursor-pointer"
+        onClick={handleDeleteComment}
+      />
     </div>
   );
 };

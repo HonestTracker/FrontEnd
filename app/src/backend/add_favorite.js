@@ -4,18 +4,18 @@ export const addToFavorites = async (token, product_id) => {
 			method: "post",
 			headers: {
 				"Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
+				Authorization: `Bearer ${token}`,
 			},
-            body: JSON.stringify({
-                product_id: product_id,
-                device: "web",
-              }),
+			body: JSON.stringify({
+				product_id: product_id,
+				device: "web",
+			}),
 		})
 		if (!response.ok) {
 			throw new Error(`HTTP error! status: ${response.status}`)
 		}
 		const data = await response.json()
-        console.log('RESPONSE', data)
+		console.log('RESPONSE', data)
 		return data
 	} catch (error) {
 		console.error("Error fetching data:", error)

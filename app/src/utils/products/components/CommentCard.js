@@ -5,6 +5,7 @@ import { formatDateTime } from "../utils/Formatters";
 import { deleteComment } from '../../../backend/delete_comment.js';
 
 const CommentCard = ({ comment }) => {
+  const loggedUser = JSON.parse(localStorage.getItem("user"));
   const commentProfilePictureUrl = comment.user.picture_url.startsWith("/")
     ? `https://api.honesttracker.nl${comment.user.picture_url}`
     : images.placeholder;
@@ -15,14 +16,15 @@ const CommentCard = ({ comment }) => {
         const token = localStorage.getItem("token");
         await deleteComment(token, comment.id); // Ensure comment.id is defined and passed correctly
         console.log("Comment deleted successfully");
-        // Optionally, update the UI to reflect the deletion
+        window.location.reload();
+        window.scrollTo(0, 0);
       } catch (error) {
         console.error("Error deleting comment:", error);
         // Handle error, show error message, etc.
       }
     }
   };
-
+  const canDeleteComment = loggedUser && loggedUser.id === comment.user.id;
   return (
     <div
       className="bg-white rounded-lg p-6 mb-4"
@@ -60,10 +62,12 @@ const CommentCard = ({ comment }) => {
           {formatDateTime(comment.created_at)}
         </p>
       </div>
-      <icons.Trash
-        className="h-6 w-6 cursor-pointer"
-        onClick={handleDeleteComment}
-      />
+      {canDeleteComment && (
+        <icons.Trash
+          className="h-6 w-6 cursor-pointer"
+          onClick={handleDeleteComment}
+        />
+      )}
     </div>
   );
 };

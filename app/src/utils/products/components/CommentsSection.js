@@ -15,6 +15,8 @@ const CommentsSection = ({ product, comments }) => {
 
   const handleMessageSend = async (e) => {
     e.preventDefault();
+    const loggedUser = JSON.parse(localStorage.getItem("user"));
+
     try {
       const response = await fetch(
         "https://api.honesttracker.nl/api/products/comments/post",
@@ -27,7 +29,7 @@ const CommentsSection = ({ product, comments }) => {
           body: JSON.stringify({
             text: message,
             stars: rating,
-            product_id: product.product.id,
+            product_id: product.id,
             user_id: loggedUser.id,
             device: "web",
           }),

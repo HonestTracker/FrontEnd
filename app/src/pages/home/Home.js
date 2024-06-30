@@ -45,7 +45,17 @@ function Home() {
 
     fetchData();
   }, []);
+  if (loading) {
+    return (
+      <div className="h-screen flex justify-center items-center">
+        <p>Loading...</p>
+      </div>
+    );
+  }
 
+  if (error) {
+    return <div>{error}</div>;
+  }
   return (
     <div>
       <main className="p-6">

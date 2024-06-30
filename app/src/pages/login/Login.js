@@ -31,7 +31,6 @@ const Login = () => {
       );
 
       const responseData = await response.json();
-
       if (!response.ok) {
         if (response.status === 422) {
           setErrors(responseData.errors);
@@ -41,12 +40,10 @@ const Login = () => {
       } else {
         const { access_token: accessToken, user } = responseData;
         const expirationTime = new Date().getTime() + 3600 * 1000; // 1 hour
-
         localStorage.setItem("token", accessToken);
         localStorage.setItem("user", JSON.stringify(user));
         localStorage.setItem("tokenExpiration", expirationTime.toString());
-
-        navigate("/");
+        navigate('/');
       }
     } catch (error) {
       console.error("Error during login:", error);

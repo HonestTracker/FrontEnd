@@ -16,11 +16,15 @@ function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const toggleDropdown = () => setIsOpen(!isOpen);
+  const closeDropdown = () => {
+    setIsOpen(false);
+  };
 
   // check if the token is still valid
   const checkTokenExpiry = () => {
     const tokenExpiration = localStorage.getItem("tokenExpiration");
     const token = localStorage.getItem("token");
+    
     if (!token) {
       console.log("No token found");
       setIsLoggedIn(false);
@@ -31,10 +35,17 @@ function Navbar() {
       setIsLoggedIn(false);
       return false;
     }
-    const expirationDate = new Date(tokenExpiration);
+    const expirationTimeMillis = parseInt(tokenExpiration);
+    if (isNaN(expirationTimeMillis)) {
+      console.error("Invalid token expiration format:", tokenExpiration);
+      return;
+    }
+    
+    const expirationDate = new Date(expirationTimeMillis);
     const currentTime = new Date();
     if (expirationDate <= currentTime) {
       console.log("Token expired");
+      localStorage.removeItem("user");
       localStorage.removeItem("token");
       localStorage.removeItem("tokenExpiration");
       setIsLoggedIn(false);
@@ -127,7 +138,6 @@ function Navbar() {
       const profilePictureUrl = loggedUser.picture_url.startsWith("/")
         ? `https://api.honesttracker.nl${loggedUser.picture_url}`
         : images.placeholder;
-
       return (
         <div className="absolute right-40 flex items-center space-x-2">
           <div className="inline-block text-left">
@@ -143,44 +153,36 @@ function Navbar() {
               />
             </button>
             {isOpen && (
-              <div className="absolute right-4 z-10 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                <CustomLink to="/profile">
-                  <div className="flex items-center cursor-pointer  px-4 py-2 text-lg text-gray-700 hover:bg-gray-100">
-                    <icons.AddressCard
-                      width={30}
-                      height={30}
-                      className="mr-2"
-                    />
-                    <p class="text-xl">Profile</p>
-                  </div>
-                </CustomLink>
+        <div className="absolute right-4 z-10 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+          <CustomLink to="/profile">
+            <div
+              className="flex items-center cursor-pointer px-4 py-2 text-lg text-gray-700 hover:bg-gray-100"
+              onClick={closeDropdown} // Close dropdown when clicking on profile link
+            >
+              <icons.AddressCard width={30} height={30} className="mr-2" />
+              <p className="text-xl">Profile</p>
+            </div>
+          </CustomLink>
 
-                <CustomLink to="/settings">
-                  <div className="flex items-center cursor-pointer px-4 py-2 text-lg text-gray-700 hover:bg-gray-100">
-                    <icons.SettingsGear
-                      width={30}
-                      height={30}
-                      className="mr-2"
-                    />
-                    <p class="text-xl">Settings</p>
-                  </div>
-                </CustomLink>
-                <div className="flex items-center cursor-pointer px-4 py-2 text-lg text-gray-700 hover:bg-gray-100">
-                  <icons.DoorOpen width={30} height={30} className="mr-2" />
-                  <button
-                    className="text-xl"
-                    onClick={handleLogout}
-                    style={{
-                      fontFamily: "Poppins, sans-serif",
-                      right: "10px",
-                    }}
-                    type="button"
-                  >
-                    Logout
-                  </button>
-                </div>
-              </div>
-            )}
+          <CustomLink to="/settingsauth">
+            <div
+              className="flex items-center cursor-pointer px-4 py-2 text-lg text-gray-700 hover:bg-gray-100"
+              onClick={closeDropdown} // Close dropdown when clicking on settings link
+            >
+              <icons.SettingsGear width={30} height={30} className="mr-2" />
+              <p className="text-xl">Settings</p>
+            </div>
+          </CustomLink>
+
+          <div
+            className="flex items-center cursor-pointer px-4 py-2 text-lg text-gray-700 hover:bg-gray-100"
+            onClick={handleLogout} // Perform logout and close dropdown
+          >
+            <icons.DoorOpen width={30} height={30} className="mr-2" />
+            <p className="text-xl">Logout</p>
+          </div>
+        </div>
+      )}
           </div>
         </div>
       );

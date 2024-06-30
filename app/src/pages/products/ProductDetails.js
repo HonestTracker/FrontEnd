@@ -21,7 +21,6 @@ function ProductDetails() {
 
   const navigate = useNavigate();
 
-  // fetch the data for a product with the given id
   useEffect(() => {
     const fetchProduct = async () => {
       try {

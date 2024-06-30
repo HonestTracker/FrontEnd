@@ -35,12 +35,45 @@ function ProductOverview() {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
+      console.log('firstfetch', data.products)
       setProducts(data.products);
       setCategories(data.categories);
     } catch (error) {
       setError(error.message);
     } finally {
       setLoading(false);
+    }
+  };
+  const handleFilter = async (selectedCategories) => {
+    if (selectedCategories.length === 0) {
+      // If no categories are selected, fetch all products
+      await fetchData();
+    } else {
+      setLoading(true);
+      try {
+        const response = await fetch("https://api.honesttracker.nl/api/products/filter", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            categories: selectedCategories,
+            device: "web", // If 'device' is required by your backend, include it here
+          }),
+        });
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        setDisplaySearchQuery(null);
+        // Update state with fetched products and categories if needed
+        setProducts(data.products);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
     }
   };
 
@@ -109,12 +142,14 @@ function ProductOverview() {
         </div>
       </div>
       <div className="flex">
-        <Filter categories={categories} />
+        <Filter categories={categories} handleFilter={handleFilter} />
         <div className="w-4/5 ml-4">
           <header className="mb-6">
-            <h1 className="text-2xl font-bold">
-              Showing results for: "{displaySearchQuery}"
-            </h1>
+            {displaySearchQuery && (
+              <h1 className="text-2xl font-bold">
+                Showing results for: "{displaySearchQuery}"
+              </h1>
+            )}
             <p className="text-gray-500">{products.length} products found</p>
           </header>
           <div className="flex flex-wrap justify-around">
@@ -133,11 +168,10 @@ function ProductOverview() {
             ].map((pageNumber) => (
               <button
                 key={pageNumber}
-                className={`mx-2 px-4 py-2 border rounded ${
-                  currentPage === pageNumber + 1
-                    ? "bg-[#20C1AA] text-white"
-                    : ""
-                }`}
+                className={`mx-2 px-4 py-2 border rounded ${currentPage === pageNumber + 1
+                  ? "bg-[#20C1AA] text-white"
+                  : ""
+                  }`}
                 onClick={() => paginate(pageNumber + 1)}
               >
                 {pageNumber + 1}

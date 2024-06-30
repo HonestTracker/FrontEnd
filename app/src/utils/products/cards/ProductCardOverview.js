@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { images } from "../../constants/images/Images";
 import { icons } from "../../constants/images/Icons";
-
+import { addToFavorites } from "../../../backend/add_favorite.js";
 /**
  * Renders a product card overview component.
  *
@@ -30,8 +30,17 @@ function ProductCardOverview({ product, getIconComponent, formatPrice }) {
 
   // bro i'm lazy so i'll just copy these here
   // i forgot to explain but these are used to stop the event from propagating... whatever that means :D (i'm not a frontend dev, but im not a backend dev either, soooo... i'm a fullstack dev? :D no that can't be right... i'm a dev... i think... i'm not sure... i'm a human... i think... i'm not sure either)
-  const handleFavouriteClick = (event) => {
-    event.stopPropagation();
+  const token = localStorage.getItem("token");
+  const handleFavouriteClick = async () => {
+    try {
+      // Call your API function to add to favorites
+      const data = await addToFavorites(token, product.id); // Assuming addToFavorites sends a POST request with product ID
+      console.log(`Added product ${product.id} to favorites`);
+      // Optionally, you can update state or show a notification of success
+    } catch (error) {
+      console.error("Error adding to favorites:", error);
+      // Handle error scenario
+    }
   };
 
   const handleShareClick = (event) => {

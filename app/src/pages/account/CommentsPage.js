@@ -1,21 +1,79 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { images } from "../../utils/constants/images/Images";
+import { icons } from "../../utils/constants/images/Icons";
+import { getProfileData } from "../../backend/get_profiledata";
 import BackButton from "../../utils/components/navigation/BackButton";
+import CommentCard from "../../utils/products/components/CommentCard";
 
-//placeholder
-function CommentsPage() {
+// the backend for this stuff isnt done yet, so this is just a placeholder
+const CommentsPage = () => {
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [comments, setComments] = useState(null);
+  const [favorites, setFavorites] = useState(null);
+  const [user, setUser] = useState(null);
+  const token = localStorage.getItem("token");
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const data = await getProfileData(token);
+        console.log(data);
+        setComments(data.comments || []);
+        setFavorites(data.favorites || []);
+        setUser(data.user || {});
+      } catch (error) {
+        console.error("Error fetching profile data:", error);
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [token]);
+
+  if (loading) {
+    return (
+      <div className="h-screen flex justify-center items-center">
+        <p>Loading...</p>
+      </div>
+    );
+  }
+
+  if (!token) {
+    return (
+      <div className="h-screen flex justify-center items-center">
+        Not logged in! Go away :3
+      </div>
+    );
+  }
+
   return (
-    <main class="p-48 h-screen">
-      <div class="flex flex-col items-center justify-center -mt-28 ">
-        <img src={images.logoFNBG} class="h-64 mx-auto" />
-        <h1 class="text-7xl mx-auto -mt-4">404</h1>
-        <p class="text-2xl mt-6 ">This page could not be found</p>
-        <div class="mt-6">
-          <BackButton />
+    <main className="flex flex-col mt-20 items-center mb-20 h-screen">
+      <div className="w-5/6">
+        <div>
+          <div className="flex flex-row mb-10 justify-between">
+            <BackButton />
+            <h1 className="text-3xl font-bold">{user.name}'s comments</h1>
+          </div>
+          <div className="flex space-x-4">
+            <div className="w-full flex flex-row gap-12">
+              {comments.length > 0 ? (
+                comments.slice(0, 3).map((comment) => (
+                  <div key={comment.id} className="flex flex-col mb-4 w-2/3">
+                    <CommentCard comment={comment} />
+                  </div>
+                ))
+              ) : (
+                <p className="text-gray-500 text-center">No comments yet!</p>
+              )}
+            </div>
+          </div>
         </div>
       </div>
     </main>
   );
-}
+};
 
 export default CommentsPage;

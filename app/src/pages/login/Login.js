@@ -36,8 +36,7 @@ const Login = () => {
         if (response.status === 422) {
           setErrors(responseData.errors);
         } else {
-          const errorMessage = await response.json();
-          setError(errorMessage.error);
+          setError(responseData.error);
           return;
         }
       } else {
@@ -100,7 +99,9 @@ const Login = () => {
                 {errors.password[0]}
               </div>
             )}
-            {error && <p style={{ color: 'red' }}>{error}</p>}
+            {error &&   <div className="text-red-400 -mt-5 mb-4">
+                {error}
+              </div>}
             <div className="flex justify-between items-center mb-4">
               <label className="flex items-center">
                 <input type="checkbox" name="remember" className="mr-2" />

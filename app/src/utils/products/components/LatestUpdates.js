@@ -22,7 +22,7 @@ const LatestUpdates = ({ product }) => {
   }));
   const siteName = product.site?.site_name || "Unknown";
 
-  const latestPrices = prices.reverse();
+  const latestPrices = prices.reverse().slice(0, 10);
 
   return (
     <div className="w-1/4">

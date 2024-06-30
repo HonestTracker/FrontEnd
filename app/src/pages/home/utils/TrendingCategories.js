@@ -10,7 +10,6 @@ import { images } from "../../../utils/constants/images/Images";
  * @returns {JSX.Element} The rendered Trending Categories section.
  */
 const TrendingCategories = ({ categories }) => {
-  console.log(categories);
   return (
     <section className="mb-8">
       <h2 className="text-2xl font-semibold mb-4">Trending Categories</h2>

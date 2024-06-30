@@ -18,6 +18,7 @@ function ProductDetails() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [selectedData, setSelectedData] = useState("1M");
+  const [similarProducts, setSimilarProducts] = useState("");
 
   const navigate = useNavigate();
 
@@ -32,6 +33,7 @@ function ProductDetails() {
         }
         const data = await response.json();
         setProduct(data.product);
+        setSimilarProducts(data.similar_products);
       } catch (error) {
         console.error("Error fetching product:", error);
         setError("Product not found");
@@ -83,8 +85,8 @@ function ProductDetails() {
             <LatestUpdates product={product} />
           </div>
           <div className="flex flex-row justify-between mt-20">
-            <CommentsSection />
-            <SimilarProducts product={product} />
+            <CommentsSection product={product} />
+            <SimilarProducts similarProducts={similarProducts} />
           </div>
         </div>
       </div>

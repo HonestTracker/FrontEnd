@@ -6,12 +6,10 @@ export const getHomeData = async () => {
 				"Content-Type": "application/json",
 			},
 		})
-		console.log("Response received:", response)
 		if (!response.ok) {
 			throw new Error(`HTTP error! status: ${response.status}`)
 		}
 		const data = await response.json()
-		console.log("Data received!", data)
 		return data
 	} catch (error) {
 		console.error("Error fetching data:", error)

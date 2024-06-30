@@ -35,7 +35,6 @@ function ProductOverview() {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
-      console.log('firstfetch', data.products)
       setProducts(data.products);
       setCategories(data.categories);
     } catch (error) {

@@ -13,7 +13,6 @@ const Register = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      console.log(formData);
       const response = await fetch(
         "https://api.honesttracker.nl/api/auth/register",
         {

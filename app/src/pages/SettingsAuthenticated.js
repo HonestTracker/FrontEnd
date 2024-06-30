@@ -34,9 +34,6 @@ function SettingsAuthenticated() {
       console.error("No token found");
       return;
     }
-    console.log("Old Password:", oldPassword);
-    console.log("New Password:", password);
-    console.log("Repeat Password:", repeatPassword);
     try {
       const response = await fetch(
         "https://api.honesttracker.nl/api/auth/edit/password",
@@ -116,7 +113,6 @@ function SettingsAuthenticated() {
       } else {
         const responseData = await response.json();
         console.log("User edit successful");
-        console.log("Response data:", responseData);
 
         // Update localStorage with the new user data if needed
         if (responseData) {

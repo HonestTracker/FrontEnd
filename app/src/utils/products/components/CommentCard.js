@@ -46,6 +46,7 @@ const CommentCard = ({ comment }) => {
           {formatDateTime(comment.created_at)}
         </p>
       </div>
+      <icons.Trash className="h-6 w-6 cursor-pointer" />
     </div>
   );
 };

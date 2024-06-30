@@ -15,6 +15,7 @@ import { ReactComponent as Link } from "../../../assets/icons/link.svg";
 import { ReactComponent as Send } from "../../../assets/icons/send.svg";
 import { ReactComponent as AddressCard } from "../../../assets/icons/address-card.svg";
 import { ReactComponent as DoorOpen } from "../../../assets/icons/door-open.svg";
+import { ReactComponent as Trash } from "../../../assets/icons/trash.svg";
 
 export const icons = {
   Amazon: AmazonIcon,
@@ -34,4 +35,5 @@ export const icons = {
   Send: Send,
   AddressCard: AddressCard,
   DoorOpen: DoorOpen,
+  Trash: Trash,
 };

@@ -37,7 +37,7 @@ const FeaturedProductCard = ({ product, formatPrice, getIconComponent }) => {
   const handleVisitWebpageClick = (event) => {
     event.stopPropagation();
   };
-
+  console.log(product)
   return (
     <section
       className="bg-white flex rounded-lg mb-12"
@@ -47,11 +47,11 @@ const FeaturedProductCard = ({ product, formatPrice, getIconComponent }) => {
       }}
     >
       <div className="flex">
-        <div onClick={navigateToDetails}>
+        <div onClick={navigateToDetails} className="flex items-center justify-center h-full">
           <img
-            src={images.placeholder}
+            src={product.picture_url || images.placeholder}
             alt={product.name || "Placeholder"}
-            className="w-72 h-72 rounded-lg"
+            className="max-w-72 max-h-72 object-contain rounded-lg p-4"
           />
         </div>
         <div className="w-2/3 flex flex-col justify-between p-6">
@@ -67,20 +67,18 @@ const FeaturedProductCard = ({ product, formatPrice, getIconComponent }) => {
               <div className="mr-4">
                 <p className="text-gray-500">Current price:</p>
                 <p
-                  className={`text-2xl text-bold ${
-                    product.change_percentage > 0
+                  className={`text-2xl text-bold ${product.change_percentage > 0
                       ? "text-red-500"
                       : "text-green-500"
-                  }`}
+                    }`}
                 >
                   {formatPrice(product.current_price)}
                 </p>
                 <span
-                  className={`text-sm ${
-                    product.change_percentage > 0
+                  className={`text-sm ${product.change_percentage > 0
                       ? "text-red-500"
                       : "text-green-500"
-                  }`}
+                    }`}
                 >
                   {product.change_percentage > 0 ? "+" : "-"}
                   {Math.abs(product.change_percentage)}%

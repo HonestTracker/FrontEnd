@@ -5,23 +5,12 @@ import { formatDateTime } from "../utils/Formatters";
 import { useNavigate } from "react-router-dom";
 
 // THIS SHIT IS HARD CODED RN
-const CommentsSection = ( product ) => {
+const CommentsSection = ({ product, comments }) => {
   const navigate = useNavigate();
   const [message, setMessage] = useState("");
   const [rating, setRating] = useState(0);
   const [hovered, setHovered] = useState(0);
   const [errors, setErrors] = useState({});
-
-  const comments = [
-    {
-      id: 1,
-      user: "Jur",
-      date: "2024-06-28T15:30:00Z",
-      message:
-        "eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-      rating: 4,
-    },
-  ];
 
   const handleMessageChange = (e) => setMessage(e.target.value);
 
@@ -67,9 +56,13 @@ const CommentsSection = ( product ) => {
 
   const handleHover = (star) => setHovered(star);
   const loggedUser = JSON.parse(localStorage.getItem('user'));
-  const profilePictureUrl = loggedUser.picture_url.startsWith("/")
-  ? `https://api.honesttracker.nl${loggedUser.picture_url}`
-  : images.placeholder;
+  let profilePictureUrl = images.placeholder;
+  
+  if (loggedUser) {
+    profilePictureUrl = loggedUser.picture_url.startsWith("/")
+      ? `https://api.honesttracker.nl${loggedUser.picture_url}`
+      : images.placeholder;
+  }
   return (
     <div className="w-1/2">
       <h1 className="text-2xl font-semibold mb-4">Comments</h1>
@@ -133,45 +126,54 @@ const CommentsSection = ( product ) => {
       </>
     )}
 
-      <div
+<div
         className="bg-white rounded-lg p-6 mb-4"
         style={{
           boxShadow:
             "0 -2px 5px rgba(0, 0, 0, 0.1), 0 2px 3px rgba(0, 0, 0, 0.1)",
         }}
       >
-        {comments.map((comment) => (
-          <div key={comment.id} className="flex flex-col mb-4">
-            <div className="flex justify-between mb-2">
-              <div className="flex items-center gap-2 pl-4">
-                <img
-                  src={images.placeholder}
-                  className="h-14 w-14 rounded-md"
-                  alt="Footer Logo"
-                />
-                <p className="text-xl font-bold text-gray-500">
-                  {comment.user}
+           {comments.length > 0 ? (
+          comments.map((comment) => {
+            const commentProfilePictureUrl = comment.user.picture_url.startsWith("/")
+              ? `https://api.honesttracker.nl${comment.user.picture_url}`
+              : images.placeholder;
+            return (
+              <div key={comment.id} className="flex flex-col mb-4">
+                <div className="flex justify-between mb-2">
+                  <div className="flex items-center gap-2 pl-4">
+                    <img
+                      src={commentProfilePictureUrl}
+                      className="h-14 w-14 rounded-md"
+                      alt="Footer Logo"
+                    />
+                    <p className="text-xl font-bold text-gray-500">
+                      {comment.user.name}
+                    </p>
+                  </div>
+                  <div className="flex">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <icons.Star
+                        key={star}
+                        className={`h-10 w-10 ${
+                          star <= comment.stars ? "fill-yellow-400" : ""
+                        }`}
+                      />
+                    ))}
+                  </div>
+                </div>
+                <p className="font-semibold text-gray-500 pt-4 overflow-hidden">
+                  {comment.text}
+                </p>
+                <p className="text-sm text-gray-400">
+                  {formatDateTime(comment.created_at)}
                 </p>
               </div>
-              <div className="flex">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <icons.Star
-                    key={star}
-                    className={`h-10 w-10 ${
-                      star <= comment.rating ? "fill-yellow-400" : ""
-                    }`}
-                  />
-                ))}
-              </div>
-            </div>
-            <p className="font-semibold text-gray-500 pt-4 overflow-hidden">
-              {comment.message}
-            </p>
-            <p className="text-sm text-gray-400">
-              {formatDateTime(comment.date)}
-            </p>
-          </div>
-        ))}
+            );
+          })
+        ) : (
+          <p className="text-gray-500 text-center">No comments yet!</p>
+        )}
       </div>
     </div>
   );

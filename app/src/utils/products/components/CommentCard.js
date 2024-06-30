@@ -17,7 +17,7 @@ const comments = [
 
 // comment card
 // TODO: pass in the product and loop over its comments
-const CommentCard = ({ product }) => {
+const CommentCard = ({ comments }) => {
   return (
     <div
       className="bg-white rounded-lg p-6 mb-4"

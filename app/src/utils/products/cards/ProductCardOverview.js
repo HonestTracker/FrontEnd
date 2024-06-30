@@ -53,9 +53,9 @@ function ProductCardOverview({ product, getIconComponent, formatPrice }) {
       onClick={navigateToDetails}
     >
       <img
-        src={images.pikachu}
+        src={product.picture_url || images.placeholder}
         alt={product.name}
-        className="w-64 h-64 object-cover rounded-lg"
+        className="max-w-64 max-h-64 object-contain rounded-lg p-4"
       />
       <div className="ml-4 w-full flex flex-col justify-between">
         <div className="text-xl font-semibold text-black mt-2 flex flex-row items-start justify-between p-2">

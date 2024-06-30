@@ -21,11 +21,11 @@ const ProductCardDetails = ({ product }) => {
       }}
     >
       <div>
-        <img
-          src={images.pikachu}
-          alt={product.name || "Placeholder"}
-          className="w-72 h-72 rounded-lg"
-        />
+      <img
+            src={product.picture_url || images.placeholder}
+            alt={product.name || "Placeholder"}
+            className="max-w-80 max-h-80 object-contain rounded-lg p-4"
+          />
       </div>
       <div className="w-2/3 flex flex-col justify-between p-6">
         <div>

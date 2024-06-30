@@ -23,7 +23,11 @@ const SimilarProducts = ({ similarProducts }) => {
               "0 -2px 5px rgba(0, 0, 0, 0.1), 0 2px 3px rgba(0, 0, 0, 0.1)",
           }}
         >
-          <img src={images.pikachu} alt="Pokemon Shoes" className="w-36 h-full" />
+          <img
+            src={product.picture_url || images.placeholder}
+            alt={product.name || "Placeholder"}
+            className="max-w-32 max-h-32 object-contain rounded-lg p-4"
+          />
           <div>
             <div className="flex justify-center h-full">
               <div className="flex flex-col justify-center ml-4">

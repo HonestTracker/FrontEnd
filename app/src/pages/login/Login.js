@@ -9,6 +9,7 @@ const Login = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
+  const [error, setError] = useState('');
 
   // handle the login form submission and store the token in local storage
   const handleLogin = async (e) => {
@@ -35,7 +36,9 @@ const Login = () => {
         if (response.status === 422) {
           setErrors(responseData.errors);
         } else {
-          throw new Error(responseData.message || "An error occurred.");
+          const errorMessage = await response.json();
+          setError(errorMessage.error);
+          return;
         }
       } else {
         const { access_token: accessToken, user } = responseData;
@@ -97,6 +100,7 @@ const Login = () => {
                 {errors.password[0]}
               </div>
             )}
+            {error && <p style={{ color: 'red' }}>{error}</p>}
             <div className="flex justify-between items-center mb-4">
               <label className="flex items-center">
                 <input type="checkbox" name="remember" className="mr-2" />

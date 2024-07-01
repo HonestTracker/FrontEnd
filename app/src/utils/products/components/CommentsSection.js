@@ -100,8 +100,9 @@ const CommentsSection = ({ product, comments }) => {
           </div>
           <form onSubmit={handleMessageSend}>
             <div className="bg-gray-100 mt-4 p-4 flex items-start rounded-md">
+            <icons.Pencil class="w-8 h-8 fill-gray-400 ml-2 "/>
               <textarea
-                className="flex-1 bg-transparent border-none outline-none text-gray-500 placeholder-gray-500 resize-none"
+                className="flex-1 pl-2 bg-transparent border-none outline-none text-gray-500 placeholder-gray-500 resize-none"
                 placeholder="Write a comment..."
                 rows="3"
                 value={message}

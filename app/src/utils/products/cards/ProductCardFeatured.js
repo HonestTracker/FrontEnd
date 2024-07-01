@@ -66,7 +66,7 @@ const FeaturedProductCard = ({ product, formatPrice, getIconComponent }) => {
 					"0 -2px 5px rgba(0, 0, 0, 0.1), 0 2px 3px rgba(0, 0, 0, 0.1)",
 			}}
 			onClick={navigateToDetails}
-		>
+			>
 			<div className="flex">
 				<div className="flex items-center justify-center h-full">
 					<img

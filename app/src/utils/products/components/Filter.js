@@ -5,7 +5,8 @@ function Filter({ categories, handleFilter }) {
 
   // Load previously selected categories from local storage on component mount
   useEffect(() => {
-    const storedSelectedCategories = JSON.parse(localStorage.getItem('selectedCategories')) || [];
+    const storedSelectedCategories =
+      JSON.parse(localStorage.getItem("selectedCategories")) || [];
     setSelectedCategories(storedSelectedCategories);
   }, []);
 
@@ -18,9 +19,11 @@ function Filter({ categories, handleFilter }) {
     );
 
     if (isSelected) {
-      setSelectedCategories(selectedCategories.filter(
-        (cat) => !(cat.category_id === categoryId && cat.site_id === siteId)
-      ));
+      setSelectedCategories(
+        selectedCategories.filter(
+          (cat) => !(cat.category_id === categoryId && cat.site_id === siteId)
+        )
+      );
     } else {
       setSelectedCategories([...selectedCategories, selectedCategory]);
     }
@@ -28,7 +31,10 @@ function Filter({ categories, handleFilter }) {
 
   const applyFilters = () => {
     // Save selected categories to local storage
-    localStorage.setItem('selectedCategories', JSON.stringify(selectedCategories));
+    localStorage.setItem(
+      "selectedCategories",
+      JSON.stringify(selectedCategories)
+    );
     handleFilter(selectedCategories);
   };
 
@@ -52,7 +58,8 @@ function Filter({ categories, handleFilter }) {
                   name={`${category.id}-${site.id}`}
                   className="mr-2"
                   checked={selectedCategories.some(
-                    (cat) => cat.category_id === category.id && cat.site_id === site.id
+                    (cat) =>
+                      cat.category_id === category.id && cat.site_id === site.id
                   )}
                   onChange={() => handleCheckboxChange(category.id, site.id)}
                 />
@@ -64,7 +71,7 @@ function Filter({ categories, handleFilter }) {
           </div>
         ))}
         <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
+          className="bg-[#20C1AA] hover:text-gray-200 text-white font-bold py-2 px-4 rounded mt-4"
           onClick={applyFilters}
         >
           Apply Filters

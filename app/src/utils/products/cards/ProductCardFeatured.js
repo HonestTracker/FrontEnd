@@ -67,95 +67,89 @@ const FeaturedProductCard = ({ product, formatPrice, getIconComponent }) => {
 			}}
 			onClick={navigateToDetails}
 			>
-			<div className="flex">
-				<div className="flex items-center justify-center h-full">
-					<img
-						src={product.picture_url || images.placeholder}
-						alt={product.name || "Placeholder"}
-						className="max-w-72 max-h-72 object-contain rounded-lg p-4"
-					/>
-				</div>
-				<div className="w-2/3 flex flex-col justify-between p-6">
-					<div>
-						<h3 className="text-xl font-black">{product.name}</h3>
-						<div className="flex items-center space-x-2">
-							<icons.Tag style={{ width: "20px", height: "20px" }} />
-							<p className="text-gray-500">
-								{product.site?.category?.name || "No category"}
-							</p>
-						</div>
-						<div className="flex items-start mt-6 space-x-4">
-							<div className="mr-4">
-								<p className="text-gray-500">Current price:</p>
-								<p
-									className={`text-2xl text-bold ${
-										product.change_percentage > 0
-											? "text-red-500"
-											: "text-green-500"
-									}`}
-								>
-									{formatPrice(product.current_price)}
-								</p>
-								<span
-									className={`text-sm ${
-										product.change_percentage > 0
-											? "text-red-500"
-											: "text-green-500"
-									}`}
-								>
-									{product.change_percentage > 0 ? "+" : "-"}
-									{Math.abs(product.change_percentage)}%
-								</span>
-							</div>
-							<div className="flex flex-col">
-								<p className="text-gray-500">Current cheapest website:</p>
-								<div className="flex items-center">
-									<div className="mr-2">
-										{getIconComponent(product.site?.site_name) &&
-											React.createElement(
-												getIconComponent(product.site.site_name),
-												{
-													style: { width: "20px", height: "20px" },
-												}
-											)}
-									</div>
-									<p className="text-gray-500">
-										{product.site?.site_name || "Unknown"}
-									</p>
-								</div>
-							</div>
-						</div>
-					</div>
+			<div className="flex flex-col md:flex-row">
+  <div className="flex items-center justify-center h-full md:w-1/3">
+    <img
+      src={product.picture_url || images.placeholder}
+      alt={product.name || "Placeholder"}
+      className="max-w-full md:max-w-72 max-h-72 object-contain rounded-lg p-4"
+    />
+  </div>
+  <div className="w-full md:w-2/3 flex flex-col justify-between p-4 md:p-6">
+    <div>
+      <h3 className="text-lg md:text-xl font-black">{product.name}</h3>
+      <div className="flex items-center space-x-2">
+        <icons.Tag className="w-5 h-5" />
+        <p className="text-gray-500">
+          {product.site?.category?.name || "No category"}
+        </p>
+      </div>
+      <div className="flex flex-col md:flex-row items-start mt-6 space-y-4 md:space-y-0 md:space-x-4">
+        <div className="mr-4">
+          <p className="text-gray-500">Current price:</p>
+          <p
+            className={`text-2xl font-bold ${
+              product.change_percentage > 0 ? "text-red-500" : "text-green-500"
+            }`}
+          >
+            {formatPrice(product.current_price)}
+          </p>
+          <span
+            className={`text-sm ${
+              product.change_percentage > 0 ? "text-red-500" : "text-green-500"
+            }`}
+          >
+            {product.change_percentage > 0 ? "+" : "-"}
+            {Math.abs(product.change_percentage)}%
+          </span>
+        </div>
+        <div className="flex flex-col">
+          <p className="text-gray-500">Current cheapest website:</p>
+          <div className="flex items-center">
+            <div className="mr-2">
+              {getIconComponent(product.site?.site_name) &&
+                React.createElement(getIconComponent(product.site.site_name), {
+                  className: "w-5 h-5",
+                })}
+            </div>
+            <p className="text-gray-500">
+              {product.site?.site_name || "Unknown"}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
 
-					<div className="mt-4 flex items-center space-x-2 gap-4">
-						<div
-							className="flex flex-row items-center gap-1 cursor-pointer"
-							onClick={handleFavouriteClick}
-						>
-							<icons.Heart style={{ width: "20px", height: "20px" }} />
-							<a href="#" className="text-black">
-								Favourite
-							</a>
-						</div>
-						<div
-							className="flex flex-row items-center gap-1 cursor-pointer"
-							onClick={handleShareClick}
-						>
-							<icons.Link style={{ width: "20px", height: "20px" }} />
-							<a href="#" className="text-black">
-								Share
-							</a>
-						</div>
-						<div
-							className="flex flex-row items-center gap-1 cursor-pointer"
-							onClick={handleVisitWebpageClick}
-						>
-							<icons.Plane style={{ width: "20px", height: "20px" }} />
-							<a className="text-black">Visit webpage</a>
-						</div>
-					</div>
-				</div>
-			</div>
+    <div className="mt-4 flex flex-wrap items-center space-x-2 gap-4">
+      <div
+        className="flex items-center gap-1 cursor-pointer"
+        onClick={handleFavouriteClick}
+      >
+        <icons.Heart className="w-5 h-5" />
+        <a href="#" className="text-black">
+          Favourite
+        </a>
+      </div>
+      <div
+        className="flex items-center gap-1 cursor-pointer"
+        onClick={handleShareClick}
+      >
+        <icons.Link className="w-5 h-5" />
+        <a href="#" className="text-black">
+          Share
+        </a>
+      </div>
+      <div
+        className="flex items-center gap-1 cursor-pointer"
+        onClick={handleVisitWebpageClick}
+      >
+        <icons.Plane className="w-5 h-5" />
+        <a className="text-black">Visit webpage</a>
+      </div>
+    </div>
+  </div>
+</div>
+
 		</section>
 	)
 }

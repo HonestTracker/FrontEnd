@@ -38,8 +38,8 @@ function About() {
     );
   }
   return (
-    <main class="p-48 flex flex-col justify-center h-screen">
-      <section class="flex-column justify-between rounded-lg  bg-white border-2 border-gray-200 shadow-md -mt-28">
+    <main class="sm:p-48  sm:mt-2 mt-48 flex flex-col sm:justify-center h-screen">
+      <section class="flex-column justify-between rounded-lg  bg-white border-2 border-gray-200 shadow-md -mt-36">
         <div>
           <img src={images.logoFNBG} alt="Logo" class="h-40 mx-auto"></img>
         </div>
@@ -57,7 +57,7 @@ function About() {
         Our Statistics
       </h2>
       <section>
-        <div class="grid grid-cols-3 space-x-6 font-bold">
+        <div class="grid sm:grid-cols-3 w-full sm:items-center items-start  sm:space-x-6   font-bold">
           <div className="bg-white border-2 border-gray-200 shadow-md rounded-lg py-5  flex flex-col items-center justify-center text-customGray ">
             <h3 className="text-2xl  ">{productCount}</h3>
             <p className="">PRODUCTS TRACKED</p>
@@ -67,7 +67,7 @@ function About() {
             <p className="">REVIEWS POSTED</p>
           </div>
           <div className="bg-white border-2 border-gray-200 shadow-md rounded-lg py-5 flex flex-col items-center justify-center text-customGray ">
-            <h3 className="text-2xl ">{userCount}</h3>
+            <h3 className="sm:text-2xl text-xl ">{userCount}</h3>
             <p className="">USERS REGISTERED</p>
           </div>
         </div>

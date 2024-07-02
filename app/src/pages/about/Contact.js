@@ -34,11 +34,11 @@ const Contact = () => {
 	}
 
 	return (
-		<div className=" flex flex-col justify-center p-20">
+		<div className=" flex flex-col p-8 sm:p-20">
 			{/* Main Content Section */}
-			<main className="py-4 flex justify-center items-center">
+			<main className="py-4 flex sm:justify-center justify-start ">
 				{/* Contact Form Container */}
-				<div className="bg-white rounded-lg px-4 py-4 shadow-lg w-2/4 ">
+				<div className="bg-white rounded-lg px-4 py-4 shadow-lg w-full sm:w-2/4 ">
 					{/* Contact Logo Image */}
 					<img
 						src={images.logoFNBG}

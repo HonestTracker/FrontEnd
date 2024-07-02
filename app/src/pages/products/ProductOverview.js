@@ -142,7 +142,7 @@ function ProductOverview() {
       </div>
       <div className="flex">
         <Filter categories={categories} handleFilter={handleFilter} />
-        <div className="w-4/5 ml-4">
+        <div className="md:w-5/6 ml-4">
           <header className="mb-6">
             {displaySearchQuery && (
               <h1 className="text-2xl font-bold">

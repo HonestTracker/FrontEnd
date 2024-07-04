@@ -70,7 +70,7 @@ const PriceHistoryGraph = ({ product, selectedData, setSelectedData }) => {
   const changePercentage = product.change_percentage;
 
   return (
-    <div className="w-2/3">
+    <div className="w-full lg:w-2/3">
       <h1 className="text-2xl font-semibold mb-4">Price history</h1>
       <div
         className="bg-white rounded-lg p-6"

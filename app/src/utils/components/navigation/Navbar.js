@@ -3,6 +3,8 @@ import { images } from "../../constants/images/Images";
 import { icons } from "../../constants/images/Icons";
 import { useLocation, useNavigate } from "react-router-dom";
 import CustomLink from "./CustomLink";
+import Banner from "../Banner";
+
 
 /**
  * Represents a navigation bar component.
@@ -205,7 +207,9 @@ function Navbar() {
   };
 
   return (
-    <nav className="bg-customTeal p-4 shadow-lg">
+    
+    <nav className="bg-customTeal p-4  shadow-lg relative z-10">
+      
       <div className="container mx-auto flex items-center justify-between">
         <div className="flex items-center">
           <img

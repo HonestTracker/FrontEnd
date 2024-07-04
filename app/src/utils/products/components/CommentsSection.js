@@ -63,7 +63,7 @@ const CommentsSection = ({ product, comments }) => {
   }
 
   return (
-    <div className="w-1/2">
+    <div className="lg:w-1/2 w-full">
       <h1 className="text-2xl font-semibold mb-4">Comments</h1>
       {loggedUser && (
         <div

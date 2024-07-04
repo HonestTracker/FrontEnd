@@ -39,7 +39,7 @@ function Filter({ categories, handleFilter }) {
   };
 
   return (
-    <div className="w-1/5 hidden md:block p-4 border-r border-gray-300">
+    <div className="sm:w-full sm:-ml-6 md:w-1/5 hidden  md:block p-4 border-r border-gray-300">
       <h3 className="text-lg font-semibold mb-4">Filters</h3>
       <div className="mb-6 p-4 border border-gray-300 shadow-md rounded-lg">
         <h4 className="text-gray-500 font-semibold mb-2 pb-1 border-b border-gray-500">

@@ -47,7 +47,7 @@ const ProductCardDetails = ({ product }) => {
 
 	return (
 		<div
-			className="bg-white flex rounded-lg mb-12"
+			className="bg-white flex lg:flex-row flex-col  rounded-lg mb-12"
 			style={{
 				boxShadow:
 					"0 -2px 5px rgba(0, 0, 0, 0.1), 0 2px 3px rgba(0, 0, 0, 0.1)",
@@ -111,7 +111,7 @@ const ProductCardDetails = ({ product }) => {
 						</div>
 					</div>
 				</div>
-				<div className="mt-4 flex items-center space-x-2 gap-4">
+				<div className="mt-4 md:flex space-y-2 md:space-y-0  items-center space-x-0 gap-4">
 					<div
 						className="flex flex-row items-center gap-1 cursor-pointer"
 						onClick={handleFavouriteClick}
@@ -125,7 +125,7 @@ const ProductCardDetails = ({ product }) => {
 						</a>
 					</div>
 					<div
-						className="flex flex-row items-center gap-1 cursor-pointer"
+						className="flex flex-row items-center gap-1  cursor-pointer"
 						onClick={handleShareClick}
 					>
 						<icons.Link style={{ width: "20px", height: "20px" }} />

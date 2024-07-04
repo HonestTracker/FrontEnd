@@ -38,7 +38,7 @@ function About() {
     );
   }
   return (
-    <main class="sm:p-48  sm:mt-2 mt-48 flex flex-col sm:justify-center h-screen">
+    <main class="lg:p-48 md:p-32 sm:p-16  sm:mt-2 mt-48 flex flex-col sm:justify-center h-screen">
       <section class="flex-column justify-between rounded-lg  bg-white border-2 border-gray-200 shadow-md -mt-36">
         <div>
           <img src={images.logoFNBG} alt="Logo" class="h-40 mx-auto"></img>

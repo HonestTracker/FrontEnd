@@ -119,8 +119,8 @@ function ProductOverview() {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div className="container mx-auto p-4">
-      <div className="flex items-center mb-8 mt-12 ml-4 justify-between">
+    <div className="container mx-auto  sm:p-4">
+      <div className="flex items-center mb-8 mt-12 p-2 sm:ml-4 justify-between">
         <div className="flex normal h-10" style={{ width: "14rem" }}>
           <BackButton />
         </div>
@@ -128,7 +128,7 @@ function ProductOverview() {
           <input
             type="text"
             placeholder="Search"
-            className="p-2 ml-12 border border-gray-300 rounded w-full"
+            className="p-2 ml-6 border border-gray-300 rounded w-full"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
@@ -140,16 +140,16 @@ function ProductOverview() {
           </button>
         </div>
       </div>
-      <div className="flex">
+      <div className="flex ">
         <Filter categories={categories} handleFilter={handleFilter} />
-        <div className="md:w-5/6 ml-4">
+        <div className="md:w-5/6 ">
           <header className="mb-6">
             {displaySearchQuery && (
               <h1 className="text-2xl font-bold">
                 Showing results for: "{displaySearchQuery}"
               </h1>
             )}
-            <p className="text-gray-500">{products.length} products found</p>
+            <p className="text-gray-500 ml-2">{products.length} products found</p>
           </header>
           <div className="flex flex-wrap justify-around">
             {currentProducts.map((product, i) => (

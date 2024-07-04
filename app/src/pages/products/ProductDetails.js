@@ -72,21 +72,23 @@ function ProductDetails() {
   return (
     <main className="flex flex-col items-center mt-20 mb-20">
       <div className="w-5/6">
-        <div className="flex flex-row mb-10 justify-between">
+        <div className="flex flex-row mb-10 items-center  justify-between">
           <BackButton />
-          <h1 className="text-3xl font-bold">Product overview</h1>
+          <h1 className="sm:text-3xl text-2xl text-right font-bold">Product overview</h1>
         </div>
         <div className="flex flex-col">
+          
           <ProductCardDetails product={product} />
-          <div className="flex flex-row justify-between">
+          <div className="flex flex-col lg:flex-row justify-between">
             <PriceHistoryGraph
               product={product}
               selectedData={selectedData}
               setSelectedData={setSelectedData}
             />
             <LatestUpdates product={product} />
-          </div>
-          <div className="flex flex-row justify-between mt-20">
+            </div>
+          
+          <div className="flex flex-col lg:flex-row justify-between mt-20">
             <CommentsSection product={product} comments={comments} />
             <SimilarProducts similarProducts={similarProducts} />
           </div>

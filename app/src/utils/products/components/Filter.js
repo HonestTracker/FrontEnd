@@ -39,9 +39,15 @@ function Filter({ categories, handleFilter }) {
   };
 
   return (
-    <div className="sm:w-full sm:-ml-6 md:w-1/5 hidden  md:block p-4 border-r border-gray-300">
-      <h3 className="text-lg font-semibold mb-4">Filters</h3>
-      <div className="mb-6 p-4 border border-gray-300 shadow-md rounded-lg">
+    <div className="sm:w-full sm:-ml-6 md:w-1/5 hidden pr-4 md:block border-r border-gray-300 mr-4">
+      <h3 className="text-lg font-semibold mb-6">Filters</h3>
+      <div
+        className="mb-6 p-4 rounded-lg"
+        style={{
+          boxShadow:
+            "0 -2px 5px rgba(0, 0, 0, 0.1), 0 2px 3px rgba(0, 0, 0, 0.1)",
+        }}
+      >
         <h4 className="text-gray-500 font-semibold mb-2 pb-1 border-b border-gray-500">
           Categories
         </h4>

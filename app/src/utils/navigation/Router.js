@@ -18,8 +18,13 @@ import ProfilePage from "../../pages/account/ProfilePage";
 import FavouriteProducts from "../../pages/account/FavouritesPage";
 import NotFoundPage from "../../pages/utils/404Page";
 
+// Toast
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const AppRouter = () => (
   <Router>
+    <ToastContainer />
     <Navbar />
     <Routes>
       <Route path="/" element={<Home />} />

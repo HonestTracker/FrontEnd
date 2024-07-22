@@ -3,6 +3,8 @@ import { icons } from "../../constants/images/Icons";
 import { images } from "../../constants/images/Images";
 import { useNavigate } from "react-router-dom";
 import { addToFavorites } from "../../../backend/add_favorite";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 /**
  * Renders a featured product card.
@@ -29,13 +31,21 @@ const FeaturedProductCard = ({ product, formatPrice, getIconComponent }) => {
   const token = localStorage.getItem("token");
   const handleFavouriteClick = async (event) => {
     event.stopPropagation(event);
+    event.preventDefault();
     try {
       // Call your API function to add to favorites
       const data = await addToFavorites(token, product.id); // Assuming addToFavorites sends a POST request with product ID
       console.log(`Added product ${product.id} to favorites`);
+      toast.success("Link copied to clipboard!", {
+        position: "top-center",
+        icon: "fukyou",
+      });
       // Optionally, you can update state or show a notification of success
     } catch (error) {
       console.error("Error adding to favorites:", error);
+      toast.error("" + error, {
+        position: "top-center",
+      });
       // Handle error scenario
     }
   };
@@ -43,13 +53,18 @@ const FeaturedProductCard = ({ product, formatPrice, getIconComponent }) => {
   // HANDLE SHARE CLICK
   const handleShareClick = (event) => {
     event.stopPropagation();
-    event.stopPropagation();
+    event.preventDefault();
     navigator.clipboard
-      .writeText(window.location + "/product/" + product.id)
+      .writeText(window.location + "product/" + product.id)
 
       .catch((err) => {
-        console.error("Failed to copy: ", err);
+        toast.error("" + err, {
+          position: "top-center",
+        });
       });
+    toast.success("Link copied to clipboard!", {
+      position: "top-center",
+    });
   };
 
   // HANDLE VISIT WEBPAGE CLICK

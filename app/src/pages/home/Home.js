@@ -24,6 +24,7 @@ function Home() {
 	const [latestUpdatedProducts, setLatestUpdatedProducts] = useState([])
 	const [error, setError] = useState(null)
 
+	
 	// load a ton of data
 	useEffect(() => {
 		const fetchData = async () => {

@@ -9,11 +9,11 @@ import CustomLink from "./CustomLink";
  */
 const Footer = () => {
   return (
-    <footer className="bg-teal-500 p-5">
-      <div className="flex justify-between items-center max-w-5xl mx-auto">
+    <footer className="bg-teal-500 p-5   w-full ">
+      <div className="sm:flex justify-between items-center max-w-5xl mx-auto">
         <div className="flex items-center">
           <div className="mr-5">
-            <img src={images.logoFNBG} alt="Logo" className="h-40 w-40" />
+            <img src={images.logoFNBG} alt="Logo" className="h-24 sm:h-40 w-40" />
           </div>
           <div className="flex flex-col justify-center">
             <p className="text-white text-lg">
@@ -27,7 +27,7 @@ const Footer = () => {
             </p>
           </div>
         </div>
-        <div className="text-right">
+        <div className="text-center  sm:text-right">
           <p className="text-white text-lg">
             Terms and conditions
             <br />

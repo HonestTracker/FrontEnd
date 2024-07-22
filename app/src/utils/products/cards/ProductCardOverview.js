@@ -63,15 +63,16 @@ function ProductCardOverview({ product, getIconComponent, formatPrice }) {
 				marginBottom: "1rem",
 				background: cardBackground,
 				display: "flex",
-				width: "100%",
+				//width: "100%",
 				cursor: "pointer",
 			}}
 			onClick={navigateToDetails}
+			class="flex-col sm:flex-row  sm:w-full"
 		>
 			<img
 				src={product.picture_url || images.placeholder}
 				alt={product.name}
-				className="max-w-64 max-h-64 object-contain rounded-lg p-4"
+				className="max-w-64 max-h-64 block sm:object-contain items-center rounded-lg p-4"
 			/>
 			<div className="ml-4 w-full flex flex-col justify-between">
 				<div className="text-xl font-semibold text-black mt-2 flex flex-row items-start justify-between p-2">
@@ -84,7 +85,7 @@ function ProductCardOverview({ product, getIconComponent, formatPrice }) {
 							{product.site?.site_name || "Unknown"}
 						</p>
 					</div>
-					<div className="flex flex-row gap-2 px-4">
+					<div className="flex flex-row gap-2 pr-96 sm:px-4">
 						<icons.Heart
 							alt="Heart"
 							height={30}
@@ -101,7 +102,7 @@ function ProductCardOverview({ product, getIconComponent, formatPrice }) {
 					</div>
 				</div>
 				<div className="flex items-start mt-2 flex flex-col p-2">
-					<p className="text-2xl font-bold">{product.name}</p>
+					<p className=" text-xl sm:text-2xl font-bold">{product.name}</p>
 					<div className="flex flex-row gap-2">
 						<p style={{ color: priceColor }} className="text-xl">
 							{formatPrice(product.current_price)}

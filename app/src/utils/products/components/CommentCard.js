@@ -49,16 +49,16 @@ const CommentCard = ({ comment }) => {
             {[1, 2, 3, 4, 5].map((star) => (
               <icons.Star
                 key={star}
-                className={`h-10 w-10 ${star <= comment.stars ? "fill-yellow-400" : ""
+                className={`sm:h-10 sm:w-10 h-6 w-6 ${star <= comment.stars ? "fill-yellow-400" : ""
                   }`}
               />
             ))}
           </div>
         </div>
-        <p className="font-semibold text-gray-500 pt-4 overflow-hidden">
+        <p className="font-semibold text-gray-500 pt-4 ml-4 overflow-hidden">
           {comment.text}
         </p>
-        <p className="text-sm text-gray-400">
+        <p className="text-sm ml-4 text-gray-400">
           {formatDateTime(comment.created_at)}
         </p>
       </div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import {
   generateChartData,
@@ -17,7 +17,41 @@ import Chart from "chart.js/auto";
  * @returns {JSX.Element} The price history graph component.
  */
 const PriceHistoryGraph = ({ product, selectedData, setSelectedData }) => {
-  const prices = product.prices.map((price) => ({
+  const [filteredPrices, setFilteredPrices] = useState([]);
+
+  useEffect(() => {
+    const filterPrices = () => {
+      const now = new Date();
+      let filtered;
+
+      switch (selectedData) {
+        case "1W":
+          filtered = product.prices.filter(
+            (price) => now - new Date(price.date) <= 7 * 24 * 60 * 60 * 1000
+          );
+          break;
+        case "1M":
+          filtered = product.prices.filter(
+            (price) => now - new Date(price.date) <= 31 * 24 * 60 * 60 * 1000
+          );
+          break;
+        case "1Y":
+          filtered = product.prices.filter(
+            (price) => now - new Date(price.date) <= 365 * 24 * 60 * 60 * 1000
+          );
+          break;
+        case "All":
+        default:
+          filtered = product.prices;
+      }
+
+      setFilteredPrices(filtered);
+    };
+
+    filterPrices();
+  }, [product.prices, selectedData]);
+
+  const prices = filteredPrices.map((price) => ({
     date: new Date(price.date),
     price: parseFloat(price.price),
   }));
@@ -62,7 +96,6 @@ const PriceHistoryGraph = ({ product, selectedData, setSelectedData }) => {
       ? sorted[mid]
       : (sorted[mid - 1] + sorted[mid]) / 2;
   };
-  // maybe this should go in formatters....................... but it's only used here soooooo idk
 
   // some variables for the current price and lowest price
   const lowestPrice = Math.min(...prices.map((price) => price.price));
@@ -70,7 +103,7 @@ const PriceHistoryGraph = ({ product, selectedData, setSelectedData }) => {
   const changePercentage = product.change_percentage;
 
   return (
-    <div className="w-2/3">
+    <div className="w-full lg:w-2/3">
       <h1 className="text-2xl font-semibold mb-4">Price history</h1>
       <div
         className="bg-white rounded-lg p-6"
@@ -98,7 +131,7 @@ const PriceHistoryGraph = ({ product, selectedData, setSelectedData }) => {
             </div>
           </div>
           <div className="flex space-x-4 h-8">
-            {["1M", "1Y", "All"].map((range) => (
+            {["1W", "1M", "1Y", "All"].map((range) => (
               <button
                 key={range}
                 className={`cursor-pointer px-4 py-2 rounded flex items-center justify-center ${

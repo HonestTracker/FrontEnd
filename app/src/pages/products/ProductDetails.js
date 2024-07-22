@@ -74,10 +74,11 @@ function ProductDetails() {
       <div className="w-5/6">
         <div className="flex flex-row mb-10 items-center  justify-between">
           <BackButton />
-          <h1 className="sm:text-3xl text-2xl text-right font-bold">Product overview</h1>
+          <h1 className="sm:text-3xl text-2xl text-right font-bold">
+            Product overview
+          </h1>
         </div>
         <div className="flex flex-col">
-          
           <ProductCardDetails product={product} />
           <div className="flex flex-col lg:flex-row justify-between">
             <PriceHistoryGraph
@@ -86,8 +87,8 @@ function ProductDetails() {
               setSelectedData={setSelectedData}
             />
             <LatestUpdates product={product} />
-            </div>
-          
+          </div>
+
           <div className="flex flex-col lg:flex-row justify-between mt-20">
             <CommentsSection product={product} comments={comments} />
             <SimilarProducts similarProducts={similarProducts} />

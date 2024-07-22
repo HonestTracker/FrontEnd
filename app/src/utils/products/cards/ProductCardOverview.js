@@ -59,7 +59,7 @@ function ProductCardOverview({ product, getIconComponent, formatPrice }) {
     event.stopPropagation();
     event.preventDefault();
     navigator.clipboard
-      .writeText(window.location.href + "/product/" + product.id)
+      .writeText("https://honesttracker.nl/product/" + product.id)
       .then(() => {
         toast.success("Product link copied to clipboard!", {
           position: "top-center",

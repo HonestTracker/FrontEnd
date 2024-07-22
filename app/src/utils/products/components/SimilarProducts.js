@@ -14,7 +14,7 @@ import ProductCard from "../cards/ProductCardSmall";
 
 const SimilarProducts = ({ similarProducts }) => {
   return (
-    <div className="lg:w-1/3 w-full">
+    <div className="lg:w-1/4 w-full">
       <h1 className="text-2xl font-semibold mb-4">Similar products</h1>
       {similarProducts.map((product) => (
         <ProductCard key={product.id} product={product} />

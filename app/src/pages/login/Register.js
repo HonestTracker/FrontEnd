@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Register = () => {
   let navigate = useNavigate();
@@ -57,6 +58,9 @@ const Register = () => {
         localStorage.setItem("token", accessToken);
         localStorage.setItem("tokenExpiration", expirationTime.toString());
         navigate("/");
+        toast.success("Successfully created your account!", {
+          position: "top-center",
+        });
       }
     } catch (error) {
       console.error("Error during login:", error);

@@ -33,20 +33,21 @@ const FeaturedProductCard = ({ product, formatPrice, getIconComponent }) => {
     event.stopPropagation(event);
     event.preventDefault();
     try {
-      // Call your API function to add to favorites
-      const data = await addToFavorites(token, product.id); // Assuming addToFavorites sends a POST request with product ID
-      console.log(`Added product ${product.id} to favorites`);
-      toast.success("Link copied to clipboard!", {
-        position: "top-center",
-        icon: "fukyou",
-      });
-      // Optionally, you can update state or show a notification of success
+      const data = await addToFavorites(token, product.id);
+      if (data.message === "Added!") {
+        toast.success("Product added to favorites!", {
+          position: "top-center",
+        });
+      } else if (data.message === "Removed!") {
+        toast.error("Product removed from favorites!", {
+          position: "top-center",
+        });
+      }
     } catch (error) {
       console.error("Error adding to favorites:", error);
-      toast.error("" + error, {
+      toast.error("Error: " + error.message, {
         position: "top-center",
       });
-      // Handle error scenario
     }
   };
 
@@ -55,16 +56,18 @@ const FeaturedProductCard = ({ product, formatPrice, getIconComponent }) => {
     event.stopPropagation();
     event.preventDefault();
     navigator.clipboard
-      .writeText(window.location + "product/" + product.id)
-
+      .writeText(window.location.href + "/product/" + product.id)
+      .then(() => {
+        toast.success("Product link copied to clipboard!", {
+          position: "top-center",
+        });
+      })
       .catch((err) => {
-        toast.error("" + err, {
+        console.error("Failed to copy: ", err);
+        toast.error("Failed to copy link: " + err.message, {
           position: "top-center",
         });
       });
-    toast.success("Link copied to clipboard!", {
-      position: "top-center",
-    });
   };
 
   // HANDLE VISIT WEBPAGE CLICK

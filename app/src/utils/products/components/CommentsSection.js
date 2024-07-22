@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { icons } from "../../constants/images/Icons";
 import { images } from "../../constants/images/Images";
 import { useNavigate } from "react-router-dom";
 import CommentCard from "./CommentCard";
+import { toast } from "react-toastify";
 
 const CommentsSection = ({ product, comments }) => {
   const navigate = useNavigate();
@@ -10,6 +11,15 @@ const CommentsSection = ({ product, comments }) => {
   const [rating, setRating] = useState(0);
   const [hovered, setHovered] = useState(0);
   const [errors, setErrors] = useState({});
+
+  useEffect(() => {
+    if (localStorage.getItem("commentPosted")) {
+      toast.success("Comment posted!", {
+        position: "top-center",
+      });
+      localStorage.removeItem("commentPosted");
+    }
+  }, []);
 
   const handleMessageChange = (e) => setMessage(e.target.value);
 
@@ -42,8 +52,8 @@ const CommentsSection = ({ product, comments }) => {
           setErrors(responseData.errors);
         }
       } else {
+        localStorage.setItem("commentPosted", "true");
         window.location.reload();
-        window.scrollTo(0, 0);
       }
     } catch (error) {
       console.error("Error during posting:", error);
@@ -100,7 +110,6 @@ const CommentsSection = ({ product, comments }) => {
           </div>
           <form onSubmit={handleMessageSend}>
             <div className="bg-gray-100 mt-4 p-4 flex items-start rounded-md">
-              <icons.Pencil class="w-8 h-8 fill-gray-400 ml-2 " />
               <textarea
                 className="flex-1 pl-2 bg-transparent border-none outline-none text-gray-500 placeholder-gray-500 resize-none"
                 placeholder="Write a comment..."

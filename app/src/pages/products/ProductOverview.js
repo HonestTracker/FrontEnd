@@ -50,17 +50,20 @@ function ProductOverview() {
     } else {
       setLoading(true);
       try {
-        const response = await fetch("https://api.honesttracker.nl/api/products/filter", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          body: JSON.stringify({
-            categories: selectedCategories,
-            device: "web", // If 'device' is required by your backend, include it here
-          }),
-        });
+        const response = await fetch(
+          "https://api.honesttracker.nl/api/products/filter",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+            body: JSON.stringify({
+              categories: selectedCategories,
+              device: "web", // If 'device' is required by your backend, include it here
+            }),
+          }
+        );
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -118,8 +121,30 @@ function ProductOverview() {
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
+  // Calculate pagination numbers to display
+  const totalPages = Math.ceil(products.length / productsPerPage);
+  const pageNumbers = [];
+
+  if (currentPage > 1) {
+    pageNumbers.push("prev");
+  }
+
+  if (currentPage > 1) {
+    pageNumbers.push(currentPage - 1);
+  }
+
+  pageNumbers.push(currentPage);
+
+  if (currentPage < totalPages) {
+    pageNumbers.push(currentPage + 1);
+  }
+
+  if (currentPage < totalPages) {
+    pageNumbers.push("next");
+  }
+
   return (
-    <div className="container mx-auto  sm:p-4">
+    <div className="container mx-auto  sm:p-4 min-h-screen">
       <div className="flex items-center mb-8 mt-12 p-2 sm:ml-4 justify-between">
         <div className="flex normal h-10" style={{ width: "14rem" }}>
           <BackButton />
@@ -149,7 +174,9 @@ function ProductOverview() {
                 Showing results for: "{displaySearchQuery}"
               </h1>
             )}
-            <p className="text-gray-500 ml-2">{products.length} products found</p>
+            <p className="text-gray-500 ml-2">
+              {products.length} products found
+            </p>
           </header>
           <div className="flex flex-wrap justify-around">
             {currentProducts.map((product, i) => (
@@ -162,18 +189,25 @@ function ProductOverview() {
             ))}
           </div>
           <div className="text-center mt-6 flex justify-end">
-            {[
-              ...Array(Math.ceil(products.length / productsPerPage)).keys(),
-            ].map((pageNumber) => (
+            {pageNumbers.map((pageNumber, index) => (
               <button
-                key={pageNumber}
-                className={`mx-2 px-4 py-2 border rounded ${currentPage === pageNumber + 1
-                  ? "bg-[#20C1AA] text-white"
-                  : ""
-                  }`}
-                onClick={() => paginate(pageNumber + 1)}
+                key={index}
+                className={`mx-2 px-4 py-2 border rounded ${
+                  currentPage === pageNumber ? "bg-[#20C1AA] text-white" : ""
+                }`}
+                onClick={() =>
+                  pageNumber === "prev"
+                    ? paginate(currentPage - 1)
+                    : pageNumber === "next"
+                    ? paginate(currentPage + 1)
+                    : paginate(pageNumber)
+                }
               >
-                {pageNumber + 1}
+                {pageNumber === "prev"
+                  ? "<"
+                  : pageNumber === "next"
+                  ? ">"
+                  : pageNumber}
               </button>
             ))}
           </div>

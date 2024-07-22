@@ -60,7 +60,7 @@ const Login = () => {
 	return (
 		<div className="h-screen ">
 			<main className="flex items-center py-24">
-				<div className="bg-white mx-auto p-10 rounded-lg shadow-lg w-2/4">
+				<div className="bg-white mx-auto p-10 rounded-lg shadow-lg w-4/5 sm:w-3/4 xl:w-2/4">
 					<h2 className="text-5xl text-center mb-4">Log In</h2>
 					<p className="mb-4 text-center text-lg">
 						Don't have an account yet?{" "}
@@ -100,12 +100,12 @@ const Login = () => {
 							</div>
 						)}
 						{error && <div className="text-red-400 -mt-5 mb-4">{error}</div>}
-						<div className="flex justify-between items-center mb-4">
+						<div className="flex lg:flex-row flex-col justify-between items-center mb-4">
 							<label className="flex items-center">
-								<input type="checkbox" name="remember" className="mr-2" />
+								<input type="checkbox" name="remember" className="mr-2 lg:-ml-0 -ml-8" />
 								Remember me
 							</label>
-							<a href="#" className="text-teal-500">
+							<a href="#" className="text-teal-500 lg:mt-0 mt-2 -ml-8">
 								Forgot password?
 							</a>
 						</div>

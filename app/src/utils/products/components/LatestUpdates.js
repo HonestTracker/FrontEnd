@@ -25,7 +25,7 @@ const LatestUpdates = ({ product }) => {
   const latestPrices = prices.reverse().slice(0, 10);
 
   return (
-    <div className="w-1/4">
+    <div className="lg:w-1/4 lg:mt-0 mt-8">
       <h2 className="text-2xl font-semibold mb-4">Latest Updates</h2>
       <div
         className="bg-white rounded-lg p-6"

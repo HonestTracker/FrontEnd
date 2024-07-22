@@ -34,18 +34,18 @@ const Contact = () => {
 	}
 
 	return (
-		<div className=" flex flex-col justify-center p-20">
+		<div className=" flex flex-col p-4 sm:p-20 ">
 			{/* Main Content Section */}
-			<main className="py-4 flex justify-center items-center">
+			<main className="py-4 flex sm:justify-center justify-start ">
 				{/* Contact Form Container */}
-				<div className="bg-white rounded-lg px-4 py-4 shadow-lg w-2/4 ">
+				<div className="bg-white rounded-lg px-4 py-4 shadow-lg w-full sm:w-5/6 md:w-3/5 ">
 					{/* Contact Logo Image */}
 					<img
 						src={images.logoFNBG}
 						alt="Contact Logo"
 						className="w-40 h-40 mx-auto mb-4"
 					/>
-					<h1 className="text-5xl text-center mb-16">Contact Us</h1>
+					<h1 className="text-3xl sm:text-5xl text-center mb-16">Contact Us</h1>
 					<form id="contactForm" onSubmit={handleSubmit}>
 						<div className="mb-4">
 							<input

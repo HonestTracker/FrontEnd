@@ -67,8 +67,8 @@ const Register = () => {
   };
   return (
     <div className=" h-screen">
-      <main className="py-24">
-        <div className="bg-white p-10 rounded-lg mx-auto  shadow-lg w-2/4">
+      <main className="sm:py-24 py-6">
+        <div className="bg-white p-10 rounded-lg mx-auto  shadow-lg w-4/5 sm:w-3/4 xl:w-2/4">
           <h2 className="text-5xl text-center mb-4">Register</h2>
           <p className="mb-4 text-center text-lg">
             Already have an account?{" "}

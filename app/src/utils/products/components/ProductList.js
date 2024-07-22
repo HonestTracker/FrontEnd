@@ -25,12 +25,18 @@ const ProductList = ({
   };
 
   return (
-    <div className="bg-white rounded-lg p-6 shadow-md">
+    <div
+      className="bg-white rounded-lg p-6 mb-12"
+      style={{
+        boxShadow:
+          "0 -2px 5px rgba(0, 0, 0, 0.1), 0 2px 3px rgba(0, 0, 0, 0.1)",
+      }}
+    >
       <ul className="list-none">
         {products.map((product, i) => (
           <li
             key={i}
-            className="flex justify-between items-center border-b border-gray-200 py-2"
+            className="flex justify-between items-center border-b border-gray-200 py-2 cursor-pointer"
           >
             <div
               className="flex items-center"

@@ -56,7 +56,7 @@ const FeaturedProductCard = ({ product, formatPrice, getIconComponent }) => {
     event.stopPropagation();
     event.preventDefault();
     navigator.clipboard
-      .writeText(window.location.href + "/product/" + product.id)
+      .writeText(window.location.href + "product/" + product.id)
       .then(() => {
         toast.success("Product link copied to clipboard!", {
           position: "top-center",
